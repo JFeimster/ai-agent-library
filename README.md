@@ -1,63 +1,63 @@
-# Notion AI Agent Library
+# AI Agent Library
 
-A practical library of productized Notion AI Agent specs for funding operators, affiliate teams, local referral networks, content engines, finance-ops systems, and AI automation agencies.
+A practical, cross-platform library of **productized AI agent specs, prompt systems, knowledge-base templates, implementation guides, and deployment patterns**.
 
-This first version contains **28 Notion AI Agent markdown files**. Each file includes:
+This repo starts with **28 complete Notion AI Agent specs**, then expands into platform packs for ChatGPT GPTs, Claude Projects, Gemini Gems, n8n agents, and Vercel-powered web apps.
 
-- Productized Notion Agent concept
+It is not just a list of clever prompts. It is a build system for turning agent ideas into reusable workflows, partner tools, lead magnets, internal operating systems, and deployable AI products.
+
+## What this repo is for
+
+Use this library to:
+
+- Design productized AI agents with clear buyers, pain points, rules, prompts, and monetization paths
+- Convert Notion AI Agents into Custom GPTs, Claude Projects, Gemini Gems, n8n agents, and Vercel web apps
+- Build repeatable knowledge-base systems for funding, partner enablement, CRM, content ops, automation, and referral growth
+- Package agents as templates, internal tools, client deliverables, lead magnets, widgets, and SaaS-lite products
+- Maintain an organized inventory of agents, platform packs, project assets, and reusable implementation patterns
+
+## Current contents
+
+```text
+ai-agent-library/
+  README.md
+  agent-index.json
+
+  agents/
+    28 complete productized agent specs
+
+  templates/
+    agent-build-checklist.md
+    agent-evaluation-scorecard.md
+    notion-database-schema.md
+
+  platforms/
+    vercel-web-apps/
+      architecture, conversion, deployment, API, UI, lead capture, monetization, examples, and templates
+```
+
+## Agent spec standard
+
+Each agent file is designed to be usable as a source spec for multiple platforms. Agent specs include:
+
+- Productized agent concept
 - Buyer
 - Pain solved
 - Monetization path
 - Agent bio / description
+- Best-fit use cases
 - Suggested instructions
 - Rules and guardrails
 - Conversation starters
 - Prompt library
-- Recommended knowledge base files
+- Recommended knowledge-base files
 - Integrations / connectors
 - Suggested Notion database properties
 - Packaging angle
 - Success criteria
 - Future platform expansion notes
 
-## Suggested Repo Structure
-
-```text
-notion-ai-agent-library/
-  README.md
-  agent-index.json
-  agents/
-    01-funding-pipeline-triage-agent.md
-    02-incomplete-application-rescue-agent.md
-    ...
-```
-
-## Recommended Next Folders
-
-```text
-knowledge-base/
-  funding/
-  partner-enablement/
-  crm/
-  content-ops/
-  automation/
-  local-referrals/
-
-platforms/
-  notion-ai/
-  chatgpt-gpts/
-  claude-projects/
-  gemini-gems/
-  n8n-agents/
-  vercel-web-apps/
-
-templates/
-  notion-database-schema.md
-  agent-evaluation-scorecard.md
-  agent-build-checklist.md
-```
-
-## Agent List
+## Agent list
 
 | # | Agent | Category | File |
 |---:|---|---|---|
@@ -90,9 +90,79 @@ templates/
 | 27 | Notion Database Architect | Notion Ops | `agents/27-notion-database-architect.md` |
 | 28 | Automation Workflow Spec Writer | Automation | `agents/28-automation-workflow-spec-writer.md` |
 
-## Build Philosophy
+## Platform packs
 
-The goal is not to collect shiny AI toys. The goal is to build repeatable operational agents that can become:
+Current:
+
+```text
+platforms/
+  vercel-web-apps/
+```
+
+Recommended next platform packs:
+
+```text
+platforms/
+  notion-ai/
+  chatgpt-gpts/
+  claude-projects/
+  gemini-gems/
+  n8n-agents/
+  vercel-web-apps/
+```
+
+## Recommended next folders
+
+```text
+knowledge-base/
+  funding/
+  partner-enablement/
+  crm/
+  content-ops/
+  automation/
+  local-referrals/
+  engineering-as-marketing/
+
+portfolio/
+  vercel/
+  custom-gpts/
+
+schemas/
+  agent.schema.json
+  custom-gpt.schema.json
+  vercel-project.schema.json
+  funding-product.schema.json
+  webhook-event.schema.json
+
+roadmap/
+  phase-1-fast-mvp.md
+  phase-2-distribution-system.md
+  phase-3-marketplace-layer.md
+  phase-4-platform-layer.md
+
+examples/
+  funding/
+  partner-enablement/
+  content-ops/
+  automation/
+```
+
+## Suggested build order
+
+1. Finish importing the complete generated agent files and Vercel platform pack.
+2. Add `platforms/chatgpt-gpts/` using the Custom GPT inventory.
+3. Add `knowledge-base/funding/` using the funding handbook and product portfolio report.
+4. Add `knowledge-base/partner-enablement/` using partner routing and attribution rules.
+5. Add `knowledge-base/engineering-as-marketing/` using tool and widget specs.
+6. Add `portfolio/vercel/` and `portfolio/custom-gpts/` inventories.
+7. Add `schemas/` so the library can power future apps, dashboards, and validation workflows.
+8. Add `.github/` issue templates and PR templates for repeatable repo operations.
+
+## Build philosophy
+
+The goal is not to collect shiny AI toys.
+
+The goal is to build repeatable operational agents that can become:
 
 - Internal SOP machines
 - Client deliverables
@@ -100,6 +170,20 @@ The goal is not to collect shiny AI toys. The goal is to build repeatable operat
 - Paid templates
 - Lead magnets
 - Productized services
-- Eventually, full web-app agents
+- Web apps and embedded widgets
+- Workflow automation modules
+- Eventually, a full cross-platform agent operating system
 
 Tiny robot interns are cute. Tiny robot interns with job descriptions, guardrails, and revenue paths are better.
+
+## Working principle
+
+Every useful agent should answer five questions:
+
+1. Who is this for?
+2. What painful job does it solve?
+3. What knowledge does it need?
+4. What output should it produce every time?
+5. How can this become a product, workflow, or revenue-generating asset?
+
+If an agent cannot answer those questions, it is not ready for the library yet.
