@@ -8,6 +8,18 @@ Jules works **one approved GitHub issue at a time**.
 
 Do not run the full roadmap unattended. Do not start future issues early. Do not bundle unrelated roadmap groups into one PR.
 
+## Prompt-Chain Control Layer
+
+The `prompt-chains/` folder provides higher-level roadmap prompts, phase groupings, review checklists, and queue-update protocols.
+
+These files are for planning and orchestration only. They do **not** override `NEXT_TASK.md`.
+
+When there is any conflict:
+
+1. Follow `NEXT_TASK.md` for the current approved Jules task.
+2. Follow the linked GitHub issue for exact scope.
+3. Use `prompt-chains/` only as supporting guidance.
+
 ## Required Workflow
 
 For each task:
@@ -109,6 +121,7 @@ roadmap/
 examples/
 docs/
 .github/
+prompt-chains/
 ```
 
 Do not create competing folder names unless the issue explicitly requires it.
