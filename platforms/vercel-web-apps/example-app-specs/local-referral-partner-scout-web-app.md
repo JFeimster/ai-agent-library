@@ -1,21 +1,61 @@
-# Local Referral Partner Scout Web App
+# Example App Spec: Local Referral Partner Scout Web App
 
-## Agent source
+## App Name
+
+Local Referral Partner Scout
+
+## Agent Source
 
 `agents/10-local-referral-partner-scout.md`
 
-## User promise
+## Buyer
 
-Paste a local business, profile, or category. Get a partnership angle, outreach message, follow-up, objection handling, CRM note, and next action.
+Funding brokers, local consultants, agencies, insurance agents, business service providers.
 
-## Inputs
+## User Promise
 
-Market, partner type, business/contact name, profile notes, audience served, offer, tone.
+Paste a local business, LinkedIn profile, contact list, or referral partner category. Get a partnership angle, outreach message, follow-up, objection handling, CRM note, and next action.
 
-## Outputs
+## MVP Inputs
 
-Partner Summary, Why They Matter, Offer Angle, First-Touch Message, Follow-Up, Lead Magnet, CRM Note, Next Action.
+- Market/location
+- Partner type
+- Business/contact name
+- Website or profile notes
+- Audience served
+- Your offer
+- Desired outreach tone
+
+## MVP Outputs
+
+- Referral Partner Summary
+- Why This Partner Matters
+- Recommended Offer Angle
+- First-Touch Message
+- Follow-Up Message
+- Lead Magnet / Resource to Share
+- Objection Handling
+- CRM Note
+- Next Action
 
 ## Integrations
 
-HubSpot, Notion CRM, Gmail, Google Sheets, Wix.
+- HubSpot
+- Notion CRM
+- Gmail
+- Google Sheets
+- Wix partner pages
+
+## CTA
+
+- Build my local referral list
+- Create a 7-day outreach sprint
+- Become a Moonshine Capital partner
+- Book a referral strategy call
+
+## Monetization
+
+- Free lead magnet
+- Paid local outreach sprint
+- Partner recruitment funnel
+- Agency implementation package

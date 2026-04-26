@@ -1,21 +1,61 @@
-# Partner Launch Kit Builder Web App
+# Example App Spec: Partner Launch Kit Builder Web App
 
-## Agent source
+## App Name
+
+Partner Launch Kit Builder
+
+## Agent Source
 
 `agents/03-partner-launch-kit-builder.md`
 
-## User promise
+## Buyer
 
-Enter a partner's niche, background, audience, and application link. Get a launch kit with bio, resources, outreach copy, social posts, and action plan.
+Affiliate programs, broker networks, referral teams, partner managers.
 
-## Inputs
+## User Promise
 
-Partner name, niche, audience, location, background, referral link, preferred funding lanes.
+Enter a partner's niche, background, audience, and application link. Get a custom launch kit with bio, resource stack, outreach copy, social posts, and first-week action plan.
 
-## Outputs
+## MVP Inputs
 
-Partner Positioning, Broker Bio, Resource Stack, Email Copy, Social Posts, 7-Day Action Plan, CTA Links.
+- Partner name
+- Partner niche
+- Audience
+- Location
+- Background
+- Application/referral link
+- Preferred funding lanes
+- Existing resources
+
+## MVP Outputs
+
+- Partner Positioning
+- Broker Bio
+- Resource Stack
+- Email Swipe Copy
+- Social Posts
+- 7-Day Action Plan
+- CTA Links
 
 ## Integrations
 
-Notion, Wix CMS, Vercel asset list, HubSpot, Canva.
+- Notion
+- Wix CMS
+- Vercel asset list
+- HubSpot
+- Canva
+- Google Drive
+
+## CTA
+
+- Generate partner profile page
+- Save launch kit
+- Send onboarding email
+- Create resource card stack
+
+## Monetization
+
+- Partner onboarding package
+- White-label launch kit builder
+- Paid affiliate enablement toolkit
+- Partner portal upgrade

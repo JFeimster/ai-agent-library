@@ -1,25 +1,86 @@
-# Monetization Patterns
+# Monetization Patterns for Vercel Agent Web Apps
 
-## Free lead magnet
+## 1. Free Lead Magnet
 
-Best for referral scouts, business credit tools, cash-flow tools, and lead magnet generators.
+Best for:
+- Local Referral Partner Scout
+- Business Credit Builder Coach
+- Cash Flow Copilot
+- Lead Magnet Factory Agent
 
-## Paid diagnostic
+Monetization:
+- Email capture
+- Consultation CTA
+- Affiliate offer
+- Partner program sign-up
+- Paid template upsell
 
-Best for business credit, micro-acquisition screening, grants, and agency offer audits.
+## 2. Paid Diagnostic
 
-## Partner enablement tool
+Best for:
+- Business Credit Builder Coach
+- Micro-Acquisition Deal Screener
+- Grant Opportunity Scout
+- Agency Offer Architect
 
-Best for partner launch kits, broker profiles, partner training, and funding tool routing.
+Monetization:
+- One-time report fee
+- Stripe checkout before full output
+- PDF report upgrade
+- Strategy call upsell
 
-## Internal ops tool
+## 3. Partner Enablement Tool
 
-Best for pipeline triage, incomplete application rescue, CRM notes, and inbox scanning.
+Best for:
+- Partner Launch Kit Builder
+- Broker Profile Builder
+- Partner Training Coach
+- Funding Tool Router
 
-## SaaS-lite
+Monetization:
+- Partner onboarding package
+- Paid community upgrade
+- White-label setup
+- Retainer support
 
-Best for Vercel asset library, automation specs, Notion database architecture, and AI wrapper PM.
+## 4. Internal Ops Tool
 
-## Embedded widget
+Best for:
+- Funding Pipeline Triage Agent
+- Incomplete Application Rescue Agent
+- CRM Note Cleaner
+- Inbox Revenue Signal Scanner
 
-Best for calculators, assessments, routers, and short guided workflows.
+Monetization:
+- Saves internal time
+- Improves close rate
+- Powers done-for-you services
+- Increases partner support capacity
+
+## 5. SaaS-Lite
+
+Best for:
+- Vercel Asset Librarian
+- Automation Workflow Spec Writer
+- Notion Database Architect
+- AI Wrapper Product Manager
+
+Monetization:
+- Monthly access
+- Usage tiers
+- Workspace templates
+- Implementation add-ons
+
+## 6. Embedded Widget
+
+Best for:
+- Calculators
+- Assessments
+- Tool routers
+- Short agent workflows
+
+Monetization:
+- Affiliate CTAs
+- Partner embed licensing
+- White-label widgets
+- Pay-per-lead

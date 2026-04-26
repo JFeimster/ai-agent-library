@@ -1,21 +1,59 @@
-# Vercel Asset Librarian Web App
+# Example App Spec: Vercel Asset Librarian Web App
 
-## Agent source
+## App Name
+
+Vercel Asset Librarian
+
+## Agent Source
 
 `agents/08-vercel-asset-librarian.md`
 
-## User promise
+## Buyer
+
+Indie hackers, no-code builders, AI agencies, product studios.
+
+## User Promise
 
 Paste or connect a Vercel/GitHub project list. Get a structured portfolio map with audience, status, monetization path, and keep/merge/rebuild/archive recommendations.
 
-## Inputs
+## MVP Inputs
 
-Project name, URL, repo, description, status, audience, notes, known issues.
+- Project name
+- URL
+- Repo
+- Description
+- Current status
+- Audience
+- Notes
+- Known issues
 
-## Outputs
+## MVP Outputs
 
-Project Summary, Status, Audience, Brand Fit, Monetization Path, Keep/Merge/Kill, Next Action.
+- Project Summary
+- Status
+- Audience
+- Brand Fit
+- Monetization Path
+- Keep/Merge/Kill
+- Next Action
 
 ## Integrations
 
-Vercel, GitHub, Notion, Wix CMS.
+- Vercel
+- GitHub
+- Notion
+- Wix CMS
+
+## CTA
+
+- Add to asset inventory
+- Generate resource card
+- Create rebuild checklist
+- Create archive recommendation
+
+## Monetization
+
+- Portfolio audit
+- Repo cleanup service
+- Asset inventory dashboard
+- Monthly product ops review

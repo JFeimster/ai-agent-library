@@ -8,19 +8,41 @@ cp .env.example .env.local
 npm run dev
 ```
 
+## Environment Variables
+
+```bash
+AI_GATEWAY_API_KEY=
+N8N_WEBHOOK_URL=
+NEXT_PUBLIC_APP_URL=
+```
+
 ## Routes
 
 ```text
 /
+  Landing page
+
 /tools/[slug]
+  Agent tool page
+
 /api/agent/run
+  Runs the selected agent
+
 /api/leads
+  Captures lead data
 ```
 
-## How to add an agent
+## How to Add an Agent
 
-1. Add config to `/lib/agents/[slug].json`.
-2. Add output sections.
-3. Add form fields.
-4. Test `/tools/[slug]`.
-5. Deploy to Vercel.
+1. Add config to `/lib/agents/[slug].json`
+2. Add output sections
+3. Add form fields
+4. Test `/tools/[slug]`
+5. Deploy to Vercel
+
+## Deployment
+
+```bash
+vercel
+vercel --prod
+```

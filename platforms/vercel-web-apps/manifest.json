@@ -1,1 +1,27 @@
-{"folder":"platforms/vercel-web-apps","files":["README.md","architecture.md","agent-to-vercel-conversion-guide.md","starter-project-spec.md","environment-variables.md","deployment-checklist.md","api-route-patterns.md","ui-patterns.md","lead-capture-patterns.md","monetization-patterns.md","vercel-project-matrix.md"]}
+{
+  "created": "2026-04-24",
+  "folder": "platforms/vercel-web-apps",
+  "files": [
+    "platforms/vercel-web-apps/README.md",
+    "platforms/vercel-web-apps/agent-to-vercel-conversion-guide.md",
+    "platforms/vercel-web-apps/api-route-patterns.md",
+    "platforms/vercel-web-apps/architecture.md",
+    "platforms/vercel-web-apps/deployment-checklist.md",
+    "platforms/vercel-web-apps/environment-variables.md",
+    "platforms/vercel-web-apps/example-app-specs/funding-pipeline-triage-web-app.md",
+    "platforms/vercel-web-apps/example-app-specs/local-referral-partner-scout-web-app.md",
+    "platforms/vercel-web-apps/example-app-specs/partner-launch-kit-builder-web-app.md",
+    "platforms/vercel-web-apps/example-app-specs/sop-goblin-web-app.md",
+    "platforms/vercel-web-apps/example-app-specs/vercel-asset-librarian-web-app.md",
+    "platforms/vercel-web-apps/lead-capture-patterns.md",
+    "platforms/vercel-web-apps/monetization-patterns.md",
+    "platforms/vercel-web-apps/starter-project-spec.md",
+    "platforms/vercel-web-apps/templates/agent-config-template.json",
+    "platforms/vercel-web-apps/templates/app-router-api-route-template.ts",
+    "platforms/vercel-web-apps/templates/lead-capture-schema.json",
+    "platforms/vercel-web-apps/templates/nextjs-agent-app-readme.md",
+    "platforms/vercel-web-apps/templates/vercel-env-example.env",
+    "platforms/vercel-web-apps/ui-patterns.md",
+    "platforms/vercel-web-apps/vercel-project-matrix.md"
+  ]
+}

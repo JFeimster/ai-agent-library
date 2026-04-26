@@ -1,31 +1,111 @@
 # Lead Capture Patterns
 
-## Ungated result
+## 1. Ungated Result
+
+Best for trust-building.
 
 ```text
-Form -> Full result -> Soft CTA
+Form → Full result → Soft CTA
 ```
 
-## Teaser gate
+Use when:
+- Tool is new
+- Audience is cold
+- You want shares/backlinks
+- The output is not sensitive
+
+## 2. Teaser Gate
+
+Best for qualified lead capture.
 
 ```text
-Form -> Preview result -> Email gate -> Full result
+Form → Preview result → Email gate → Full result
 ```
 
-## Pre-gated tool
+Use when:
+- Output has high perceived value
+- You want list growth
+- You can deliver follow-up value
+
+## 3. Pre-Gated Tool
+
+Best for partner/client-only tools.
 
 ```text
-Email/auth -> Form -> Full result
+Email/auth → Form → Full result
 ```
 
-## Recommended lead fields
+Use when:
+- Tool handles sensitive data
+- Tool is for clients/partners
+- You want controlled access
+
+## 4. Recommended Lead Fields
+
+Minimum:
 
 ```json
-{"name":"","email":"","company":"","role":"","industry":"","market":"","agentSlug":"","utmSource":"","utmMedium":"","utmCampaign":""}
+{
+  "name": "",
+  "email": "",
+  "company": "",
+  "role": "",
+  "agentSlug": "",
+  "source": "",
+  "notes": ""
+}
 ```
 
-## Webhook payload
+Better:
 
 ```json
-{"event":"agent_lead_created","agentSlug":"","lead":{},"input":{},"output":{},"timestamp":""}
+{
+  "name": "",
+  "email": "",
+  "company": "",
+  "phone": "",
+  "role": "",
+  "industry": "",
+  "market": "",
+  "primaryPain": "",
+  "agentSlug": "",
+  "utmSource": "",
+  "utmMedium": "",
+  "utmCampaign": ""
+}
 ```
+
+## 5. Webhook Payload
+
+```json
+{
+  "event": "agent_lead_created",
+  "agentSlug": "local-referral-partner-scout",
+  "lead": {
+    "name": "",
+    "email": "",
+    "company": ""
+  },
+  "input": {},
+  "output": {},
+  "timestamp": ""
+}
+```
+
+## 6. Follow-Up Logic
+
+After submission, route users into:
+
+- Email nurture
+- CRM task
+- Partner onboarding sequence
+- Funding intake flow
+- Consultation booking
+- Related tool recommendation
+
+## 7. Compliance Notes
+
+- Use consent language where needed.
+- Do not collect sensitive data unless necessary.
+- For funding applicants, avoid asking for bank login data directly.
+- For public tools, make it clear that AI output is educational/operational, not legal/financial advice.

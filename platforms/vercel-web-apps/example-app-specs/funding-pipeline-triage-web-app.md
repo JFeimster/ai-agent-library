@@ -1,21 +1,59 @@
-# Funding Pipeline Triage Web App
+# Example App Spec: Funding Pipeline Triage Web App
 
-## Agent source
+## App Name
+
+Funding Pipeline Triage
+
+## Agent Source
 
 `agents/01-funding-pipeline-triage-agent.md`
 
-## User promise
+## Buyer
 
-Paste a funding email or applicant note. Get a CRM-ready pipeline record, stage recommendation, blocker, follow-up message, and next action.
+Funding brokers, ISOs, loan broker teams, fintech operators.
 
-## Inputs
+## User Promise
 
-Applicant notes, email subject/body, business name, applicant name, current stage, desired CRM format.
+Paste a funding email, applicant note, or lead summary. Get a CRM-ready funding pipeline record, stage recommendation, blocker, follow-up message, and next action.
 
-## Outputs
+## MVP Inputs
 
-Pipeline Summary, Extracted Fields, Risk/Blocker, Next Step, CRM Note, Follow-Up, Tags.
+- Applicant/source notes
+- Email subject
+- Email body
+- Known business name
+- Known applicant name
+- Current stage if known
+- Desired CRM format
+
+## MVP Outputs
+
+- Pipeline Summary
+- Extracted Fields
+- Risk / Blocker
+- Recommended Next Step
+- CRM Note
+- Client Follow-Up Message
+- Tags
 
 ## Integrations
 
-HubSpot, Notion, Google Sheets, Gmail/Notion Mail, n8n.
+- HubSpot
+- Notion database
+- Google Sheets
+- Gmail/Notion Mail
+- n8n webhook
+
+## CTA
+
+- Save to CRM
+- Create follow-up task
+- Start funding application
+- Book strategy call
+
+## Monetization
+
+- Internal efficiency
+- Broker team setup fee
+- Monthly pipeline ops retainer
+- White-label CRM parser for broker teams

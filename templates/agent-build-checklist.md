@@ -1,7 +1,6 @@
 # Agent Build Checklist
 
 ## Strategy
-
 - [ ] Define buyer
 - [ ] Define pain solved
 - [ ] Define workflow trigger
@@ -9,7 +8,6 @@
 - [ ] Define what good output looks like
 
 ## Knowledge Base
-
 - [ ] Add source docs
 - [ ] Add examples
 - [ ] Add field maps or schemas
@@ -17,7 +15,6 @@
 - [ ] Add compliance or guardrail notes
 
 ## Prompting
-
 - [ ] Write agent instructions
 - [ ] Add rules
 - [ ] Add conversation starters
@@ -25,17 +22,15 @@
 - [ ] Add output format
 
 ## Testing
-
-- [ ] Test clean input
-- [ ] Test messy input
+- [ ] Test with clean input
+- [ ] Test with messy input
 - [ ] Test missing data
 - [ ] Test edge cases
 - [ ] Confirm it refuses to invent facts
 
 ## Packaging
-
 - [ ] Add agent bio
 - [ ] Add setup steps
-- [ ] Add examples
+- [ ] Add screenshots or examples
 - [ ] Add monetization notes
-- [ ] Add platform conversion notes
+- [ ] Add future platform conversion notes
