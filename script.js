@@ -4,8 +4,15 @@ document.addEventListener('DOMContentLoaded', () => {
   let agents = [];
 
   // Fetch agent data
-  fetch('site-data/agents.json')
-    .then(response => response.json())
+  fetch('agent-index.json')
+    .then(response => {
+      if (!response.ok) throw new Error('Canonical index unavailable');
+      return response.json();
+    })
+    .catch(() => {
+      console.warn('Falling back to static site-data/agents.json');
+      return fetch('site-data/agents.json').then(response => response.json());
+    })
     .then(data => {
       agents = data;
       renderAgents(agents);
@@ -39,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
           <p><strong>Monetization:</strong> ${agent.monetization}</p>
         </div>
         <div class="agent-footer">
-          <a href="https://github.com/JFeimster/ai-agent-library/blob/main/${agent.file}" target="_blank" rel="noopener noreferrer" class="agent-link">View Spec &rarr;</a>
+          <a href="${agent.file}" target="_blank" rel="noopener noreferrer" class="agent-link">View Spec &rarr;</a>
         </div>
       `;
 
