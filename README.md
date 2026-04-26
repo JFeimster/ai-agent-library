@@ -16,6 +16,14 @@ Use this library to:
 - Package agents as templates, internal tools, client deliverables, lead magnets, widgets, and SaaS-lite products
 - Maintain an organized inventory of agents, platform packs, project assets, and reusable implementation patterns
 
+## Visual Directory / Vercel Preview
+
+This repository includes a dependency-free, static Visual Directory of all AI agents.
+
+To preview it locally, run `python3 -m http.server 8000` from the root directory and open `http://localhost:8000`.
+
+To deploy it to Vercel, read the [Deployment Instructions](DEPLOYMENT.md) for a zero-config setup.
+
 ## Current contents
 
 ```text
