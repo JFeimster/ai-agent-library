@@ -109,6 +109,7 @@ Current:
 ```text
 platforms/
   vercel-web-apps/
+  chatgpt-gpts/
 ```
 
 Recommended next platform packs:
@@ -116,11 +117,9 @@ Recommended next platform packs:
 ```text
 platforms/
   notion-ai/
-  chatgpt-gpts/
   claude-projects/
   gemini-gems/
   n8n-agents/
-  vercel-web-apps/
 ```
 
 ## Recommended next folders
