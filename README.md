@@ -24,6 +24,12 @@ To preview it locally, run `python3 -m http.server 8000` from the root directory
 
 To deploy it to Vercel, read the [Deployment Instructions](DEPLOYMENT.md) for a zero-config setup.
 
+## Prompt-chain command layer
+
+The [`prompt-chains/`](prompt-chains/) folder contains the repo's execution control layer for grouped planning, issue sequencing, Jules prompts, ChatGPT prompts, PR review checklists, and `NEXT_TASK.md` update rules.
+
+Use it when a build thread needs to continue across multiple issues without losing the one-issue-at-a-time PR discipline.
+
 ## Current contents
 
 ```text
@@ -37,6 +43,9 @@ ai-agent-library/
 
   docs/
     Foundation documentation, repo purpose, conventions, and standards
+
+  prompt-chains/
+    Master roadmap prompt, grouped issue phases, execution prompts, review checklist, and queue protocol
 
   templates/
     agent-build-checklist.md
