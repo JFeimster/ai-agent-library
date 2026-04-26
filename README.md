@@ -21,10 +21,14 @@ Use this library to:
 ```text
 ai-agent-library/
   README.md
+  agents.md
   agent-index.json
 
   agents/
     28 complete productized agent specs
+
+  docs/
+    Foundation documentation, repo purpose, conventions, and standards
 
   templates/
     agent-build-checklist.md
