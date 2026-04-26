@@ -4,9 +4,9 @@ This file tells Jules which single task is currently approved.
 
 ## Current Approved Task
 
-Issue: #2  
-Title: Add foundation docs and root structure  
-Branch: `feature/foundation-docs-and-root-structure`  
+Issue: #3  
+Title: Add static Vercel-ready agent directory site  
+Branch: `feature/static-agent-directory-site`  
 Status: Ready for Jules
 
 ## Rule
@@ -37,17 +37,16 @@ Do not begin the next task.
 
 ## Upcoming Tasks
 
-1. #3 Add static Vercel-ready agent directory site
-2. #4 Add ChatGPT GPT platform pack and Custom GPT inventory
-3. #5 Add Moonshine Capital funding knowledge base
-4. #6 Add partner enablement knowledge base
-5. #7 Add engineering-as-marketing knowledge base
-6. #8 Add CRM, automation, content ops, and local referral knowledge bases
-7. #9 Add schema definitions
-8. #10 Expand platform implementation packs
-9. #11 Expand reusable templates
-10. #12 Add portfolio inventories
-11. #13 Add roadmap folder
-12. #14 Add agent usage examples
-13. #15 Add GitHub project hygiene files
-14. #16 Add final indexes and crosslinks
+1. #4 Add ChatGPT GPT platform pack and Custom GPT inventory
+2. #5 Add Moonshine Capital funding knowledge base
+3. #6 Add partner enablement knowledge base
+4. #7 Add engineering-as-marketing knowledge base
+5. #8 Add CRM, automation, content ops, and local referral knowledge bases
+6. #9 Add schema definitions
+7. #10 Expand platform implementation packs
+8. #11 Expand reusable templates
+9. #12 Add portfolio inventories
+10. #13 Add roadmap folder
+11. #14 Add agent usage examples
+12. #15 Add GitHub project hygiene files
+13. #16 Add final indexes and crosslinks
