@@ -1,0 +1,86 @@
+[
+  {
+    "id": "siteforge-operator",
+    "name": "SiteForge Operator",
+    "slug": "siteforge-operator",
+    "description": "A website factory in a trench coat. Drop your brand + CTA, get a full repo: pages, components, data JSON, SEO, and Vercel-ready deploy docs.",
+    "category": "Web, Vercel + App Builder",
+    "visibility": "public",
+    "brand": "AIBuiltThat.ai",
+    "status": "promote",
+    "access_url": "https://chatgpt.com/g/g-698ea9b3d5d88191aa11946cbbdc727d-siteforge-operator",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "funding-pathfinder",
+    "name": "Funding Pathfinder",
+    "slug": "funding-pathfinder",
+    "description": "Get funded fast—no fluff, just smart strategy. Intake → Analyze → Funding roadmap with affiliate CTAs.",
+    "category": "Funding + Finance",
+    "visibility": "internal-only",
+    "brand": "Moonshine Capital",
+    "status": "internal-only",
+    "access_url": "https://chatgpt.com/g/g-6876b717ca808191aea5343f89c670e3-funding-pathfinder",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "game-plan-wizard",
+    "name": "Game Plan Wizard",
+    "slug": "game-plan-wizard",
+    "description": "Turns bold income goals into laser-focused daily action plans using DAC math—fast, sharp, no fluff.",
+    "category": "Affiliate Partner Enablement",
+    "visibility": "partner-facing",
+    "brand": "Moonshine Capital",
+    "status": "partner-facing",
+    "access_url": "https://chatgpt.com/g/g-69548413b088819191fabdfeb2429174-game-plan-wizard",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "bizcredit-builder-gpt",
+    "name": "BizCredit Builder GPT",
+    "slug": "bizcredit-builder-gpt",
+    "description": "Free tools to build business credit: customizable templates, exports, vendor lists, roadmap",
+    "category": "Business Credit / FinanceOS / BizCredit OS",
+    "visibility": "public",
+    "brand": "BizCredit OS",
+    "status": "promote",
+    "access_url": "https://chatgpt.com/g/g-6836dda9d7e881918dd6018226121e03-bizcredit-builder-gpt",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "cashflow-copilot",
+    "name": "Cashflow Copilot",
+    "slug": "cashflow-copilot",
+    "description": "Upload your expenses and I’ll give you a clean audit, burn rate, and cost-cutting checklist — in seconds.",
+    "category": "Business Credit / FinanceOS / BizCredit OS",
+    "visibility": "public",
+    "brand": "BizCredit OS",
+    "status": "promote",
+    "access_url": "https://chatgpt.com/g/g-68769106cf988191bcc45c69e50038a2-cashflow-copilot",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "ai-agent-generator",
+    "name": "AI Agent Generator",
+    "slug": "ai-agent-generator",
+    "description": "Expert prompt writer for generating specialized AI agents.",
+    "category": "AI Automation Agency",
+    "visibility": "public",
+    "brand": "AIBuiltThat.ai",
+    "status": "promote",
+    "access_url": "https://chatgpt.com/g/g-688113e552c08191b6178443f971fea0-ai-agent-generator",
+    "profile_image_url": "Source export contains profile image URL"
+  },
+  {
+    "id": "zenseo-article-writer",
+    "name": "ZenSEO Article Writer",
+    "slug": "zenseo-article-writer",
+    "description": "Merges Zen wit with tidal precision to craft SEO blogs that flow and rank.",
+    "category": "Content, SEO, Blog + Media",
+    "visibility": "public",
+    "brand": "Full-Time Hustler",
+    "status": "promote",
+    "access_url": "https://chatgpt.com/g/g-6871e3b4627c81919fc968dbf25c3237-zenseo-article-writer",
+    "profile_image_url": "Source export contains profile image URL"
+  }
+]
