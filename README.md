@@ -24,6 +24,21 @@ To preview it locally, run `python3 -m http.server 8000` from the root directory
 
 To deploy it to Vercel, read the [Deployment Instructions](DEPLOYMENT.md) for a zero-config setup.
 
+## ChatGPT GPT Library Pack
+
+The repo now includes a structured ChatGPT Custom GPT platform pack and portfolio layer.
+
+Start here:
+
+- [`platforms/chatgpt-gpts/`](platforms/chatgpt-gpts/) — ChatGPT GPT platform pack
+- [`portfolio/custom-gpts/`](portfolio/custom-gpts/) — Custom GPT portfolio inventory and category pages
+- [`source-data/my-gpts/my-gpts-normalized.json`](source-data/my-gpts/my-gpts-normalized.json) — normalized GPT source data
+- [`site-data/custom-gpts.json`](site-data/custom-gpts.json) — static-site-ready GPT records
+- [`site-data/custom-gpt-categories.json`](site-data/custom-gpt-categories.json) — GPT category metadata
+- [`docs/gpt-library-taxonomy.md`](docs/gpt-library-taxonomy.md) — category, visibility, brand, and status rules
+- [`docs/public-vs-internal-gpt-rules.md`](docs/public-vs-internal-gpt-rules.md) — public, partner-facing, internal-only, and archive rules
+- [`docs/gpt-source-of-truth-rules.md`](docs/gpt-source-of-truth-rules.md) — raw export and generated inventory update process
+
 ## Prompt-chain command layer
 
 The [`prompt-chains/`](prompt-chains/) folder contains the repo's execution control layer for grouped planning, issue sequencing, Jules prompts, ChatGPT prompts, PR review checklists, and `NEXT_TASK.md` update rules.
@@ -40,9 +55,18 @@ ai-agent-library/
 
   agents/
     28 complete productized agent specs
+    chatgpt-converted/
+      conversion candidates and high-priority agent builds
 
   docs/
-    Foundation documentation, repo purpose, conventions, and standards
+    Foundation documentation, repo purpose, conventions, standards, and GPT library rules
+
+  source-data/
+    my-gpts/
+      normalized Custom GPT source data
+
+  site-data/
+    static site data for agents, platforms, and Custom GPTs
 
   prompt-chains/
     Master roadmap prompt, grouped issue phases, execution prompts, review checklist, and queue protocol
@@ -53,8 +77,14 @@ ai-agent-library/
     notion-database-schema.md
 
   platforms/
+    chatgpt-gpts/
+      Custom GPT inventory, standards, templates, and conversion map
     vercel-web-apps/
       architecture, conversion, deployment, API, UI, lead capture, monetization, examples, and templates
+
+  portfolio/
+    custom-gpts/
+      Custom GPT portfolio inventory and category pages
 ```
 
 ## Agent spec standard
@@ -117,6 +147,7 @@ Current:
 
 ```text
 platforms/
+  chatgpt-gpts/
   vercel-web-apps/
 ```
 
@@ -125,11 +156,9 @@ Recommended next platform packs:
 ```text
 platforms/
   notion-ai/
-  chatgpt-gpts/
   claude-projects/
   gemini-gems/
   n8n-agents/
-  vercel-web-apps/
 ```
 
 ## Recommended next folders
