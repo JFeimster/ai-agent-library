@@ -24,6 +24,18 @@ To preview it locally, run `python3 -m http.server 8000` from the root directory
 
 To deploy it to Vercel, read the [Deployment Instructions](DEPLOYMENT.md) for a zero-config setup.
 
+## Agent Skills Library
+
+The [`skills/`](skills/) folder contains modular Agent Skills for static sites, Next.js apps, embedded widgets, partner portals, referral funnels, and strategic partner workflows.
+
+Start here:
+
+- [`skills/README.md`](skills/README.md) — skill library overview and guardrails
+- [`skills/skill-catalog.md`](skills/skill-catalog.md) — 100 proposed skills across funding, business credit, referral partners, widgets, landing pages, CRM, and compliance
+- [`skills/skill-index.json`](skills/skill-index.json) — structured skill metadata for apps and future site rendering
+- [`skills/top-25-build-priority.md`](skills/top-25-build-priority.md) — first skills to implement
+- [`skills/SKILL_TEMPLATE.md`](skills/SKILL_TEMPLATE.md) — reusable skill file template
+
 ## Prompt-chain command layer
 
 The [`prompt-chains/`](prompt-chains/) folder contains the repo's execution control layer for grouped planning, issue sequencing, Jules prompts, ChatGPT prompts, PR review checklists, and `NEXT_TASK.md` update rules.
@@ -40,6 +52,9 @@ ai-agent-library/
 
   agents/
     28 complete productized agent specs
+
+  skills/
+    Agent Skills Library for partner tools, widgets, landing pages, CRM workflows, and compliance checks
 
   docs/
     Foundation documentation, repo purpose, conventions, and standards
