@@ -10,9 +10,11 @@ Internal repo maintainers only.
 
 ## GPT inventory
 
+No normalized source GPTs are currently assigned to archive status in this first-pass pack.
+
 | GPT | Visibility | Use Case | Status |
 |---|---|---|---|
-| Local Media / Community GPTs | archive | Placeholder record | archive |
+| None currently assigned | N/A | Awaiting full-source classification pass | N/A |
 
 ## Best use cases
 
