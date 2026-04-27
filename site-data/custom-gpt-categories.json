@@ -1,0 +1,92 @@
+[
+  {
+    "id": "funding-finance",
+    "label": "Funding + Finance",
+    "description": "Funding education, capital path planning, borrower triage, and finance lead magnets.",
+    "visibility_default": "partner-facing",
+    "recommended_page_slug": "funding-finance-gpts",
+    "audience": "Founders, SMBs, funding advisors, investors",
+    "monetization_angle": "Funding strategy sessions, lead magnets, partner tools"
+  },
+  {
+    "id": "bizcredit-financeos",
+    "label": "Business Credit / FinanceOS / BizCredit OS",
+    "description": "Business credit readiness, banking stack design, cash-flow visibility, and fundability tooling.",
+    "visibility_default": "public",
+    "recommended_page_slug": "bizcredit-financeos-gpts",
+    "audience": "SMBs, freelancers, founders, operators",
+    "monetization_angle": "BizCredit OS, fundability audits, finance stack setup"
+  },
+  {
+    "id": "affiliate-partner-enablement",
+    "label": "Affiliate Partner Enablement",
+    "description": "Partner onboarding, affiliate activity planning, broker training, and compliant content support.",
+    "visibility_default": "partner-facing",
+    "recommended_page_slug": "affiliate-partner-gpts",
+    "audience": "Affiliates, brokers, partners, referral teams",
+    "monetization_angle": "Partner launch kits, broker training, affiliate templates"
+  },
+  {
+    "id": "ai-automation-agency",
+    "label": "AI Automation Agency",
+    "description": "AI agency services, GPT stacks, agent generation, and automation consulting assets.",
+    "visibility_default": "public",
+    "recommended_page_slug": "ai-automation-agency-gpts",
+    "audience": "AI builders, consultants, agencies, founders",
+    "monetization_angle": "DFY GPT stacks, prompt packs, AI consulting"
+  },
+  {
+    "id": "content-seo-media",
+    "label": "Content, SEO, Blog + Media",
+    "description": "SEO, blogs, newsletters, podcast/video repurposing, and editorial systems.",
+    "visibility_default": "public",
+    "recommended_page_slug": "content-brand-seo-gpts",
+    "audience": "Creators, publishers, founders, content teams",
+    "monetization_angle": "Content engines, SEO briefs, newsletter systems"
+  },
+  {
+    "id": "personal-brand-thought-leadership",
+    "label": "Personal Brand / Thought Leadership",
+    "description": "Personal brand, essays, speaking pages, funnel architecture, and thought-leadership systems.",
+    "visibility_default": "public",
+    "recommended_page_slug": "personal-brand-thought-leadership-gpts",
+    "audience": "Founders, creators, speakers, personal brands",
+    "monetization_angle": "Personal brand OS, speaking kits, consulting funnels"
+  },
+  {
+    "id": "web-vercel-app-builder",
+    "label": "Web, Vercel + App Builder",
+    "description": "Deployable sites, landing pages, widgets, web apps, and engineering-as-marketing tools.",
+    "visibility_default": "public",
+    "recommended_page_slug": "web-vercel-site-gpts",
+    "audience": "Builders, agencies, founders, affiliates",
+    "monetization_angle": "Website factory services, Vercel templates, tool launch pages"
+  },
+  {
+    "id": "crm-ops-automation",
+    "label": "CRM, Ops + Automation",
+    "description": "CRM architecture, API planning, intake flows, data operations, and internal automations.",
+    "visibility_default": "internal-only",
+    "recommended_page_slug": "ops-automation-crm-gpts",
+    "audience": "Operators, admins, automation builders",
+    "monetization_angle": "CRM automation audits, HubSpot setup, ops systems"
+  },
+  {
+    "id": "local-referral-community",
+    "label": "Local Referral / Community",
+    "description": "Local media, referral partners, offline events, local newsletters, and community activation.",
+    "visibility_default": "public",
+    "recommended_page_slug": "local-media-community-gpts",
+    "audience": "Local business owners, event hosts, community builders",
+    "monetization_angle": "Sponsorships, referral directories, local funnels"
+  },
+  {
+    "id": "experimental-archive",
+    "label": "Experimental / Archive",
+    "description": "Stale, duplicate, unclear, incomplete, or not-yet-promotable GPTs.",
+    "visibility_default": "archive",
+    "recommended_page_slug": "experimental-archive-gpts",
+    "audience": "Internal maintainers",
+    "monetization_angle": "None until rebuilt"
+  }
+]
