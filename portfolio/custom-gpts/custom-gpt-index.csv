@@ -1,0 +1,19 @@
+category,gpt,visibility,use_case,status
+Funding + Finance,Funding Pathfinder,internal-only,Funding intake and route planning,internal-only
+Funding + Finance,Get My Funding Offer,internal-only,Funding qualification and offer pre-screening,internal-only
+Funding + Finance,Fix & Flip Capital Coach,partner-facing,Real estate capital coaching,partner-facing
+Funding + Finance,SaaS Capital Concierge,public,SaaS non-dilutive funding planning,promote
+Business Credit / FinanceOS / BizCredit OS,BizCredit Builder GPT,public,Business credit roadmap and tools,promote
+Business Credit / FinanceOS / BizCredit OS,Business Banker GPT,public,Business banking stack planning,promote
+Business Credit / FinanceOS / BizCredit OS,Cashflow Copilot,public,Cash-flow audit,promote
+Affiliate Partner Enablement,Game Plan Wizard,partner-facing,Partner income planning,partner-facing
+Affiliate Partner Enablement,Affiliate Disclosure Writer,public,Affiliate disclosures,promote
+AI Automation Agency,Offer Ecosystem Architect,public,Offer architecture,promote
+AI Automation Agency,AI Agent Generator,public,Agent prompt/spec generation,promote
+AI Automation Agency,GPT Stack Builder,public,Modular GPT stack building,promote
+Content SEO Blog + Media,Detailed Keyword Analysis SEO,public,SEO clustering,promote
+Content SEO Blog + Media,ZenSEO Article Writer,public,SEO article drafting,promote
+Personal Brand / Thought Leadership,Brand OS Operator,public,Brand and funnel architecture,promote
+Web Vercel + App Builder,SiteForge Operator,public,Vercel-ready website repo generation,promote
+Web Vercel + App Builder,Vercel Launch Smith,public,Static/Next.js launch support,promote
+CRM Ops + Automation,Harper — HubSpot API Architect,internal-only,HubSpot API and CRM data operations,internal-only
