@@ -35,6 +35,8 @@ Start here:
 - [`skills/skill-index.json`](skills/skill-index.json) — structured skill metadata for apps and future site rendering
 - [`skills/top-25-build-priority.md`](skills/top-25-build-priority.md) — first skills to implement
 - [`skills/SKILL_TEMPLATE.md`](skills/SKILL_TEMPLATE.md) — reusable skill file template
+- [`site-data/skills.json`](site-data/skills.json) — static-site-ready P0 skill metadata
+- [`site-data/skill-categories.json`](site-data/skill-categories.json) — static-site-ready skill category metadata
 
 ## Prompt-chain command layer
 
@@ -55,6 +57,9 @@ ai-agent-library/
 
   skills/
     Agent Skills Library for partner tools, widgets, landing pages, CRM workflows, and compliance checks
+
+  site-data/
+    Static-site-ready data for agents, Custom GPTs, skills, and skill categories
 
   docs/
     Foundation documentation, repo purpose, conventions, and standards
