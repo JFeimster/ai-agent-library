@@ -18,7 +18,7 @@ No normalized source GPTs are currently assigned to this category.
 
 | GPT | Visibility | Use Case | Status |
 |---|---|---|---|
-| Local Media / Community GPTs | archive | Placeholder until source GPTs are added | archive |
+| None currently assigned | N/A | Awaiting source GPT export data | N/A |
 
 ## Best use cases
 
@@ -37,8 +37,8 @@ No normalized source GPTs are currently assigned to this category.
 
 ## Recommended next improvements
 
-- add Kingstowne Digest GPTs when available
-- add local event builder GPTs
+- add Kingstowne Digest GPTs when available in the raw source export
+- add local event builder GPTs when available in the raw source export
 - create referral partner scout workflows
 
 ## Conversion candidates
