@@ -1,0 +1,74 @@
+[
+  {
+    "id": "funding",
+    "label": "Funding Skills",
+    "description": "Skills that convert funding interest into readiness scores, document checklists, route explanations, and next actions.",
+    "page_slug": "funding-skills",
+    "index_path": "skills/funding/README.md",
+    "priority_count": 5,
+    "recommended_apps": ["funding landing pages", "partner portals", "embedded calculators", "CRM intake workflows"]
+  },
+  {
+    "id": "business-credit",
+    "label": "Business Credit Skills",
+    "description": "Skills for fundability diagnostics, utilization math, and credit readiness roadmaps.",
+    "page_slug": "business-credit-skills",
+    "index_path": "skills/business-credit/README.md",
+    "priority_count": 3,
+    "recommended_apps": ["BizCredit widgets", "readiness quizzes", "business credit funnels"]
+  },
+  {
+    "id": "partner-enablement",
+    "label": "Partner Enablement Skills",
+    "description": "Skills that help affiliate partners launch, estimate commissions, build profiles, and get the right resources.",
+    "page_slug": "partner-enablement-skills",
+    "index_path": "skills/partner-enablement/README.md",
+    "priority_count": 4,
+    "recommended_apps": ["partner portals", "onboarding pages", "commission calculators", "partner directories"]
+  },
+  {
+    "id": "referral-partners",
+    "label": "Referral Partner Skills",
+    "description": "Skills for CPAs, business brokers, consultants, and strategic partners who refer SMB clients.",
+    "page_slug": "referral-partner-skills",
+    "index_path": "skills/referral-partners/README.md",
+    "priority_count": 4,
+    "recommended_apps": ["CPA landing pages", "business broker pages", "strategic partner funnels", "referral tracking flows"]
+  },
+  {
+    "id": "widget-tools",
+    "label": "Widget Tool Skills",
+    "description": "Skills that make embedded calculators, Next.js tools, and partner embeds actionable and trackable.",
+    "page_slug": "widget-tool-skills",
+    "index_path": "skills/widget-tools/README.md",
+    "priority_count": 5,
+    "recommended_apps": ["Vercel widgets", "Wix embeds", "partner iframe embeds", "CRM webhook flows"]
+  },
+  {
+    "id": "landing-pages",
+    "label": "Landing Page Skills",
+    "description": "Skills that improve static sites, funnel pages, partner pages, copy audits, and CTA routing.",
+    "page_slug": "landing-page-skills",
+    "index_path": "skills/landing-pages/README.md",
+    "priority_count": 2,
+    "recommended_apps": ["static landing pages", "SiteForge outputs", "partner funnels", "SEO pages"]
+  },
+  {
+    "id": "crm-ops",
+    "label": "CRM Ops Skills",
+    "description": "Skills for mapping fields, preserving attribution, and keeping lead data clean across CRMs and automations.",
+    "page_slug": "crm-ops-skills",
+    "index_path": "skills/crm-ops/README.md",
+    "priority_count": 1,
+    "recommended_apps": ["HubSpot", "n8n", "Google Sheets", "Notion", "Wix CRM"]
+  },
+  {
+    "id": "compliance",
+    "label": "Compliance Skills",
+    "description": "Skills that review public claims, funding language, partner content, and affiliate language before publishing.",
+    "page_slug": "compliance-skills",
+    "index_path": "skills/compliance/README.md",
+    "priority_count": 1,
+    "recommended_apps": ["landing page QA", "affiliate content", "partner pages", "public docs"]
+  }
+]
