@@ -3,71 +3,718 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
   <style>
-    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
-    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
-    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
-    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
-    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
-    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
-    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
-    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
-    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
-    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
-    .page-card h2, .page-card h3 { margin-top: 0; }
-    .page-card p, .muted { color: var(--secondary-text-color); }
-    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
-    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
-    .pill strong { color: var(--text-color); }
-    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
-    .button-link { display: inline-block; margin-top: 1rem; }
-    .button-link:hover, .page-link:hover { text-decoration: underline; }
-    .section { margin: 2.5rem 0; }
-    .section h2 { margin-bottom: .65rem; }
-    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
-    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
-    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
-    .mini-list li { margin: .35rem 0; }
-    footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+    :root {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --secondary-text-color: #b8b8b8;
+      --accent-color: #f4b942;
+      --card-bg: #1d1d1d;
+      --card-border: #333333;
+      --danger: #ff6b6b;
+      --success: #4ade80;
+      --info: #60a5fa;
+      --purple: #c084fc;
+      --surface-1: rgba(255,255,255,.045);
+      --surface-2: rgba(255,255,255,.025);
+      --shadow: 0 18px 60px rgba(0,0,0,.24);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(244,185,66,.12), transparent 38rem),
+        radial-gradient(circle at top right, rgba(96,165,250,.08), transparent 34rem),
+        var(--bg-color);
+      color: var(--text-color);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--accent-color);
+      color: #101010;
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      font-weight: 900;
+      z-index: 100;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(18,18,18,.86);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    .site-nav a {
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      font-weight: 850;
+      font-size: .9rem;
+      padding: .42rem .7rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--text-color);
+      border-color: rgba(244,185,66,.75);
+      background: rgba(244,185,66,.09);
+    }
+
+    .page-hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 1rem 1.75rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      font-weight: 950;
+      margin-bottom: .85rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.25rem, 6vw, 5rem);
+      line-height: 1.02;
+      margin: 0 0 1rem;
+      letter-spacing: -.05em;
+    }
+
+    .page-hero p {
+      color: var(--secondary-text-color);
+      max-width: 840px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .section { margin: 2.75rem 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .section h2 {
+      font-size: clamp(1.55rem, 4vw, 2.5rem);
+      margin: 0 0 .45rem;
+      letter-spacing: -.03em;
+    }
+
+    .section p,
+    .muted {
+      color: var(--secondary-text-color);
+      line-height: 1.65;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.05rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.15rem; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.25rem; }
+
+    .card {
+      background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      border-color: rgba(244,185,66,.62);
+      transform: translateY(-2px);
+      transition: .18s ease;
+    }
+
+    .card h2,
+    .card h3,
+    .card h4 { margin-top: 0; }
+
+    .card h3 {
+      font-size: 1.18rem;
+      letter-spacing: -.02em;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .mini-list {
+      margin: .8rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--secondary-text-color);
+      line-height: 1.62;
+    }
+
+    .mini-list li { margin: .28rem 0; }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--secondary-text-color);
+    }
+
+    .plain-list li { margin: .36rem 0; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin: .85rem 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.055);
+      color: var(--secondary-text-color);
+      border-radius: 999px;
+      padding: .25rem .62rem;
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .pill.gold { color: #111; background: var(--accent-color); border-color: var(--accent-color); }
+    .pill.green { color: #0b2514; background: var(--success); border-color: var(--success); }
+    .pill.blue { color: #071525; background: var(--info); border-color: var(--info); }
+    .pill.red { color: #2b0909; background: var(--danger); border-color: var(--danger); }
+    .pill.purple { color: #1f0d2f; background: var(--purple); border-color: var(--purple); }
+
+    .button,
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: .85rem;
+      color: #111;
+      background: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      border-radius: 999px;
+      padding: .68rem .95rem;
+      font-weight: 950;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.secondary,
+    .button-link.secondary {
+      color: var(--text-color);
+      background: transparent;
+      border-color: var(--card-border);
+    }
+
+    .button:hover,
+    .button-link:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.4rem auto 0;
+      max-width: 980px;
+    }
+
+    input,
+    select,
+    textarea {
+      background: #171717;
+      color: var(--text-color);
+      border: 1px solid var(--card-border);
+      border-radius: 11px;
+      padding: .82rem .92rem;
+      font: inherit;
+    }
+
+    input[type="search"],
+    .toolbar input,
+    .toolbar select { min-width: min(100%, 260px); }
+
+    textarea {
+      width: 100%;
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    label {
+      display: grid;
+      gap: .35rem;
+      font-weight: 850;
+      color: var(--text-color);
+    }
+
+    label span {
+      color: var(--secondary-text-color);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--card-border);
+      padding: .95rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent-color);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: rgba(255,255,255,.025);
+    }
+
+    td {
+      color: var(--secondary-text-color);
+      line-height: 1.55;
+    }
+
+    td strong { color: var(--text-color); }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: .85rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.035);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      color: var(--accent-color);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .callout {
+      border: 1px solid rgba(244,185,66,.45);
+      border-radius: 18px;
+      padding: 1.2rem;
+      background: rgba(244,185,66,.08);
+    }
+
+    .callout strong { color: var(--accent-color); }
+
+    .warning {
+      border-color: rgba(255,107,107,.45);
+      background: rgba(255,107,107,.08);
+    }
+
+    .warning strong { color: var(--danger); }
+
+    .success {
+      border-color: rgba(74,222,128,.45);
+      background: rgba(74,222,128,.08);
+    }
+
+    .success strong { color: var(--success); }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.035);
+      border-radius: 18px;
+      padding: 1.1rem;
+    }
+
+    .timeline-item h3 { margin: 0 0 .35rem; }
+
+    .checklist {
+      display: grid;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .check-item {
+      display: flex;
+      gap: .65rem;
+      align-items: flex-start;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: .85rem;
+      background: rgba(255,255,255,.03);
+      color: var(--secondary-text-color);
+    }
+
+    .check-item input { margin-top: .22rem; accent-color: var(--accent-color); }
+
+    .empty-state {
+      border: 1px dashed var(--card-border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--secondary-text-color);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #090909;
+      border: 1px solid var(--card-border);
+      color: #f7f7f7;
+      border-radius: 16px;
+      padding: 1rem;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    code {
+      color: var(--accent-color);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    details {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.03);
+    }
+
+    details + details { margin-top: .75rem; }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--secondary-text-color);
+      padding: 3rem 1rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 740px) {
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+      .page-hero { padding-top: 2.75rem; }
+      main { width: min(100% - 1rem, 1180px); }
+      table { min-width: 680px; }
+    }
   </style>
+
   <title>Integrations | AI Agent Library</title>
+  <meta name="description" content="Connector directory for Notion, GitHub, HubSpot, OpenAI, Vercel, Google Drive, n8n, Make, Zapier, Airtable, Stripe, and analytics workflows.">
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="agent-catalog.html">Agents</a>
     <a href="skill-catalog.html">Skills</a>
     <a href="platforms.html">Platforms</a>
-    <a href="categories.html">Categories</a>
     <a href="prompt-chains.html">Prompt Chains</a>
-    <a href="search.html">Search</a>
+    <a href="integrations.html" aria-current="page">Integrations</a>
+    <a href="templates.html">Templates</a>
+    <a href="schemas.html">Schemas</a>
+    <a href="knowledge-bases.html">Knowledge Bases</a>
     <a href="roadmap.html">Roadmap</a>
+    <a href="contribute.html">Contribute</a>
   </nav>
+
   <header class="page-hero">
+    <div class="eyebrow">AI Builder Resources</div>
     <h1>Integrations</h1>
-    <p>Connector and automation targets for turning agent specs into practical workflows, apps, portals, and internal operating systems.</p>
+    <p>Connector directory for Notion, GitHub, HubSpot, OpenAI, Vercel, Google Drive, n8n, Make, Zapier, Airtable, Stripe, and analytics workflows.</p>
   </header>
-  <main><section id="integration-grid" class="wide-grid"></section></main>
+  <main id="main">
+
+    <section class="section callout">
+      <strong>Connector directory purpose:</strong>
+      <p>This page documents practical connector use cases for AI Agent Library builds. It is not an API key vault and should never expose secrets, private tokens, client credentials, or protected workspace data.</p>
+    </section>
+
+    <section class="section">
+      <div class="toolbar">
+        <input id="integration-search" type="search" placeholder="Search connectors, use cases, risks...">
+        <select id="integration-type">
+          <option value="all">All connector types</option>
+          <option value="Workspace">Workspace</option>
+          <option value="Repo / DevOps">Repo / DevOps</option>
+          <option value="CRM / Revenue">CRM / Revenue</option>
+          <option value="AI / API">AI / API</option>
+          <option value="Deployment">Deployment</option>
+          <option value="Automation">Automation</option>
+          <option value="Analytics">Analytics</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section">
+      <div id="integration-stats" class="stat-row"></div>
+    </section>
+
+    <section class="section">
+      <div id="integration-grid" class="wide-grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Integration design rules</h2>
+        <ul class="mini-list">
+          <li>Start with a no-auth or read-only implementation whenever possible.</li>
+          <li>Use OAuth only when the user benefit clearly exceeds the setup burden.</li>
+          <li>Use API keys only for server-side integrations; never place secrets in public HTML.</li>
+          <li>Document scopes, failure modes, data boundaries, and human approval checkpoints.</li>
+          <li>Keep connector output structured so it can feed agents, dashboards, static pages, and schemas.</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h2>Suggested repo files</h2>
+        <pre>integrations/
+  README.md
+  integration-catalog.json
+  notion.md
+  github.md
+  hubspot.md
+  openai.md
+  vercel.md
+  google-drive.md
+  n8n.md
+  make.md
+  zapier.md
+  integration-security-checklist.md</pre>
+      </article>
+    </section>
+
+  </main>
+
   <footer>
-    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+    <p><strong>AI Agent Library</strong> — productized agents, skills, platform packs, prompt systems, and deployable AI operating patterns.</p>
+    <p class="muted">Static, dependency-free pages designed to work from the repository root.</p>
   </footer>
+
+
+  <script>
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  </script>
+
   <script>
     const integrations = [
-      ['GitHub','Repo operations, issue tracking, PR review, branch creation, and file updates.','prompt-chains/review-and-merge-checklist.md'],
-      ['Vercel','Static deployment, landing pages, web apps, widgets, and previews.','platforms/vercel-web-apps/README.md'],
-      ['OpenAI / ChatGPT','Custom GPTs, knowledge files, instructions, and Actions planning.','platforms/chatgpt-gpts/README.md'],
-      ['Notion','Agent databases, internal docs, project tracking, and knowledge libraries.','platforms/notion-ai/README.md'],
-      ['n8n','Workflow automation, triggers, webhook payloads, and backend task chains.','platforms/n8n-agents/README.md'],
-      ['HubSpot / CRM','Lead routing, partner attribution, follow-up workflows, and pipeline hygiene.','knowledge-base/partner-enablement/partner-routing-attribution-spec.md'],
-      ['Google Drive','Source-doc storage, knowledge bases, briefs, and document handoffs.','docs/repo-purpose.md'],
-      ['Webhooks','Event payloads, action routing, and future schema-driven integrations.','README.md']
+      {
+        name: "Notion",
+        type: "Workspace",
+        auth: "OAuth / workspace connection",
+        bestFor: "Agent inventory databases, knowledge bases, content calendars, launch checklists, operating dashboards.",
+        outputs: ["Database rows", "Project docs", "Campaign briefs", "Status reports"],
+        risks: ["Over-broad workspace access", "Ambiguous source of truth"],
+        repoPath: "platforms/notion-ai/"
+      },
+      {
+        name: "GitHub",
+        type: "Repo / DevOps",
+        auth: "GitHub App / OAuth",
+        bestFor: "Issues, PR reviews, branch-scoped implementation, repo search, file updates, release notes.",
+        outputs: ["Issues", "Pull requests", "Changed files", "Review comments"],
+        risks: ["Unscoped changes", "Combining unrelated issues"],
+        repoPath: ".github/"
+      },
+      {
+        name: "HubSpot",
+        type: "CRM / Revenue",
+        auth: "OAuth / private app token",
+        bestFor: "CRM object lookup, lead routing, deal-stage automation, lifecycle reporting, partner attribution.",
+        outputs: ["Contacts", "Deals", "Companies", "Tasks", "Notes"],
+        risks: ["PII handling", "Outbound action without review"],
+        repoPath: "integrations/hubspot.md"
+      },
+      {
+        name: "OpenAI",
+        type: "AI / API",
+        auth: "API key / project key",
+        bestFor: "Custom GPT planning, API-backed agents, structured extraction, classification, generation, evaluation.",
+        outputs: ["JSON", "Markdown", "Tool calls", "Embeddings", "Evaluations"],
+        risks: ["Prompt injection", "Unvalidated model output", "Secret leakage"],
+        repoPath: "integrations/openai.md"
+      },
+      {
+        name: "Vercel",
+        type: "Deployment",
+        auth: "Vercel token / project connection",
+        bestFor: "Static site deployment, preview inspection, build logs, environment controls, production releases.",
+        outputs: ["Deployments", "Build logs", "Project settings", "Preview URLs"],
+        risks: ["Accidental preview deployment volume", "Environment mismatch"],
+        repoPath: "platforms/vercel-web-apps/"
+      },
+      {
+        name: "Google Drive",
+        type: "Workspace",
+        auth: "OAuth",
+        bestFor: "Source docs, Docs/Sheets/Slides extraction, knowledge imports, client-safe documentation workflows.",
+        outputs: ["Docs text", "Sheet rows", "Slides text", "Exported files"],
+        risks: ["Wrong document version", "Binary file sprawl"],
+        repoPath: "integrations/google-drive.md"
+      },
+      {
+        name: "n8n",
+        type: "Automation",
+        auth: "API key / instance credentials",
+        bestFor: "Webhook routers, CRM sync, approval queues, email draft workflows, internal operations automation.",
+        outputs: ["Workflow JSON", "Webhook payloads", "Execution logs"],
+        risks: ["Live actions without approval", "Credential exposure"],
+        repoPath: "platforms/n8n-agents/"
+      },
+      {
+        name: "Make",
+        type: "Automation",
+        auth: "OAuth / API keys",
+        bestFor: "No-code scenarios, lightweight routing, lead intake automations, spreadsheet/database sync.",
+        outputs: ["Scenarios", "Webhook events", "Mapped records"],
+        risks: ["Hidden scenario logic", "Rate limits"],
+        repoPath: "integrations/make.md"
+      },
+      {
+        name: "Zapier",
+        type: "Automation",
+        auth: "OAuth / Zap credentials",
+        bestFor: "Simple automations, form-to-CRM flows, notification routing, low-friction prototypes.",
+        outputs: ["Zaps", "Tasks", "Webhook handoffs"],
+        risks: ["Task usage cost", "Low transparency"],
+        repoPath: "integrations/zapier.md"
+      },
+      {
+        name: "Airtable",
+        type: "Workspace",
+        auth: "OAuth / personal access token",
+        bestFor: "Structured content inventories, partner directories, asset registries, lightweight admin views.",
+        outputs: ["Tables", "Views", "Records", "Interfaces"],
+        risks: ["Schema drift", "Permission sprawl"],
+        repoPath: "integrations/airtable.md"
+      },
+      {
+        name: "Stripe",
+        type: "CRM / Revenue",
+        auth: "Restricted API key / OAuth",
+        bestFor: "Paid templates, subscriptions, checkout links, customer entitlements, transaction-aware dashboards.",
+        outputs: ["Products", "Prices", "Checkout sessions", "Customers"],
+        risks: ["Payment data handling", "Refund/subscription mistakes"],
+        repoPath: "integrations/stripe.md"
+      },
+      {
+        name: "Analytics",
+        type: "Analytics",
+        auth: "Project token / script",
+        bestFor: "Page usage, CTA measurement, search terms, content engagement, productized agent funnel reporting.",
+        outputs: ["Events", "Funnels", "Page views", "Conversion metrics"],
+        risks: ["Noisy metrics", "Privacy settings"],
+        repoPath: "integrations/analytics.md"
+      }
     ];
-    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-    document.getElementById('integration-grid').innerHTML = integrations.map(([title,desc,path]) => `
-      <article class="page-card"><span class="pill">Integration</span><h2>${escapeHTML(title)}</h2><p>${escapeHTML(desc)}</p><a class="button-link" href="${escapeHTML(path)}">Open related docs →</a></article>`).join('');
+
+    function renderIntegrations() {
+      const query = document.getElementById("integration-search").value.toLowerCase();
+      const type = document.getElementById("integration-type").value;
+      const filtered = integrations.filter(item => {
+        const text = [item.name, item.type, item.auth, item.bestFor, item.outputs.join(" "), item.risks.join(" ")].join(" ").toLowerCase();
+        return text.includes(query) && (type === "all" || item.type === type);
+      });
+
+      const types = new Set(integrations.map(item => item.type));
+      document.getElementById("integration-stats").innerHTML = `
+        <div class="stat"><strong>${integrations.length}</strong><span>Total connectors</span></div>
+        <div class="stat"><strong>${types.size}</strong><span>Connector groups</span></div>
+        <div class="stat"><strong>${filtered.length}</strong><span>Visible results</span></div>
+      `;
+
+      document.getElementById("integration-grid").innerHTML = filtered.map(item => `
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill gold">${escapeHTML(item.type)}</span>
+            <span class="pill">${escapeHTML(item.auth)}</span>
+          </div>
+          <h2>${escapeHTML(item.name)}</h2>
+          <p>${escapeHTML(item.bestFor)}</p>
+          <h3>Useful outputs</h3>
+          <ul class="mini-list">${item.outputs.map(output => `<li>${escapeHTML(output)}</li>`).join("")}</ul>
+          <h3>Watch-outs</h3>
+          <ul class="mini-list">${item.risks.map(risk => `<li>${escapeHTML(risk)}</li>`).join("")}</ul>
+          <p><strong>Suggested repo path:</strong> <code>${escapeHTML(item.repoPath)}</code></p>
+        </article>
+      `).join("") || `<div class="empty-state">No matching connectors.</div>`;
+    }
+
+    ["integration-search", "integration-type"].forEach(id => document.getElementById(id).addEventListener("input", renderIntegrations));
+    renderIntegrations();
   </script>
+
 </body>
 </html>
