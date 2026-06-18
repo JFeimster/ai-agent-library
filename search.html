@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Search | AI Agent Library</title>
+  <meta name="description" content="Search agents, skills, pages, knowledge bases, portfolio assets, and implementation resources from one static interface.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html" aria-current="page">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Directory & Discovery</div>
+    <h1>Search</h1>
+    <p>
+      Search agents, skills, pages, knowledge bases, portfolio assets,
+      and implementation resources from one static interface.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section">
+      <div class="toolbar">
+        <input id="globalSearch" type="search" placeholder="Search agents, skills, pages, categories...">
+
+        <select id="typeFilter">
+          <option value="all">All types</option>
+          <option value="Agent">Agents</option>
+          <option value="Skill">Skills</option>
+          <option value="Page">Pages</option>
+          <option value="Knowledge Base">Knowledge Bases</option>
+          <option value="Portfolio">Portfolio</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section">
+      <div id="searchStats" class="stat-row"></div>
+    </section>
+
+    <section class="section">
+      <div id="searchResults" class="wide-grid"></div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    (async () => {
+      const rawAgents = await AILibrary.fetchJSON(
+        ["agent-index.json", "site-data/agents.fallback.json"],
+        []
+      );
+
+      const rawSkills = await AILibrary.fetchJSON(
+        ["skills/skill-index.json", "site-data/skills.fallback.json"],
+        []
+      );
+
+      const agents = rawAgents.map((agent, index) => {
+        const normalized = AILibrary.normalizeAgent(agent, index);
+
+        return {
+          ...normalized,
+          type: "Agent",
+          url: normalized.file,
+          description: normalized.pain_solved
+        };
+      });
+
+      const skills = rawSkills.map((skill, index) => {
+        const normalized = AILibrary.normalizeSkill(skill, index);
+
+        return {
+          ...normalized,
+          type: "Skill",
+          url: "skill-catalog.html",
+          description: normalized.problem_solved
+        };
+      });
+
+      const pages = [
+        {
+          type: "Page",
+          name: "Categories",
+          category: "Directory",
+          url: "categories.html",
+          description: "Browse the library by major operating category."
+        },
+        {
+          type: "Page",
+          name: "Tags",
+          category: "Directory",
+          url: "tags.html",
+          description: "Browse cross-cutting implementation and platform tags."
+        },
+        {
+          type: "Page",
+          name: "Featured",
+          category: "Directory",
+          url: "featured.html",
+          description: "Curated high-value assets to build from first."
+        },
+        {
+          type: "Page",
+          name: "New",
+          category: "Directory",
+          url: "new.html",
+          description: "Recently added or revised site and repo assets."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Funding KB",
+          category: "Funding",
+          url: "knowledge-base/funding/README.md",
+          description: "Funding product families, intake logic, documents, and safety rules."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Partner Enablement KB",
+          category: "Partner Enablement",
+          url: "knowledge-base/partner-enablement/README.md",
+          description: "Partner links, attribution, resource cards, and launch kits."
+        },
+        {
+          type: "Knowledge Base",
+          name: "CRM KB",
+          category: "CRM",
+          url: "knowledge-base/crm/README.md",
+          description: "Lead status, CRM cleanup, follow-up logic, and signal scanning."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Content Ops KB",
+          category: "Content Ops",
+          url: "knowledge-base/content-ops/README.md",
+          description: "SEO briefs, content repurposing, publishing workflows, and calendars."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Automation KB",
+          category: "Automation",
+          url: "knowledge-base/automation/README.md",
+          description: "Triggers, webhook events, approval gates, and workflow specs."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Local Referrals KB",
+          category: "Local Referrals",
+          url: "knowledge-base/local-referrals/README.md",
+          description: "Referral discovery, outreach scripts, local pages, and partner qualification."
+        },
+        {
+          type: "Knowledge Base",
+          name: "Engineering-as-Marketing KB",
+          category: "Engineering-as-Marketing",
+          url: "knowledge-base/engineering-as-marketing/README.md",
+          description: "Calculators, widgets, scorecards, public tools, and conversion assets."
+        },
+        {
+          type: "Portfolio",
+          name: "Vercel Portfolio",
+          category: "Vercel",
+          url: "portfolio/vercel/README.md",
+          description: "Static site, widget, calculator, and deployed web app inventory."
+        },
+        {
+          type: "Portfolio",
+          name: "Custom GPT Portfolio",
+          category: "Custom GPTs",
+          url: "portfolio/custom-gpts/README.md",
+          description: "Published GPTs, draft GPTs, conversion notes, and maintenance standards."
+        },
+        {
+          type: "Portfolio",
+          name: "Gemini Gems Portfolio",
+          category: "Gemini Gems",
+          url: "portfolio/gemini-gems/README.md",
+          description: "Gem inventory and lightweight assistant packaging."
+        },
+        {
+          type: "Portfolio",
+          name: "Flash UI Portfolio",
+          category: "Flash UI",
+          url: "portfolio/flash-ui/README.md",
+          description: "Reusable interface variants, site patterns, and visual systems."
+        }
+      ];
+
+      const items = [...agents, ...skills, ...pages];
+
+      const queryFromUrl = new URLSearchParams(location.search).get("q") || "";
+      const input = document.getElementById("globalSearch");
+      const filter = document.getElementById("typeFilter");
+
+      input.value = queryFromUrl;
+
+      function renderSearch() {
+        const query = input.value.toLowerCase();
+        const type = filter.value;
+
+        const filtered = items.filter((item) => {
+          const searchableText = [
+            item.type,
+            item.name,
+            item.category,
+            item.description,
+            item.buyer,
+            item.pain_solved,
+            item.monetization
+          ].join(" ").toLowerCase();
+
+          return searchableText.includes(query) && (type === "all" || item.type === type);
+        });
+
+        document.getElementById("searchStats").innerHTML = `
+          <div class="stat">
+            <strong>${items.length}</strong>
+            <span>Total indexed</span>
+          </div>
+
+          <div class="stat">
+            <strong>${filtered.length}</strong>
+            <span>Visible results</span>
+          </div>
+
+          <div class="stat">
+            <strong>${type === "all" ? "All" : AILibrary.escapeHTML(type)}</strong>
+            <span>Current filter</span>
+          </div>
+        `;
+
+        document.getElementById("searchResults").innerHTML = filtered.map((item) => {
+          return `
+            <article class="card">
+              <div class="pill-row">
+                <span class="pill gold">${AILibrary.escapeHTML(item.type)}</span>
+                <span class="pill">${AILibrary.escapeHTML(item.category || "General")}</span>
+              </div>
+
+              <h2>${AILibrary.escapeHTML(item.name)}</h2>
+              <p>${AILibrary.escapeHTML(item.description || item.pain_solved || "")}</p>
+
+              ${item.buyer ? `<p><strong>Buyer:</strong> ${AILibrary.escapeHTML(item.buyer)}</p>` : ""}
+              ${item.monetization ? `<p><strong>Monetization:</strong> ${AILibrary.escapeHTML(item.monetization)}</p>` : ""}
+
+              <a class="button-link secondary" href="${AILibrary.escapeHTML(item.url || "#")}">
+                Open →
+              </a>
+            </article>
+          `;
+        }).join("") || `<div class="empty-state">No results found.</div>`;
+      }
+
+      input.addEventListener("input", renderSearch);
+      filter.addEventListener("input", renderSearch);
+      filter.addEventListener("change", renderSearch);
+
+      renderSearch();
+    })();
+  </script>
+</body>
+</html>
