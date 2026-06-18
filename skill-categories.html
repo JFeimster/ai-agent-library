@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Skill Categories | AI Agent Library</title>
+  <meta name="description" content="Browse the skills library by reusable capability group and implementation area.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Skills Library</div>
+    <h1>Skill Categories</h1>
+    <p>
+      Browse the skills library by reusable capability group and implementation area.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section">
+      <div id="skillCategoryGrid" class="grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Skill category model</h2>
+        <p>
+          Skills are smaller than full agents. A skill is a reusable capability such as
+          scoring, page generation, resource-card creation, compliance copy review,
+          workflow drafting, schema validation, or data normalization.
+        </p>
+
+        <ul class="mini-list">
+          <li><strong>Static Sites:</strong> page generation, directory rendering, navigation systems.</li>
+          <li><strong>Funding:</strong> readiness copy, intake summaries, public-safe guardrails.</li>
+          <li><strong>Partner Enablement:</strong> resource cards, tracked CTAs, affiliate assets.</li>
+          <li><strong>Prompt Systems:</strong> prompt chains, review protocols, execution frameworks.</li>
+          <li><strong>Automation:</strong> workflow specs, webhook events, human-review checkpoints.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>When to create a new skill category</h2>
+        <p>
+          Add a new skill category only when multiple skills share the same operating
+          pattern or implementation destination.
+        </p>
+
+        <ul class="mini-list">
+          <li>Do not create a category for a one-off skill.</li>
+          <li>Do not duplicate platform names and business functions unless useful.</li>
+          <li>Keep categories practical enough to drive browsing and search.</li>
+          <li>Prefer durable operating functions over temporary campaign labels.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    (async () => {
+      const rawSkills = await AILibrary.fetchJSON(
+        ["skills/skill-index.json", "site-data/skills.fallback.json"],
+        []
+      );
+
+      const skills = rawSkills.map((skill, index) => {
+        return AILibrary.normalizeSkill(skill, index);
+      });
+
+      const grouped = {};
+
+      skills.forEach((skill) => {
+        if (!grouped[skill.category]) {
+          grouped[skill.category] = [];
+        }
+
+        grouped[skill.category].push(skill);
+      });
+
+      const grid = document.getElementById("skillCategoryGrid");
+
+      grid.innerHTML = Object.entries(grouped).map(([category, categorySkills]) => {
+        const highPriorityCount = categorySkills.filter((skill) => {
+          return skill.priority === "High";
+        }).length;
+
+        return `
+          <article class="card">
+            <div class="pill-row">
+              <span class="pill gold">Skill Category</span>
+              <span class="pill">${categorySkills.length} skills</span>
+              <span class="pill">${highPriorityCount} high priority</span>
+            </div>
+
+            <h2>${AILibrary.escapeHTML(category)}</h2>
+
+            <p>
+              ${categorySkills.length} reusable skill${categorySkills.length === 1 ? "" : "s"}
+              currently mapped to this category.
+            </p>
+
+            <ul class="mini-list">
+              ${categorySkills.slice(0, 8).map((skill) => {
+                return `<li>${AILibrary.escapeHTML(skill.name)}</li>`;
+              }).join("")}
+            </ul>
+
+            <a class="button-link secondary" href="skill-catalog.html">
+              Open full catalog →
+            </a>
+          </article>
+        `;
+      }).join("") || `<div class="empty-state">No skill categories found.</div>`;
+    })();
+  </script>
+</body>
+</html>

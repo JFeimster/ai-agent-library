@@ -1,0 +1,457 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-agent-library.local/schemas/custom-gpt.schema.json",
+  "title": "Custom GPT Schema",
+  "description": "Schema for documenting, packaging, reviewing, and publishing Custom GPTs derived from AI Agent Library agent specifications.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "slug",
+    "status",
+    "one_sentence_description",
+    "who_it_is_for",
+    "main_pain_solved",
+    "best_outcome",
+    "access",
+    "configuration",
+    "safety",
+    "files"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Published or draft GPT name.",
+      "minLength": 3,
+      "maxLength": 80,
+      "examples": [
+        "Ad Spend Cash Flow Calculator"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe internal slug.",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "type": "string",
+      "description": "GPT lifecycle status.",
+      "enum": [
+        "idea",
+        "draft",
+        "configured",
+        "testing",
+        "published",
+        "needs-refresh",
+        "deprecated",
+        "archived"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "description": "GPT visibility or access model.",
+      "enum": [
+        "private",
+        "link-only",
+        "public",
+        "internal",
+        "restricted"
+      ],
+      "default": "link-only"
+    },
+    "one_sentence_description": {
+      "type": "string",
+      "description": "Short description suitable for catalog cards.",
+      "minLength": 10,
+      "maxLength": 220
+    },
+    "who_it_is_for": {
+      "type": "array",
+      "description": "Primary user groups.",
+      "minItems": 1,
+      "items": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 140
+      }
+    },
+    "main_pain_solved": {
+      "type": "string",
+      "description": "The primary pain or job the GPT addresses.",
+      "minLength": 10,
+      "maxLength": 600
+    },
+    "best_outcome": {
+      "type": "string",
+      "description": "The best practical result the user should receive.",
+      "minLength": 10,
+      "maxLength": 600
+    },
+    "brand_vibe": {
+      "type": "array",
+      "description": "Tone, positioning, and visual direction.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "premium",
+          "playful",
+          "minimal",
+          "aggressive",
+          "friendly",
+          "technical",
+          "operator-focused",
+          "fintech",
+          "educational",
+          "other"
+        ]
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "access": {
+      "type": "object",
+      "description": "Published GPT access details.",
+      "additionalProperties": false,
+      "required": [
+        "url"
+      ],
+      "properties": {
+        "url": {
+          "type": "string",
+          "description": "GPT access URL.",
+          "format": "uri"
+        },
+        "pricing_or_access_note": {
+          "type": "string",
+          "maxLength": 400
+        },
+        "owner_account": {
+          "type": "string",
+          "maxLength": 140
+        }
+      }
+    },
+    "calls_to_action": {
+      "type": "object",
+      "description": "Primary and secondary CTAs connected to the GPT.",
+      "additionalProperties": false,
+      "properties": {
+        "primary": {
+          "$ref": "#/$defs/cta"
+        },
+        "secondary": {
+          "$ref": "#/$defs/cta"
+        },
+        "tertiary": {
+          "$ref": "#/$defs/cta"
+        }
+      }
+    },
+    "configuration": {
+      "type": "object",
+      "description": "Custom GPT configuration and build notes.",
+      "additionalProperties": false,
+      "required": [
+        "instructions_summary",
+        "conversation_starters",
+        "capabilities",
+        "knowledge_files"
+      ],
+      "properties": {
+        "instructions_summary": {
+          "type": "string",
+          "description": "Short summary of the GPT instruction system.",
+          "minLength": 10,
+          "maxLength": 3000
+        },
+        "conversation_starters": {
+          "type": "array",
+          "description": "Starter prompts shown to users.",
+          "minItems": 1,
+          "maxItems": 8,
+          "items": {
+            "type": "string",
+            "minLength": 4,
+            "maxLength": 180
+          }
+        },
+        "capabilities": {
+          "type": "object",
+          "description": "Configured GPT capabilities.",
+          "additionalProperties": false,
+          "properties": {
+            "web_browsing": {
+              "type": "boolean",
+              "default": false
+            },
+            "code_interpreter": {
+              "type": "boolean",
+              "default": false
+            },
+            "image_generation": {
+              "type": "boolean",
+              "default": false
+            },
+            "canvas": {
+              "type": "boolean",
+              "default": false
+            },
+            "actions": {
+              "type": "boolean",
+              "default": false
+            }
+          }
+        },
+        "knowledge_files": {
+          "type": "array",
+          "description": "Knowledge files uploaded to the GPT or associated with its repo package.",
+          "items": {
+            "$ref": "#/$defs/knowledge_file"
+          },
+          "default": []
+        },
+        "actions": {
+          "type": "array",
+          "description": "GPT actions, API schemas, or connector-style calls.",
+          "items": {
+            "$ref": "#/$defs/action"
+          },
+          "default": []
+        },
+        "output_formats": {
+          "type": "array",
+          "description": "Expected output formats.",
+          "items": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "json",
+              "html",
+              "csv",
+              "table",
+              "checklist",
+              "plain_text",
+              "file",
+              "other"
+            ]
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "description": "Safety, claims, and review requirements.",
+      "additionalProperties": false,
+      "required": [
+        "anything_it_should_not_claim",
+        "required_disclaimers",
+        "human_review_required_for"
+      ],
+      "properties": {
+        "anything_it_should_not_claim": {
+          "type": "array",
+          "description": "Claims or statements the GPT must avoid.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "required_disclaimers": {
+          "type": "array",
+          "description": "Disclaimers that should be surfaced in relevant outputs.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "human_review_required_for": {
+          "type": "array",
+          "description": "Situations where human review is required.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "restricted_data": {
+          "type": "array",
+          "description": "Data that should not be pasted into public examples or GPT outputs.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "description": "Repo package files for this GPT.",
+      "additionalProperties": false,
+      "properties": {
+        "agent_spec": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "instructions_file": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "metadata_file": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "knowledge_folder": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "schema_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "site_pages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "maintenance": {
+      "type": "object",
+      "description": "Review and maintenance metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "next_review_due": {
+          "type": "string",
+          "format": "date"
+        },
+        "owner": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    }
+  },
+  "$defs": {
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "url"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "purpose": {
+          "type": "string",
+          "maxLength": 400
+        }
+      }
+    },
+    "knowledge_file": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "path"
+      ],
+      "properties": {
+        "title": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "path": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "source_type": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "pdf",
+            "docx",
+            "csv",
+            "json",
+            "txt",
+            "other"
+          ],
+          "default": "markdown"
+        },
+        "visibility": {
+          "type": "string",
+          "enum": [
+            "public",
+            "public-safe",
+            "internal",
+            "private",
+            "restricted"
+          ],
+          "default": "public-safe"
+        }
+      }
+    },
+    "action": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "auth_type",
+        "purpose"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "auth_type": {
+          "type": "string",
+          "enum": [
+            "none",
+            "api-key",
+            "oauth",
+            "webhook",
+            "connector",
+            "manual"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "schema_path": {
+          "type": "string",
+          "maxLength": 300
+        },
+        "human_review_required": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

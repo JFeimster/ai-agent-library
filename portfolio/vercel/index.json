@@ -1,0 +1,68 @@
+{
+  "portfolio": "vercel",
+  "name": "Vercel Portfolio",
+  "description": "Inventory for static sites, landing pages, directories, calculators, scorecards, prompt generators, partner pages, and deployable AI Agent Library assets hosted on Vercel.",
+  "status": "draft",
+  "items": [
+    {
+      "name": "AI Agent Library",
+      "slug": "ai-agent-library",
+      "status": "draft",
+      "site_type": "directory",
+      "production_url": "",
+      "preview_url": "",
+      "source_repo": "JFeimster/ai-agent-library",
+      "deployment_mode": "manual",
+      "auto_deploy_enabled": false,
+      "primary_cta": "Browse agents",
+      "secondary_cta": "Open skill catalog",
+      "related_agent": "",
+      "related_skill": "skills/static-site-page-builder/SKILL.md",
+      "related_knowledge_base": "knowledge-base/engineering-as-marketing/README.md",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Static-first site pack for browsing agents, skills, knowledge bases, schemas, examples, portfolio assets, and partner pages."
+    },
+    {
+      "name": "Ad Spend Cash Flow Calculator",
+      "slug": "ad-spend-cash-flow-calculator",
+      "status": "draft",
+      "site_type": "calculator",
+      "production_url": "",
+      "preview_url": "",
+      "source_repo": "",
+      "deployment_mode": "manual",
+      "auto_deploy_enabled": false,
+      "primary_cta": "Run the Ad Spend Cash Flow Calculator",
+      "secondary_cta": "Compare Ecommerce Funding Options",
+      "related_agent": "",
+      "related_skill": "skills/calculator-page-builder/SKILL.md",
+      "related_knowledge_base": "knowledge-base/engineering-as-marketing/README.md",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Engineering-as-marketing calculator concept for ecommerce ad spend cash timing, payout lag, and funding-readiness routing."
+    }
+  ],
+  "recommended_fields": [
+    "name",
+    "slug",
+    "status",
+    "site_type",
+    "production_url",
+    "preview_url",
+    "source_repo",
+    "deployment_mode",
+    "auto_deploy_enabled",
+    "primary_cta",
+    "secondary_cta",
+    "related_agent",
+    "related_skill",
+    "related_knowledge_base",
+    "last_reviewed_at",
+    "notes"
+  ],
+  "related_paths": [
+    "portfolio/vercel/README.md",
+    "schemas/vercel-project.schema.json",
+    "knowledge-base/engineering-as-marketing/README.md",
+    "roadmap/phase-4-platform-layer.md"
+  ]
+}

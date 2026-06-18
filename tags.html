@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Tags | AI Agent Library</title>
-  <meta name="description" content="Browse cross-cutting tags for agents, skills, platforms, prompt systems, schemas, integrations, and deployable AI assets.">
-
+  <meta name="description" content="Browse cross-cutting tags for agents, skills, prompt systems, schemas, knowledge bases, examples, and portfolio assets.">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">AI</span>
-        <span>Agent Library</span>
-      </a>
-
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="agent-catalog.html">Agents</a>
@@ -33,67 +25,16 @@
       </nav>
     </div>
   </header>
-
   <section class="hero">
-    <div class="eyebrow">Directory & Discovery</div>
+    <div class="eyebrow">Discovery</div>
     <h1>Tags</h1>
-    <p>
-      Browse cross-cutting tags for agents, skills, platforms, prompt systems,
-      schemas, integrations, and deployable AI assets.
-    </p>
+    <p>Browse cross-cutting tags for agents, skills, prompt systems, schemas, knowledge bases, examples, and portfolio assets.</p>
   </section>
-
   <main id="main">
-    <section class="section">
-      <div class="toolbar">
-        <input id="tagSearch" type="search" placeholder="Search tags...">
-      </div>
-    </section>
-
-    <section class="section card">
-      <h2>Tag index</h2>
-      <p>
-        Tags help users cut across the main category structure and discover assets by
-        implementation method, platform, business function, or file type.
-      </p>
-
-      <div id="tagCloud" class="pill-row"></div>
-    </section>
-
-    <section class="section two-col">
-      <article class="card">
-        <h2>How tags should be used</h2>
-        <p>
-          Tags should describe implementation details and cross-category relationships.
-          They should not replace the broader category system.
-        </p>
-
-        <ul class="mini-list">
-          <li>Use tags for platforms like <code>chatgpt</code>, <code>vercel</code>, and <code>notion</code>.</li>
-          <li>Use tags for asset types like <code>schema</code>, <code>prompt-chain</code>, and <code>static-site</code>.</li>
-          <li>Use tags for business workflows like <code>funding</code>, <code>crm</code>, and <code>partner</code>.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h2>Suggested tag discipline</h2>
-        <ul class="mini-list">
-          <li>Use lowercase slugs.</li>
-          <li>Avoid near-duplicates.</li>
-          <li>Keep platform tags separate from business category tags.</li>
-          <li>Use tags to improve search, not to create taxonomy sprawl.</li>
-          <li>Prefer reusable tags over one-off labels.</li>
-        </ul>
-      </article>
-    </section>
+    <section class="section card"><h2>Tag cloud</h2><p>Use tags to find assets across categories. Example: funding, crm, automation, schema, vercel, custom-gpt, affiliate, and public-safe.</p><div id="tagCloud" class="pill-row"></div></section>
   </main>
-
   <footer class="footer">
-    <p>
-      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
-      knowledge bases, platform packs, and deployable AI product assets.
-    </p>
-
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
     <p>
       <a href="terms.html">Terms</a> ·
       <a href="privacy.html">Privacy</a> ·
@@ -101,36 +42,14 @@
       <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
       <a href="contribute.html">Contribute</a>
     </p>
-
     <p>© <span data-year></span> AI Agent Library.</p>
   </footer>
-
   <script src="script.js"></script>
-
   <script>
     (async () => {
       const tags = await AILibrary.fetchJSON("site-data/tags.json", []);
-      const cloud = document.getElementById("tagCloud");
-      const input = document.getElementById("tagSearch");
-
-      function renderTags() {
-        const query = input.value.toLowerCase();
-
-        const filtered = tags.filter((tag) => {
-          return tag.toLowerCase().includes(query);
-        });
-
-        cloud.innerHTML = filtered.map((tag) => {
-          return `
-            <a class="pill gold" href="search.html?q=${encodeURIComponent(tag)}">
-              ${AILibrary.escapeHTML(tag)}
-            </a>
-          `;
-        }).join("") || `<span class="muted">No matching tags.</span>`;
-      }
-
-      input.addEventListener("input", renderTags);
-      renderTags();
+      const wrap = document.getElementById("tagCloud");
+      wrap.innerHTML = tags.map(tag => `<a class="pill gold" href="search.html?q=${encodeURIComponent(tag)}">${AILibrary.escapeHTML(tag)}</a>`).join("") || `<div class="empty-state">No tags found.</div>`;
     })();
   </script>
 </body>

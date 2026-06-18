@@ -1,0 +1,394 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-agent-library.local/schemas/webhook-event.schema.json",
+  "title": "Webhook Event Schema",
+  "description": "Schema for public-safe webhook event examples, automation payloads, CRM triggers, partner events, content workflow events, and review-queue events.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "event_id",
+    "event_type",
+    "source",
+    "version",
+    "environment",
+    "created_at",
+    "payload"
+  ],
+  "properties": {
+    "event_id": {
+      "type": "string",
+      "description": "Unique event identifier.",
+      "pattern": "^[a-zA-Z0-9][a-zA-Z0-9-_:.]{6,160}$",
+      "examples": [
+        "evt_partner_lead_001"
+      ]
+    },
+    "event_type": {
+      "type": "string",
+      "description": "Event name using dot notation.",
+      "pattern": "^[a-z0-9]+(?:[._-][a-z0-9]+)+$",
+      "examples": [
+        "partner.lead_referred",
+        "lead.status_changed",
+        "document.missing",
+        "content.brief_created",
+        "webhook.received"
+      ]
+    },
+    "source": {
+      "type": "string",
+      "description": "System, form, connector, app, or page that generated the event.",
+      "minLength": 2,
+      "maxLength": 140,
+      "examples": [
+        "partner_form",
+        "static_site",
+        "crm",
+        "notion",
+        "hubspot",
+        "n8n"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Payload schema version.",
+      "pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "examples": [
+        "1.0.0"
+      ]
+    },
+    "environment": {
+      "type": "string",
+      "description": "Execution environment.",
+      "enum": [
+        "local",
+        "development",
+        "preview",
+        "production",
+        "sandbox",
+        "test"
+      ]
+    },
+    "created_at": {
+      "type": "string",
+      "description": "Event creation timestamp.",
+      "format": "date-time"
+    },
+    "received_at": {
+      "type": "string",
+      "description": "Webhook receiver timestamp.",
+      "format": "date-time"
+    },
+    "actor": {
+      "type": "object",
+      "description": "User, partner, system, or service that initiated the event.",
+      "additionalProperties": false,
+      "properties": {
+        "actor_type": {
+          "type": "string",
+          "enum": [
+            "user",
+            "partner",
+            "admin",
+            "system",
+            "automation",
+            "api",
+            "unknown"
+          ]
+        },
+        "actor_id": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "name": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "partner_slug": {
+          "type": "string",
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+        }
+      }
+    },
+    "payload": {
+      "type": "object",
+      "description": "Event-specific data. Public examples must be synthetic and must not include secrets or private records.",
+      "additionalProperties": true
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Optional routing, trace, attribution, and correlation metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "correlation_id": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "request_id": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "session_id": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "ip_address_redacted": {
+          "type": "boolean",
+          "default": true
+        },
+        "user_agent": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "source_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "utm_source": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "utm_medium": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "utm_campaign": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+          },
+          "uniqueItems": true,
+          "default": []
+        }
+      }
+    },
+    "security": {
+      "type": "object",
+      "description": "Signature, validation, and security status. Do not expose secrets.",
+      "additionalProperties": false,
+      "properties": {
+        "signature_verified": {
+          "type": "boolean"
+        },
+        "signature_algorithm": {
+          "type": "string",
+          "enum": [
+            "none",
+            "hmac-sha256",
+            "hmac-sha512",
+            "jwt",
+            "oauth",
+            "other"
+          ],
+          "default": "none"
+        },
+        "auth_type": {
+          "type": "string",
+          "enum": [
+            "none",
+            "api-key",
+            "oauth",
+            "bearer-token",
+            "basic",
+            "hmac",
+            "other"
+          ],
+          "default": "none"
+        },
+        "contains_sensitive_data": {
+          "type": "boolean",
+          "default": false
+        },
+        "redaction_required": {
+          "type": "boolean",
+          "default": false
+        },
+        "validation_errors": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "processing": {
+      "type": "object",
+      "description": "How the automation receiver should process the event.",
+      "additionalProperties": false,
+      "properties": {
+        "status": {
+          "type": "string",
+          "enum": [
+            "received",
+            "validated",
+            "queued",
+            "processing",
+            "completed",
+            "failed",
+            "rejected",
+            "quarantined",
+            "ignored"
+          ]
+        },
+        "priority": {
+          "type": "string",
+          "enum": [
+            "low",
+            "normal",
+            "high",
+            "urgent"
+          ],
+          "default": "normal"
+        },
+        "human_review_required": {
+          "type": "boolean",
+          "default": true
+        },
+        "review_reason": {
+          "type": "string",
+          "maxLength": 800
+        },
+        "retry_count": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 0
+        },
+        "max_retries": {
+          "type": "integer",
+          "minimum": 0,
+          "default": 3
+        },
+        "next_retry_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "destination": {
+          "type": "string",
+          "maxLength": 200,
+          "examples": [
+            "crm",
+            "review_queue",
+            "notion_database",
+            "email_draft",
+            "slack_alert"
+          ]
+        },
+        "actions_taken": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/action_taken"
+          },
+          "default": []
+        },
+        "errors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/error"
+          },
+          "default": []
+        }
+      }
+    },
+    "data_policy": {
+      "type": "object",
+      "description": "Data handling notes for public examples and production workflows.",
+      "additionalProperties": false,
+      "properties": {
+        "example_is_synthetic": {
+          "type": "boolean",
+          "default": true
+        },
+        "allowed_for_public_repo": {
+          "type": "boolean",
+          "default": false
+        },
+        "restricted_fields": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "api_key",
+            "access_token",
+            "password",
+            "bank_account",
+            "tax_id",
+            "credit_report",
+            "private_client_record"
+          ]
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 1200
+        }
+      }
+    }
+  },
+  "$defs": {
+    "action_taken": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "action",
+        "status",
+        "timestamp"
+      ],
+      "properties": {
+        "action": {
+          "type": "string",
+          "maxLength": 160
+        },
+        "status": {
+          "type": "string",
+          "enum": [
+            "completed",
+            "failed",
+            "skipped",
+            "queued",
+            "requires-review"
+          ]
+        },
+        "timestamp": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "details": {
+          "type": "string",
+          "maxLength": 800
+        }
+      }
+    },
+    "error": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "code",
+        "message"
+      ],
+      "properties": {
+        "code": {
+          "type": "string",
+          "maxLength": 120
+        },
+        "message": {
+          "type": "string",
+          "maxLength": 800
+        },
+        "recoverable": {
+          "type": "boolean",
+          "default": true
+        }
+      }
+    }
+  }
+}

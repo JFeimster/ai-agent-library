@@ -1,0 +1,62 @@
+[
+  {
+    "date": "2026-06-18",
+    "title": "Generated AI Agent Library static site pack",
+    "type": "Site",
+    "summary": "Added the root static site files, homepage, shared styles, shared JavaScript helpers, directory pages, skills pages, legal pages, partner pages, knowledge-base hub, portfolio hub, roadmap page, and contribution page."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added directory and discovery pages",
+    "type": "Directory",
+    "summary": "Added categories, tags, search, featured, and new pages for browsing agents, skills, knowledge bases, platform packs, examples, and portfolio resources."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added skills library pages",
+    "type": "Skills",
+    "summary": "Added skill catalog, skill categories, top skills, and skill builder pages with browser-side filtering and SKILL.md generation support."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added legal and trust pages",
+    "type": "Trust",
+    "summary": "Added terms, privacy, disclaimer, affiliate disclosure, and data policy pages with public-safe language rules, restricted-claim guidance, and data handling boundaries."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added knowledge-base starter folders",
+    "type": "Knowledge Base",
+    "summary": "Added starter README, index, and examples files for funding, partner enablement, CRM, content ops, automation, local referrals, and engineering-as-marketing."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added schema foundation",
+    "type": "Schemas",
+    "summary": "Added JSON Schema files for agents, Custom GPTs, Vercel projects, funding products, and webhook events."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added roadmap files",
+    "type": "Roadmap",
+    "summary": "Added Phase 1 Fast MVP, Phase 2 Distribution System, Phase 3 Marketplace Layer, and Phase 4 Platform Layer roadmap files."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added examples folders",
+    "type": "Examples",
+    "summary": "Added synthetic public-safe examples for funding, partner enablement, content operations, and automation workflows."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added portfolio folders",
+    "type": "Portfolio",
+    "summary": "Added portfolio records and README files for Vercel assets, Custom GPTs, Gemini Gems, and Flash UI variants."
+  },
+  {
+    "date": "2026-06-18",
+    "title": "Added site-data files",
+    "type": "Data",
+    "summary": "Added fallback data files for agents, skills, categories, tags, featured items, and changelog entries so static pages can render without a backend."
+  }
+]

@@ -1,0 +1,77 @@
+{
+  "portfolio": "gemini-gems",
+  "name": "Gemini Gems Portfolio",
+  "description": "Inventory for Gemini Gem concepts, lightweight assistant packages, converted agent patterns, and short-form reusable AI helpers.",
+  "status": "draft",
+  "items": [
+    {
+      "name": "Funding Readiness Helper",
+      "slug": "funding-readiness-helper",
+      "status": "draft",
+      "source_agent": "agents/funding-pipeline-triage-agent.md",
+      "source_gpt": "",
+      "audience": "Small business owners, funding operators, and referral partners",
+      "main_use_case": "Help users organize common funding-readiness information and identify missing details before a review.",
+      "instruction_summary": "Ask for business basics, summarize known facts, list missing inputs, flag caution items, and avoid approval or funding guarantees.",
+      "example_prompts": [
+        "Help me organize a funding-readiness checklist.",
+        "What information is missing before a funding review?",
+        "Summarize this file using public-safe language."
+      ],
+      "restrictions": [
+        "No guaranteed funding claims",
+        "No guaranteed approval claims",
+        "No legal, tax, credit-repair, or lending advice"
+      ],
+      "related_skill": "",
+      "related_knowledge_base": "knowledge-base/funding/README.md",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Lightweight Gem concept derived from funding-readiness and routing patterns."
+    },
+    {
+      "name": "Partner Resource Card Helper",
+      "slug": "partner-resource-card-helper",
+      "status": "draft",
+      "source_agent": "",
+      "source_gpt": "",
+      "audience": "Partner managers, affiliates, brokers, and referral operators",
+      "main_use_case": "Generate public-safe partner resource cards with CTAs, disclosures, restricted claims, and tracking notes.",
+      "instruction_summary": "Collect resource details, format a partner card, include disclosure language, list restricted claims, and keep private payout terms out of public output.",
+      "example_prompts": [
+        "Create a partner resource card for this offer.",
+        "Review this partner card for missing disclosures.",
+        "Generate a public-safe affiliate resource card."
+      ],
+      "restrictions": [
+        "No undisclosed affiliate positioning",
+        "No private payout terms",
+        "No guaranteed outcome claims"
+      ],
+      "related_skill": "skills/partner-resource-card-builder/SKILL.md",
+      "related_knowledge_base": "knowledge-base/partner-enablement/README.md",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Good lightweight conversion target for partner enablement workflows."
+    }
+  ],
+  "recommended_fields": [
+    "name",
+    "slug",
+    "status",
+    "source_agent",
+    "source_gpt",
+    "audience",
+    "main_use_case",
+    "instruction_summary",
+    "example_prompts",
+    "restrictions",
+    "related_skill",
+    "related_knowledge_base",
+    "last_reviewed_at",
+    "notes"
+  ],
+  "related_paths": [
+    "portfolio/gemini-gems/README.md",
+    "platforms.html",
+    "roadmap/phase-4-platform-layer.md"
+  ]
+}

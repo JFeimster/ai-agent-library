@@ -1,0 +1,87 @@
+{
+  "name": "CRM Knowledge Base",
+  "slug": "crm",
+  "description": "CRM hygiene, lead status handling, note cleanup, follow-up logic, missed-opportunity detection, and pipeline signal scanning.",
+  "status": "draft",
+  "visibility": "internal-use with public-safe examples",
+  "primary_users": [
+    "Sales operators",
+    "Funding brokers",
+    "Referral partners",
+    "CRM admins",
+    "Processors",
+    "Closers",
+    "AI workflow builders",
+    "Automation operators",
+    "RevOps teams"
+  ],
+  "lead_stages": [
+    "New Lead",
+    "Intake Started",
+    "Qualified for Review",
+    "Missing Documents",
+    "Submitted / In Review",
+    "Offer / Options Presented",
+    "Funded / Completed",
+    "Declined / Not a Fit",
+    "Nurture"
+  ],
+  "recommended_fields": [
+    "Lead ID",
+    "Contact name",
+    "Business name",
+    "Email",
+    "Phone",
+    "Source",
+    "Partner slug",
+    "Campaign",
+    "Business type",
+    "Time in business",
+    "Monthly revenue",
+    "Funding request",
+    "Use of funds",
+    "Credit band",
+    "Product family",
+    "Status",
+    "Owner",
+    "Next follow-up date",
+    "Missing documents",
+    "Caution flags",
+    "Last contact date",
+    "Last note summary"
+  ],
+  "automation_allowed": [
+    "Draft follow-up messages",
+    "Summarize CRM notes",
+    "Identify missing fields",
+    "Create task suggestions",
+    "Assign review categories",
+    "Flag caution items",
+    "Update non-sensitive status fields"
+  ],
+  "automation_not_allowed": [
+    "Send high-stakes messages without approval",
+    "Invent missing information",
+    "Change deal status without evidence",
+    "Promise funding or approval",
+    "Expose private data in public files",
+    "Override human reviewer decisions"
+  ],
+  "human_review_required_for": [
+    "Funding-related messages",
+    "Business-credit messages",
+    "Final qualification status",
+    "Provider submissions",
+    "Decline language",
+    "Legal, tax, or financial guidance",
+    "Sensitive complaints",
+    "Examples based on real CRM records"
+  ],
+  "related_paths": [
+    "knowledge-base/crm/README.md",
+    "knowledge-base/crm/examples.md",
+    "knowledge-base/automation/README.md",
+    "schemas/webhook-event.schema.json",
+    "examples/automation/"
+  ]
+}

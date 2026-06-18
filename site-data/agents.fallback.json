@@ -1,0 +1,230 @@
+[
+  {
+    "name": "Funding Pipeline Triage Agent",
+    "slug": "funding-pipeline-triage-agent",
+    "category": "Funding Ops",
+    "buyer": "Funding brokers, intake teams, processors, and referral partners",
+    "pain_solved": "Helps summarize a funding lead, identify missing information, flag caution items, and suggest a likely product-family path without making approval promises.",
+    "monetization": "Lead magnet, broker enablement, partner resource, internal workflow tool",
+    "platform": "ChatGPT Custom GPT",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "funding",
+      "crm",
+      "intake",
+      "routing",
+      "broker"
+    ],
+    "file": "agents/funding-pipeline-triage-agent.md"
+  },
+  {
+    "name": "Partner Resource Card Builder",
+    "slug": "partner-resource-card-builder",
+    "category": "Partner Enablement",
+    "buyer": "Partner managers, affiliates, brokers, ISO reps, and referral operators",
+    "pain_solved": "Creates public-safe resource cards with audience, problem solved, CTAs, disclosures, restricted claims, and tracking notes.",
+    "monetization": "Affiliate enablement, partner onboarding, referral distribution",
+    "platform": "Static Site / Custom GPT",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "partner",
+      "affiliate",
+      "resource-card",
+      "cta",
+      "disclosure"
+    ],
+    "file": "agents/partner-resource-card-builder.md"
+  },
+  {
+    "name": "AI Agent Library Builder",
+    "slug": "ai-agent-library-builder",
+    "category": "AI Builder Resources",
+    "buyer": "AI builders, repo operators, prompt designers, and static site builders",
+    "pain_solved": "Turns agent ideas into repo-ready specs, skills, schemas, prompt packs, examples, knowledge-base files, and static pages.",
+    "monetization": "Internal tool, builder workflow, premium implementation service",
+    "platform": "ChatGPT Custom GPT",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "agents",
+      "skills",
+      "schemas",
+      "repo",
+      "static-site"
+    ],
+    "file": "agents/ai-agent-library-builder.md"
+  },
+  {
+    "name": "Static Site Page Generator",
+    "slug": "static-site-page-generator",
+    "category": "Static Sites",
+    "buyer": "Vercel builders, landing page creators, and AI product operators",
+    "pain_solved": "Generates static HTML, CSS, JavaScript, metadata, and page sections for dependency-free launch pages.",
+    "monetization": "Engineering-as-marketing, static site creation, tool landing pages",
+    "platform": "Vercel Static Site",
+    "status": "Ready",
+    "priority": "High",
+    "tags": [
+      "html",
+      "css",
+      "javascript",
+      "vercel",
+      "landing-page"
+    ],
+    "file": "agents/static-site-page-generator.md"
+  },
+  {
+    "name": "Prompt Chain Architect",
+    "slug": "prompt-chain-architect",
+    "category": "Prompt Systems",
+    "buyer": "Prompt engineers, AI builders, Codex users, Jules users, and workflow operators",
+    "pain_solved": "Converts broad build tasks into sequenced prompts with inputs, outputs, acceptance criteria, and review steps.",
+    "monetization": "Prompt packs, implementation services, repo automation",
+    "platform": "ChatGPT / GitHub",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "prompts",
+      "codex",
+      "jules",
+      "workflow",
+      "review"
+    ],
+    "file": "agents/prompt-chain-architect.md"
+  },
+  {
+    "name": "Knowledge Base Packager",
+    "slug": "knowledge-base-packager",
+    "category": "Knowledge Bases",
+    "buyer": "Custom GPT builders, Notion operators, and repo maintainers",
+    "pain_solved": "Turns scattered notes, docs, and examples into clean knowledge-base folders with README, index, examples, guardrails, and output rules.",
+    "monetization": "GPT setup, knowledge-base services, internal operating systems",
+    "platform": "GitHub / Custom GPT",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "knowledge-base",
+      "gpt",
+      "markdown",
+      "docs",
+      "source"
+    ],
+    "file": "agents/knowledge-base-packager.md"
+  },
+  {
+    "name": "Business Credit Readiness Helper",
+    "slug": "business-credit-readiness-helper",
+    "category": "Business Credit",
+    "buyer": "Business owners, readiness coaches, and educational resource builders",
+    "pain_solved": "Helps organize business-credit setup readiness, missing items, vendor-readiness gaps, and next steps using educational non-promissory language.",
+    "monetization": "Educational resource, lead magnet, partner resource",
+    "platform": "Custom GPT / Static Site",
+    "status": "Draft",
+    "priority": "Medium",
+    "tags": [
+      "business-credit",
+      "readiness",
+      "setup",
+      "education",
+      "no-guarantees"
+    ],
+    "file": "agents/business-credit-readiness-helper.md"
+  },
+  {
+    "name": "CRM Follow-Up Drafting Agent",
+    "slug": "crm-follow-up-drafting-agent",
+    "category": "CRM",
+    "buyer": "Sales teams, brokers, processors, and RevOps operators",
+    "pain_solved": "Drafts clear follow-up messages from CRM status, missing fields, prior notes, and next-step rules while keeping human review in place.",
+    "monetization": "CRM workflow tool, broker automation, internal productivity",
+    "platform": "Custom GPT / n8n",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "crm",
+      "follow-up",
+      "sales",
+      "automation",
+      "review"
+    ],
+    "file": "agents/crm-follow-up-drafting-agent.md"
+  },
+  {
+    "name": "Content Brief Generator",
+    "slug": "content-brief-generator",
+    "category": "Content Ops",
+    "buyer": "SEO writers, content operators, blog teams, and AI content builders",
+    "pain_solved": "Creates structured content briefs with keywords, audience, search intent, headings, internal links, CTAs, metadata, and do-not-claim lists.",
+    "monetization": "Content ops, SEO service, prompt pack, publishing workflow",
+    "platform": "Static Site / Custom GPT",
+    "status": "Ready",
+    "priority": "High",
+    "tags": [
+      "seo",
+      "content",
+      "brief",
+      "metadata",
+      "publishing"
+    ],
+    "file": "agents/content-brief-generator.md"
+  },
+  {
+    "name": "Automation Workflow Spec Agent",
+    "slug": "automation-workflow-spec-agent",
+    "category": "Automation",
+    "buyer": "Automation builders, CRM operators, n8n builders, and technical operators",
+    "pain_solved": "Turns workflow ideas into trigger, input, step, output, review-gate, failure-mode, and webhook-event specs.",
+    "monetization": "Automation consulting, workflow templates, implementation service",
+    "platform": "n8n / GitHub",
+    "status": "Draft",
+    "priority": "High",
+    "tags": [
+      "automation",
+      "webhook",
+      "workflow",
+      "n8n",
+      "schema"
+    ],
+    "file": "agents/automation-workflow-spec-agent.md"
+  },
+  {
+    "name": "Vercel Deployment Control Agent",
+    "slug": "vercel-deployment-control-agent",
+    "category": "Platform Ops",
+    "buyer": "Vercel site operators and repo maintainers",
+    "pain_solved": "Helps review static site deployment files, Vercel settings, auto-deploy behavior, root file readiness, and rollback notes.",
+    "monetization": "Internal workflow, deployment ops, static site service",
+    "platform": "GitHub / Vercel",
+    "status": "Draft",
+    "priority": "Medium",
+    "tags": [
+      "vercel",
+      "deployment",
+      "static-site",
+      "repo",
+      "ops"
+    ],
+    "file": "agents/vercel-deployment-control-agent.md"
+  },
+  {
+    "name": "Affiliate Disclosure Reviewer",
+    "slug": "affiliate-disclosure-reviewer",
+    "category": "Trust & Safety",
+    "buyer": "Affiliate operators, partner managers, and content publishers",
+    "pain_solved": "Reviews partner and affiliate content for missing disclosure language, unsupported claims, vague CTAs, and risky recommendation framing.",
+    "monetization": "Partner enablement, compliance support, affiliate resource review",
+    "platform": "Custom GPT / Static Site",
+    "status": "Draft",
+    "priority": "Medium",
+    "tags": [
+      "affiliate",
+      "disclosure",
+      "partner",
+      "trust",
+      "review"
+    ],
+    "file": "agents/affiliate-disclosure-reviewer.md"
+  }
+]

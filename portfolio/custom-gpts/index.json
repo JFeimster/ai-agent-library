@@ -1,0 +1,110 @@
+{
+  "portfolio": "custom-gpts",
+  "name": "Custom GPT Portfolio",
+  "description": "Inventory for published, draft, archived, and planned Custom GPTs connected to AI Agent Library assets.",
+  "status": "draft",
+  "items": [
+    {
+      "name": "Ad Spend Cash Flow Calculator",
+      "slug": "ad-spend-cash-flow-calculator",
+      "status": "published",
+      "visibility": "link-only",
+      "access_url": "https://chatgpt.com/g/g-6a3359a8328c8191acc5cba7968a1639-ad-spend-cash-flow-calculator",
+      "one_sentence_description": "Forecasts ecommerce ad spend cash flow, payout lag, cash gaps, and scale/fund decisions.",
+      "who_it_is_for": [
+        "Ecommerce operators",
+        "Paid media teams",
+        "Growth operators",
+        "Inventory-heavy sellers"
+      ],
+      "main_pain_solved": "Ad spend can create a cash gap before revenue, margin, or platform payouts catch up.",
+      "best_outcome": "The user can see whether their ad spend plan is safe, risky, or likely to create a cash gap.",
+      "primary_cta": "Run the Ad Spend Cash Flow Calculator",
+      "secondary_cta": "Compare Ecommerce Funding Options",
+      "brand_vibe": [
+        "premium",
+        "playful",
+        "fintech",
+        "operator-focused"
+      ],
+      "pricing_or_access_note": "Access depends on the GPT visibility and ChatGPT account availability.",
+      "anything_it_should_not_claim": [
+        "Guaranteed revenue",
+        "Guaranteed funding",
+        "Guaranteed ad performance",
+        "Financial advice",
+        "Guaranteed approval"
+      ],
+      "related_agent": "",
+      "related_skill": "skills/calculator-page-builder/SKILL.md",
+      "related_knowledge_base": "knowledge-base/engineering-as-marketing/README.md",
+      "related_site_page": "",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Primary CTA should point to the Custom GPT. Secondary CTA can point to funding application or ecommerce funding comparison."
+    },
+    {
+      "name": "AI Agent Library Builder",
+      "slug": "ai-agent-library-builder",
+      "status": "draft",
+      "visibility": "private",
+      "access_url": "",
+      "one_sentence_description": "Helps turn agent ideas into repo-ready specs, skills, knowledge bases, prompts, schemas, and static pages.",
+      "who_it_is_for": [
+        "AI builders",
+        "Static site operators",
+        "Prompt system designers",
+        "Repo maintainers"
+      ],
+      "main_pain_solved": "Agent ideas often stay scattered instead of becoming structured, reusable, deployable assets.",
+      "best_outcome": "The user receives a file-ready package for agents, skills, prompts, schemas, pages, or knowledge-base folders.",
+      "primary_cta": "Build an agent package",
+      "secondary_cta": "Open the skill builder",
+      "brand_vibe": [
+        "technical",
+        "operator-focused",
+        "minimal"
+      ],
+      "pricing_or_access_note": "Draft concept.",
+      "anything_it_should_not_claim": [
+        "Guaranteed marketplace success",
+        "Guaranteed platform acceptance",
+        "Guaranteed revenue"
+      ],
+      "related_agent": "",
+      "related_skill": "skills/static-site-page-builder/SKILL.md",
+      "related_knowledge_base": "knowledge-base/engineering-as-marketing/README.md",
+      "related_site_page": "skill-builder.html",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Potential internal GPT for generating and auditing AI Agent Library repo assets."
+    }
+  ],
+  "recommended_fields": [
+    "name",
+    "slug",
+    "status",
+    "visibility",
+    "access_url",
+    "one_sentence_description",
+    "who_it_is_for",
+    "main_pain_solved",
+    "best_outcome",
+    "primary_cta",
+    "secondary_cta",
+    "brand_vibe",
+    "pricing_or_access_note",
+    "anything_it_should_not_claim",
+    "related_agent",
+    "related_skill",
+    "related_knowledge_base",
+    "related_site_page",
+    "last_reviewed_at",
+    "notes"
+  ],
+  "related_paths": [
+    "portfolio/custom-gpts/README.md",
+    "schemas/custom-gpt.schema.json",
+    "agent-catalog.html",
+    "platforms.html",
+    "roadmap/phase-4-platform-layer.md"
+  ]
+}

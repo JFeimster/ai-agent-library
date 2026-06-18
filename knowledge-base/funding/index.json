@@ -1,0 +1,165 @@
+{
+  "name": "Funding Knowledge Base",
+  "slug": "funding",
+  "description": "Funding product-family routing, intake, documentation, disqualifiers, qualification bands, and public-safe language guidance.",
+  "status": "draft",
+  "visibility": "public-safe with internal-use boundaries",
+  "primary_users": [
+    "Funding brokers",
+    "Referral partners",
+    "Affiliate operators",
+    "Intake teams",
+    "Closers",
+    "Processors",
+    "AI workflow builders",
+    "Static site builders",
+    "Custom GPT builders"
+  ],
+  "product_families": [
+    {
+      "name": "Startup / Credit-Leverage Path",
+      "best_for": [
+        "New businesses",
+        "Startup-stage founders",
+        "Strong personal credit profiles",
+        "Business setup readiness"
+      ],
+      "caution_flags": [
+        "Very weak credit",
+        "Open bankruptcy",
+        "No clear business plan",
+        "Missing identity or entity documentation"
+      ]
+    },
+    {
+      "name": "Revenue Advance / Fast Capital Path",
+      "best_for": [
+        "Active businesses with revenue",
+        "Short-term working capital needs",
+        "Speed-sensitive files",
+        "Available bank statements"
+      ],
+      "caution_flags": [
+        "Frequent NSFs",
+        "Inconsistent deposits",
+        "Too many existing advances",
+        "Major unresolved tax liens"
+      ]
+    },
+    {
+      "name": "Business Line / Revolving Access Path",
+      "best_for": [
+        "Recurring working capital needs",
+        "Flexible access",
+        "Stable revenue",
+        "Stronger credit profiles"
+      ],
+      "caution_flags": [
+        "Weak credit",
+        "Thin business history",
+        "Excessive inquiries",
+        "Recent delinquencies"
+      ]
+    },
+    {
+      "name": "Structured Growth Loan Path",
+      "best_for": [
+        "Established businesses",
+        "Stable cash flow",
+        "Larger capital requests",
+        "Lower-cost capital exploration"
+      ],
+      "caution_flags": [
+        "Poor documentation",
+        "Unstable revenue",
+        "High debt load",
+        "Need for same-day funding"
+      ]
+    },
+    {
+      "name": "Equipment / Asset Finance Path",
+      "best_for": [
+        "Equipment purchases",
+        "Business-use assets",
+        "Invoice or quote-backed requests",
+        "Revenue-supporting assets"
+      ],
+      "caution_flags": [
+        "Obsolete equipment",
+        "Salvage assets",
+        "No invoice",
+        "Unclear business use"
+      ]
+    },
+    {
+      "name": "Real Estate Capital Path",
+      "best_for": [
+        "Property-backed financing",
+        "Fix-and-flip",
+        "Rental property",
+        "Bridge financing",
+        "Development or acquisition"
+      ],
+      "caution_flags": [
+        "Weak collateral",
+        "Unclear ownership",
+        "Missing purchase contract",
+        "No exit plan"
+      ]
+    },
+    {
+      "name": "Marketplace / Ecommerce Capital Path",
+      "best_for": [
+        "Ecommerce sellers",
+        "Marketplace revenue",
+        "Ad spend cash-flow needs",
+        "Inventory purchases",
+        "Consistent platform payouts"
+      ],
+      "caution_flags": [
+        "Suspended marketplace account",
+        "Unstable payouts",
+        "High chargebacks",
+        "No platform reporting"
+      ]
+    }
+  ],
+  "required_output_sections": [
+    "File Summary",
+    "Likely Product Family",
+    "Fit Rationale",
+    "Missing Information",
+    "Caution Flags",
+    "Suggested Next Step",
+    "Public-Safe Language"
+  ],
+  "safe_language": [
+    "May be a fit",
+    "Common requirements",
+    "Typical documents",
+    "Funding readiness",
+    "Potential options",
+    "Next steps",
+    "Qualification factors",
+    "File review",
+    "Routing guidance",
+    "Educational overview"
+  ],
+  "restricted_language": [
+    "Guaranteed approval",
+    "Guaranteed funding",
+    "No denial",
+    "Everyone qualifies",
+    "Instant approval for all businesses",
+    "Lowest rates guaranteed",
+    "No documents required",
+    "Bad credit approved no matter what"
+  ],
+  "related_paths": [
+    "knowledge-base/funding/README.md",
+    "knowledge-base/funding/examples.md",
+    "schemas/funding-product.schema.json",
+    "examples/funding/",
+    "funding-kb.html"
+  ]
+}

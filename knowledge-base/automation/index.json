@@ -1,0 +1,92 @@
+{
+  "name": "Automation Knowledge Base",
+  "slug": "automation",
+  "description": "Workflow specs, trigger libraries, webhook event patterns, approval gates, fallbacks, failure handling, and automation safety rules.",
+  "status": "draft",
+  "visibility": "public-safe with private implementation boundaries",
+  "primary_users": [
+    "AI workflow builders",
+    "Automation operators",
+    "CRM admins",
+    "Partner managers",
+    "Funding operators",
+    "Content operators",
+    "RevOps teams",
+    "Static site builders",
+    "Custom GPT builders",
+    "n8n builders"
+  ],
+  "automation_types": [
+    {
+      "type": "No-Auth",
+      "best_for": [
+        "Static page interactions",
+        "Prompt generators",
+        "Markdown generators",
+        "JSON builders",
+        "Copy-to-clipboard utilities",
+        "Public-safe calculators"
+      ]
+    },
+    {
+      "type": "API-Key",
+      "best_for": [
+        "Controlled backend calls",
+        "Webhook proxy workflows",
+        "CRM data syncs",
+        "Email draft providers",
+        "Server-side enrichment"
+      ]
+    },
+    {
+      "type": "OAuth",
+      "best_for": [
+        "User-authorized account actions",
+        "Google Workspace operations",
+        "Notion database updates",
+        "HubSpot contact workflows",
+        "Slack notifications",
+        "Drive file operations"
+      ]
+    }
+  ],
+  "trigger_categories": [
+    "User Action Trigger",
+    "CRM Trigger",
+    "Content Trigger",
+    "Partner Trigger",
+    "Webhook Trigger"
+  ],
+  "human_review_required_for": [
+    "Funding-related outbound messages",
+    "Business-credit messages",
+    "Final deal qualification",
+    "Provider submissions",
+    "Decline language",
+    "Partner profile publishing",
+    "Affiliate recommendations",
+    "Legal or trust page updates",
+    "SMS messages",
+    "Production CRM writes"
+  ],
+  "restricted_data": [
+    "API keys",
+    "Access tokens",
+    "Webhook secrets",
+    "Real customer records",
+    "Bank data",
+    "Tax data",
+    "Credit reports",
+    "Private CRM exports",
+    "Private provider logic",
+    "Production endpoints"
+  ],
+  "related_paths": [
+    "knowledge-base/automation/README.md",
+    "knowledge-base/automation/examples.md",
+    "schemas/webhook-event.schema.json",
+    "examples/automation/",
+    "prompt-generator.html",
+    "skill-builder.html"
+  ]
+}

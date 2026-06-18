@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Featured | AI Agent Library</title>
-  <meta name="description" content="Curated high-value agents, skills, prompt systems, and knowledge-base assets to build from first.">
-
+  <meta name="description" content="Featured agents, skills, knowledge bases, schemas, portfolio resources, partner pages, and roadmap items.">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">AI</span>
-        <span>Agent Library</span>
-      </a>
-
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="agent-catalog.html">Agents</a>
@@ -33,56 +25,17 @@
       </nav>
     </div>
   </header>
-
   <section class="hero">
-    <div class="eyebrow">Directory & Discovery</div>
-    <h1>Featured</h1>
-    <p>
-      Curated high-value agents, skills, prompt systems, and knowledge-base
-      assets to build from first.
-    </p>
+    <div class="eyebrow">Discovery</div>
+    <h1>Featured Assets</h1>
+    <p>Featured agents, skills, knowledge bases, schemas, portfolio resources, partner pages, and roadmap items.</p>
   </section>
-
   <main id="main">
-    <section class="section">
-      <div id="featuredGrid" class="wide-grid"></div>
-    </section>
-
-    <section class="section two-col">
-      <article class="card">
-        <h2>Featured criteria</h2>
-        <p>
-          Featured assets should be useful, complete enough to act on, relevant to a
-          revenue or operating workflow, and connected to a clear next step.
-        </p>
-
-        <ul class="mini-list">
-          <li>The asset has a clear operator, buyer, or user.</li>
-          <li>The asset supports real execution, not just inspiration.</li>
-          <li>The asset can become a page, GPT, skill, workflow, schema, or template.</li>
-          <li>The asset is safe enough for public or semi-public positioning.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h2>Recommended featured mix</h2>
-        <ul class="mini-list">
-          <li>1–3 high-value agents.</li>
-          <li>1–3 reusable skills.</li>
-          <li>1–2 prompt systems.</li>
-          <li>1–2 knowledge bases.</li>
-          <li>1–2 portfolio or platform assets.</li>
-        </ul>
-      </article>
-    </section>
+    <section class="section callout"><strong>Featured rule:</strong><p>Use this page for assets that are ready, strategic, high-priority, or useful as entry points for new builders.</p></section>
+    <section class="section"><div id="featuredGrid" class="wide-grid"></div></section>
   </main>
-
   <footer class="footer">
-    <p>
-      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
-      knowledge bases, platform packs, and deployable AI product assets.
-    </p>
-
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
     <p>
       <a href="terms.html">Terms</a> ·
       <a href="privacy.html">Privacy</a> ·
@@ -90,34 +43,14 @@
       <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
       <a href="contribute.html">Contribute</a>
     </p>
-
     <p>© <span data-year></span> AI Agent Library.</p>
   </footer>
-
   <script src="script.js"></script>
-
   <script>
     (async () => {
       const items = await AILibrary.fetchJSON("site-data/featured.json", []);
       const grid = document.getElementById("featuredGrid");
-
-      grid.innerHTML = items.map((item) => {
-        return `
-          <article class="card">
-            <div class="pill-row">
-              <span class="pill gold">${AILibrary.escapeHTML(item.type)}</span>
-              <span class="pill">${AILibrary.escapeHTML(item.category)}</span>
-            </div>
-
-            <h2>${AILibrary.escapeHTML(item.title)}</h2>
-            <p>${AILibrary.escapeHTML(item.description)}</p>
-
-            <a class="button-link" href="${AILibrary.escapeHTML(item.url)}">
-              Open featured asset →
-            </a>
-          </article>
-        `;
-      }).join("") || `<div class="empty-state">No featured assets found.</div>`;
+      grid.innerHTML = items.map(item => `<article class="card"><div class="pill-row"><span class="pill gold">${AILibrary.escapeHTML(item.type)}</span><span class="pill">${AILibrary.escapeHTML(item.category)}</span></div><h2>${AILibrary.escapeHTML(item.title)}</h2><p>${AILibrary.escapeHTML(item.description)}</p><a class="button-link secondary" href="${AILibrary.escapeHTML(item.url)}">Open featured asset →</a></article>`).join("") || `<div class="empty-state">No featured items found.</div>`;
     })();
   </script>
 </body>

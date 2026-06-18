@@ -1,0 +1,218 @@
+[
+  {
+    "name": "Static Site Page Builder",
+    "slug": "static-site-page-builder",
+    "category": "Static Sites",
+    "audience": "Static site builders, Vercel operators, and AI product teams",
+    "problem_solved": "Generates dependency-free HTML pages with consistent structure, navigation, CTAs, metadata, and public-safe page sections.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "GitHub",
+      "Vercel"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/static-site-page-builder/SKILL.md"
+  },
+  {
+    "name": "Agent Spec Packager",
+    "slug": "agent-spec-packager",
+    "category": "AI Builder Resources",
+    "audience": "AI builders, prompt engineers, and repo maintainers",
+    "problem_solved": "Turns agent concepts into structured specs with buyer, pain solved, inputs, outputs, workflow, guardrails, and platform targets.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/agent-spec-packager/SKILL.md"
+  },
+  {
+    "name": "SKILL.md Generator",
+    "slug": "skill-md-generator",
+    "category": "Skills Library",
+    "audience": "AI Agent Library maintainers and reusable capability builders",
+    "problem_solved": "Creates structured SKILL.md files with purpose, inputs, outputs, workflow, examples, guardrails, and suggested repo paths.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Codex"
+    ],
+    "priority": "High",
+    "status": "Ready",
+    "path": "skills/skill-md-generator/SKILL.md"
+  },
+  {
+    "name": "Funding Language Safety Review",
+    "slug": "funding-language-safety-review",
+    "category": "Funding Ops",
+    "audience": "Funding brokers, affiliate operators, and content publishers",
+    "problem_solved": "Reviews funding copy for guaranteed approval claims, unsafe speed claims, unsupported terms, and missing educational framing.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Custom GPT",
+      "GitHub"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/funding-language-safety-review/SKILL.md"
+  },
+  {
+    "name": "Partner Resource Card Builder",
+    "slug": "partner-resource-card-builder",
+    "category": "Partner Enablement",
+    "audience": "Partner managers, affiliates, brokers, and referral agents",
+    "problem_solved": "Creates resource cards with audience, problem solved, CTAs, disclosure language, restricted claims, and tracking notes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Vercel",
+      "Notion"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/partner-resource-card-builder/SKILL.md"
+  },
+  {
+    "name": "Prompt Chain Sequencer",
+    "slug": "prompt-chain-sequencer",
+    "category": "Prompt Systems",
+    "audience": "Prompt builders, Codex users, Jules users, and implementation operators",
+    "problem_solved": "Breaks large tasks into ordered prompts with inputs, outputs, acceptance criteria, validation steps, and PR-ready instructions.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "Jules",
+      "GitHub"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/prompt-chain-sequencer/SKILL.md"
+  },
+  {
+    "name": "Schema Starter Builder",
+    "slug": "schema-starter-builder",
+    "category": "Schemas",
+    "audience": "Repo maintainers, automation builders, and structured data operators",
+    "problem_solved": "Generates JSON Schema files with required fields, enums, examples, descriptions, validation notes, and public-safe data rules.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Codex"
+    ],
+    "priority": "Medium",
+    "status": "Draft",
+    "path": "skills/schema-starter-builder/SKILL.md"
+  },
+  {
+    "name": "Knowledge Base Folder Builder",
+    "slug": "knowledge-base-folder-builder",
+    "category": "Knowledge Bases",
+    "audience": "Custom GPT builders, source-doc operators, and AI system maintainers",
+    "problem_solved": "Creates README, index.json, examples, source boundaries, guardrails, and output rules for reusable knowledge-base folders.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/knowledge-base-folder-builder/SKILL.md"
+  },
+  {
+    "name": "Automation Workflow Spec Writer",
+    "slug": "automation-workflow-spec-writer",
+    "category": "Automation",
+    "audience": "n8n builders, CRM admins, automation operators, and workflow designers",
+    "problem_solved": "Creates workflow specs with triggers, inputs, steps, outputs, approval gates, failure modes, fallback behavior, and data rules.",
+    "recommended_apps": [
+      "ChatGPT",
+      "n8n",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "High",
+    "status": "Draft",
+    "path": "skills/automation-workflow-spec-writer/SKILL.md"
+  },
+  {
+    "name": "CRM Note Summarizer",
+    "slug": "crm-note-summarizer",
+    "category": "CRM",
+    "audience": "Sales teams, processors, closers, and RevOps operators",
+    "problem_solved": "Converts messy CRM notes into known facts, missing fields, current status, caution flags, and suggested next action.",
+    "recommended_apps": [
+      "ChatGPT",
+      "HubSpot",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "Medium",
+    "status": "Draft",
+    "path": "skills/crm-note-summarizer/SKILL.md"
+  },
+  {
+    "name": "Content Brief Builder",
+    "slug": "content-brief-builder",
+    "category": "Content Ops",
+    "audience": "SEO writers, content teams, AI publishers, and blog operators",
+    "problem_solved": "Builds article briefs with keywords, search intent, audience, headings, internal links, CTA, metadata, excerpt, and do-not-claim list.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Notion",
+      "GitHub",
+      "Wix"
+    ],
+    "priority": "High",
+    "status": "Ready",
+    "path": "skills/content-brief-builder/SKILL.md"
+  },
+  {
+    "name": "Portfolio Inventory Normalizer",
+    "slug": "portfolio-inventory-normalizer",
+    "category": "Portfolio",
+    "audience": "AI product operators, Vercel builders, and GPT portfolio maintainers",
+    "problem_solved": "Normalizes public assets into portfolio records with name, URL, source repo, status, CTA, related agent, related skill, and review date.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Vercel",
+      "Notion"
+    ],
+    "priority": "Medium",
+    "status": "Draft",
+    "path": "skills/portfolio-inventory-normalizer/SKILL.md"
+  },
+  {
+    "name": "Affiliate Disclosure Checker",
+    "slug": "affiliate-disclosure-checker",
+    "category": "Trust & Safety",
+    "audience": "Affiliate publishers, partner operators, and resource directory maintainers",
+    "problem_solved": "Checks pages and cards for visible affiliate disclosure, non-neutral paid placement language, restricted claims, and CTA clarity.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "Medium",
+    "status": "Draft",
+    "path": "skills/affiliate-disclosure-checker/SKILL.md"
+  },
+  {
+    "name": "Vercel Deployment Checklist Builder",
+    "slug": "vercel-deployment-checklist-builder",
+    "category": "Platform Ops",
+    "audience": "Static site builders, repo maintainers, and deployment operators",
+    "problem_solved": "Creates deployment checklists covering root files, Vercel settings, auto-deploy behavior, CTA links, legal pages, and rollback notes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Vercel",
+      "GitHub"
+    ],
+    "priority": "Medium",
+    "status": "Draft",
+    "path": "skills/vercel-deployment-checklist-builder/SKILL.md"
+  }
+]

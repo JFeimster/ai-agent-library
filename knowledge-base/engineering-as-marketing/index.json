@@ -1,0 +1,142 @@
+{
+  "name": "Engineering-as-Marketing Knowledge Base",
+  "slug": "engineering-as-marketing",
+  "description": "Public tools, calculators, widgets, directories, scorecards, templates, and conversion assets that create practical demand by helping users solve a real problem.",
+  "status": "draft",
+  "visibility": "public-safe",
+  "primary_users": [
+    "AI product builders",
+    "Static site builders",
+    "Vercel app builders",
+    "Funding operators",
+    "Affiliate operators",
+    "Content marketers",
+    "SEO builders",
+    "Partner managers",
+    "Agencies",
+    "Custom GPT builders"
+  ],
+  "asset_types": [
+    {
+      "type": "Calculator",
+      "best_for": [
+        "Numerical planning",
+        "Forecasting",
+        "Comparison",
+        "Cash-flow modeling",
+        "Payment estimating"
+      ],
+      "required_fields": [
+        "Inputs",
+        "Formula assumptions",
+        "Output metrics",
+        "Disclaimer",
+        "CTA"
+      ]
+    },
+    {
+      "type": "Scorecard",
+      "best_for": [
+        "Readiness scoring",
+        "Fit assessment",
+        "Maturity evaluation",
+        "Risk review"
+      ],
+      "required_fields": [
+        "Question set",
+        "Scoring logic",
+        "Score bands",
+        "Recommendations",
+        "Disclaimer",
+        "CTA"
+      ]
+    },
+    {
+      "type": "Directory",
+      "best_for": [
+        "Structured browsing",
+        "Resource discovery",
+        "Catalog filtering",
+        "Comparison"
+      ],
+      "required_fields": [
+        "Search",
+        "Filters",
+        "Categories",
+        "Cards or table",
+        "Data source",
+        "CTA"
+      ]
+    },
+    {
+      "type": "Generator",
+      "best_for": [
+        "Prompt generation",
+        "Markdown creation",
+        "JSON creation",
+        "Spec generation",
+        "Resource-card creation"
+      ],
+      "required_fields": [
+        "Input form",
+        "Output preview",
+        "Copy button",
+        "Download button",
+        "Field validation",
+        "Guardrails"
+      ]
+    },
+    {
+      "type": "Checklist",
+      "best_for": [
+        "Procedural readiness",
+        "Implementation tracking",
+        "Launch preparation",
+        "Audit workflows"
+      ],
+      "required_fields": [
+        "Task list",
+        "Category grouping",
+        "Completion tracking",
+        "Export option",
+        "Next step"
+      ]
+    }
+  ],
+  "strong_ctas": [
+    "Run the calculator",
+    "Check readiness",
+    "Generate prompt pack",
+    "Build resource card",
+    "Compare options",
+    "Download template",
+    "Browse related agents",
+    "Start partner application",
+    "View next steps"
+  ],
+  "weak_ctas": [
+    "Learn more",
+    "Submit",
+    "Click here",
+    "Get started with no context",
+    "Apply now before education"
+  ],
+  "restricted_claims": [
+    "Guaranteed approvals",
+    "Guaranteed funding",
+    "Guaranteed credit outcomes",
+    "Guaranteed revenue",
+    "Guaranteed ranking or traffic",
+    "Professional advice replacement"
+  ],
+  "related_paths": [
+    "knowledge-base/engineering-as-marketing/README.md",
+    "knowledge-base/engineering-as-marketing/examples.md",
+    "portfolio/vercel/README.md",
+    "examples/content-ops/",
+    "examples/automation/",
+    "schemas/",
+    "prompt-generator.html",
+    "skill-builder.html"
+  ]
+}

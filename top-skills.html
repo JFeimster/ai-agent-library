@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Top Skills | AI Agent Library</title>
+  <meta name="description" content="A prioritized build list for the highest-leverage skills to implement first.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Skills Library</div>
+    <h1>Top Skills</h1>
+    <p>
+      A prioritized build list for the highest-leverage skills to implement first.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section callout">
+      <strong>Build priority:</strong>
+      <p>
+        Prioritize skills that can power multiple assets: static pages, Custom GPT
+        instructions, partner portals, lead magnets, CRM workflows, workflow specs,
+        schemas, and automation systems.
+      </p>
+    </section>
+
+    <section class="section">
+      <div id="topSkills" class="wide-grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Ranking criteria</h2>
+        <ul class="mini-list">
+          <li>Can the skill be reused across multiple agents?</li>
+          <li>Can the skill generate files or assets for the repo?</li>
+          <li>Can the skill improve a public page, GPT, or workflow?</li>
+          <li>Can the skill reduce repeat work for future builds?</li>
+          <li>Does the skill have clear inputs and outputs?</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Best first-build targets</h2>
+        <ul class="mini-list">
+          <li>Static page generation.</li>
+          <li>Funding language safety review.</li>
+          <li>Partner resource card creation.</li>
+          <li>Prompt-chain task sequencing.</li>
+          <li>Schema design and validation.</li>
+          <li>Portfolio inventory normalization.</li>
+          <li>Knowledge-base source extraction.</li>
+        </ul>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    (async () => {
+      const rawSkills = await AILibrary.fetchJSON(
+        ["skills/skill-index.json", "site-data/skills.fallback.json"],
+        []
+      );
+
+      const skills = rawSkills.map((skill, index) => {
+        return AILibrary.normalizeSkill(skill, index);
+      });
+
+      const priorityWeight = {
+        High: 1,
+        Medium: 2,
+        Low: 3
+      };
+
+      const topSkills = skills
+        .sort((a, b) => {
+          const priorityCompare =
+            (priorityWeight[a.priority] || 99) -
+            (priorityWeight[b.priority] || 99);
+
+          if (priorityCompare !== 0) {
+            return priorityCompare;
+          }
+
+          return a.name.localeCompare(b.name);
+        })
+        .slice(0, 25);
+
+      const grid = document.getElementById("topSkills");
+
+      grid.innerHTML = topSkills.map((skill, index) => {
+        return `
+          <article class="card">
+            <div class="pill-row">
+              <span class="pill gold">#${index + 1}</span>
+              <span class="pill">${AILibrary.escapeHTML(skill.priority)}</span>
+              <span class="pill">${AILibrary.escapeHTML(skill.category)}</span>
+              <span class="pill">${AILibrary.escapeHTML(skill.status)}</span>
+            </div>
+
+            <h2>${AILibrary.escapeHTML(skill.name)}</h2>
+
+            <p>${AILibrary.escapeHTML(skill.problem_solved)}</p>
+
+            <p>
+              <strong>Audience:</strong>
+              ${AILibrary.escapeHTML(skill.audience)}
+            </p>
+
+            <h3>Best platforms</h3>
+            <div class="pill-row">
+              ${(skill.recommended_apps || []).map((app) => {
+                return `<span class="pill">${AILibrary.escapeHTML(app)}</span>`;
+              }).join("") || `<span class="pill">Platform TBD</span>`}
+            </div>
+          </article>
+        `;
+      }).join("") || `<div class="empty-state">No top skills found.</div>`;
+    })();
+  </script>
+</body>
+</html>

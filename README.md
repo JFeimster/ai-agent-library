@@ -223,3 +223,195 @@ Every useful agent should answer five questions:
 5. How can this become a product, workflow, or revenue-generating asset?
 
 If an agent cannot answer those questions, it is not ready for the library yet.
+
+
+## Static Site Layer
+
+AI Agent Library now includes a static-first website layer for browsing and packaging reusable AI agents, skills, prompt systems, knowledge bases, schemas, examples, platform packs, and deployable AI product assets.
+
+The site is designed to run as plain HTML, CSS, JavaScript, JSON, and Markdown.
+
+No React, Next.js, npm install, or build step is required for the core static site.
+
+## Core Site Files
+
+```text
+index.html
+styles.css
+script.js
+style.css
+```
+
+`style.css` exists as a compatibility alias for older generated files that may reference `style.css` instead of `styles.css`.
+
+## Main Site Pages
+
+```text
+agent-catalog.html
+skill-catalog.html
+categories.html
+tags.html
+search.html
+featured.html
+new.html
+platforms.html
+knowledge-bases.html
+portfolio.html
+roadmap.html
+changelog.html
+contribute.html
+```
+
+## Partner & Affiliate Pages
+
+```text
+get-started.html
+partners.html
+team.html
+profile.html
+affiliate-disclosure.html
+```
+
+## Legal & Trust Pages
+
+```text
+terms.html
+privacy.html
+disclaimer.html
+data-policy.html
+affiliate-disclosure.html
+```
+
+## Knowledge Base Folders
+
+```text
+knowledge-base/
+  funding/
+  partner-enablement/
+  crm/
+  content-ops/
+  automation/
+  local-referrals/
+  engineering-as-marketing/
+```
+
+Each knowledge-base folder should include:
+
+```text
+README.md
+index.json
+examples.md
+```
+
+## Portfolio Folders
+
+```text
+portfolio/
+  vercel/
+  custom-gpts/
+  gemini-gems/
+  flash-ui/
+```
+
+Each portfolio folder should include:
+
+```text
+README.md
+index.json
+```
+
+## Schema Files
+
+```text
+schemas/
+  agent.schema.json
+  custom-gpt.schema.json
+  vercel-project.schema.json
+  funding-product.schema.json
+  webhook-event.schema.json
+```
+
+## Roadmap Files
+
+```text
+roadmap/
+  phase-1-fast-mvp.md
+  phase-2-distribution-system.md
+  phase-3-marketplace-layer.md
+  phase-4-platform-layer.md
+```
+
+## Example Folders
+
+```text
+examples/
+  funding/
+  partner-enablement/
+  content-ops/
+  automation/
+```
+
+Each example folder should include:
+
+```text
+README.md
+example-001.md
+```
+
+## Site Data
+
+```text
+site-data/
+  agents.fallback.json
+  skills.fallback.json
+  categories.json
+  tags.json
+  featured.json
+  changelog.json
+```
+
+The static pages can load canonical indexes first and fall back to `site-data/` when canonical data files are not available.
+
+## Run Locally
+
+From the repository root:
+
+```bash
+python -m http.server 8080
+```
+
+Open:
+
+```text
+http://localhost:8080/
+```
+
+## Static-First Rule
+
+The default implementation should remain:
+
+- HTML
+- CSS
+- JavaScript
+- JSON
+- Markdown
+
+Avoid adding a framework unless a specific issue explicitly requires it.
+
+## Public-Safe Language Rule
+
+Funding, business-credit, affiliate, partner, automation, and platform pages must avoid guaranteed outcome claims.
+
+Do not claim:
+
+- Guaranteed approval
+- Guaranteed funding
+- Guaranteed credit outcomes
+- Guaranteed revenue
+- Guaranteed rankings
+- Everyone qualifies
+- No risk
+- No documents needed
+- AI replaces professional review
+
+Use educational, readiness, review, possible-fit, and next-step language instead.

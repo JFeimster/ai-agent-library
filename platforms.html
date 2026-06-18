@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Platform Hub | AI Agent Library</title>
+  <meta name="description" content="Choose the best target platform for each agent, skill, prompt system, workflow, or deployable AI asset.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html" aria-current="page">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Platform Packs</div>
+    <h1>Platform Hub</h1>
+    <p>
+      Choose the best target platform for each agent, skill, prompt system,
+      workflow, or deployable AI asset.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section callout">
+      <strong>Platform strategy:</strong>
+      <p>
+        Build once, package many ways. A strong agent spec can become a Custom GPT,
+        Gemini Gem, Claude Project, static Vercel page, Notion operating doc,
+        n8n workflow, or GitHub-managed prompt chain.
+      </p>
+    </section>
+
+    <section class="section">
+      <div class="grid">
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill gold">Primary</span>
+            <span class="pill">Conversational Agent</span>
+          </div>
+
+          <h2>ChatGPT / Custom GPTs</h2>
+          <p>
+            Best for packaged assistants with instructions, knowledge files,
+            conversation starters, and optional actions.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use for productized assistants.</li>
+            <li>Attach curated knowledge files.</li>
+            <li>Convert agent specs into instructions.</li>
+            <li>Add safe starter prompts and output rules.</li>
+          </ul>
+
+          <a class="button-link" href="portfolio/custom-gpts/README.md">
+            Open Custom GPT portfolio →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill blue">Static</span>
+            <span class="pill">Deployable Web Asset</span>
+          </div>
+
+          <h2>Vercel</h2>
+          <p>
+            Best for static directories, calculators, landing pages, resource hubs,
+            documentation sites, lead magnets, and product microsites.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use dependency-free HTML/CSS/JS when possible.</li>
+            <li>Keep public resources searchable.</li>
+            <li>Deploy agent catalogs and knowledge directories.</li>
+            <li>Use <code>vercel.json</code> to control deployment behavior.</li>
+          </ul>
+
+          <a class="button-link" href="portfolio/vercel/README.md">
+            Open Vercel portfolio →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill purple">Workspace</span>
+            <span class="pill">Knowledge System</span>
+          </div>
+
+          <h2>Notion</h2>
+          <p>
+            Best for operating docs, internal databases, task queues, content calendars,
+            partner trackers, and source-of-truth knowledge pages.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use for planning and documentation.</li>
+            <li>Track assets, issues, partners, and campaigns.</li>
+            <li>Store page briefs and status tables.</li>
+            <li>Keep public repo content separate from private workspace notes.</li>
+          </ul>
+
+          <a class="button-link" href="knowledge-bases.html">
+            Open knowledge layer →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill green">Lightweight</span>
+            <span class="pill">Assistant Packaging</span>
+          </div>
+
+          <h2>Gemini Gems</h2>
+          <p>
+            Best for lightweight reusable assistant concepts that do not require
+            a full custom app or deep repo structure.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use for fast assistant packaging.</li>
+            <li>Keep instructions short and durable.</li>
+            <li>Convert top-performing GPT patterns.</li>
+            <li>Track inventory in the portfolio folder.</li>
+          </ul>
+
+          <a class="button-link" href="portfolio/gemini-gems/README.md">
+            Open Gemini Gems portfolio →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill">Automation</span>
+            <span class="pill">Workflow Engine</span>
+          </div>
+
+          <h2>n8n / Workflow Automation</h2>
+          <p>
+            Best for no-code and low-code automations using triggers, webhooks,
+            CRM updates, approval steps, and data-routing workflows.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use for workflow specs and automation playbooks.</li>
+            <li>Define triggers and webhook payloads first.</li>
+            <li>Include human approval gates.</li>
+            <li>Separate public examples from production credentials.</li>
+          </ul>
+
+          <a class="button-link" href="knowledge-base/automation/README.md">
+            Open automation KB →
+          </a>
+        </article>
+
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill red">Code</span>
+            <span class="pill">Execution Layer</span>
+          </div>
+
+          <h2>GitHub / Codex</h2>
+          <p>
+            Best for repo-managed execution: issues, branches, PRs, prompts,
+            schemas, generated pages, reviews, and release discipline.
+          </p>
+
+          <ul class="mini-list">
+            <li>Use issue-scoped branches.</li>
+            <li>Keep unrelated changes out of each PR.</li>
+            <li>Store command/control prompts in the repo.</li>
+            <li>Review before merge when changing core site files.</li>
+          </ul>
+
+          <a class="button-link" href="contribute.html">
+            Open contribution rules →
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>Platform selection matrix</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Asset type</th>
+              <th>Best platform</th>
+              <th>Reason</th>
+              <th>Repo output</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <tr>
+              <td><strong>Public agent directory</strong></td>
+              <td>Vercel</td>
+              <td>Static, searchable, shareable, and easy to deploy.</td>
+              <td><code>agent-catalog.html</code></td>
+            </tr>
+
+            <tr>
+              <td><strong>Packaged assistant</strong></td>
+              <td>Custom GPT</td>
+              <td>Best for instructions, knowledge files, and guided outputs.</td>
+              <td><code>agents/[agent].md</code></td>
+            </tr>
+
+            <tr>
+              <td><strong>Internal operating doc</strong></td>
+              <td>Notion</td>
+              <td>Best for private planning, task tracking, and documentation.</td>
+              <td><code>knowledge-base/</code></td>
+            </tr>
+
+            <tr>
+              <td><strong>Automation workflow</strong></td>
+              <td>n8n</td>
+              <td>Best for webhook-triggered processes and connector actions.</td>
+              <td><code>schemas/webhook-event.schema.json</code></td>
+            </tr>
+
+            <tr>
+              <td><strong>Lightweight reusable assistant</strong></td>
+              <td>Gemini Gems</td>
+              <td>Best for quick assistant patterns and simple instructions.</td>
+              <td><code>portfolio/gemini-gems/</code></td>
+            </tr>
+
+            <tr>
+              <td><strong>Repo execution workflow</strong></td>
+              <td>GitHub / Codex</td>
+              <td>Best for branch-scoped implementation and PR review.</td>
+              <td><code>roadmap/</code>, <code>schemas/</code>, <code>examples/</code></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

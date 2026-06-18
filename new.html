@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>New | AI Agent Library</title>
-  <meta name="description" content="Recently added or revised AI Agent Library pages, data files, schemas, examples, and build-system resources.">
-
+  <meta name="description" content="Recent additions and changelog entries for AI Agent Library site files, data files, knowledge bases, schemas, examples, and portfolio assets.">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">AI</span>
-        <span>Agent Library</span>
-      </a>
-
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="agent-catalog.html">Agents</a>
@@ -33,57 +25,17 @@
       </nav>
     </div>
   </header>
-
   <section class="hero">
-    <div class="eyebrow">Directory & Discovery</div>
-    <h1>New</h1>
-    <p>
-      Recently added or revised AI Agent Library pages, data files, schemas,
-      examples, and build-system resources.
-    </p>
+    <div class="eyebrow">Discovery</div>
+    <h1>New & Changelog</h1>
+    <p>Recent additions and changelog entries for AI Agent Library site files, data files, knowledge bases, schemas, examples, and portfolio assets.</p>
   </section>
-
   <main id="main">
-    <section class="section">
-      <div id="newItems" class="timeline"></div>
-    </section>
-
-    <section class="section two-col">
-      <article class="card">
-        <h2>What counts as new?</h2>
-        <p>
-          This page should summarize meaningful changes that make the repo more useful,
-          easier to browse, or easier to deploy.
-        </p>
-
-        <ul class="mini-list">
-          <li>New static pages.</li>
-          <li>New knowledge-base folders.</li>
-          <li>New schema files.</li>
-          <li>New roadmap files.</li>
-          <li>New examples.</li>
-          <li>New portfolio folders.</li>
-          <li>Major content revisions.</li>
-        </ul>
-      </article>
-
-      <article class="card">
-        <h2>Suggested data source</h2>
-        <p>
-          Use a small static JSON file for lightweight changelog rendering.
-        </p>
-
-        <pre>site-data/changelog.json</pre>
-      </article>
-    </section>
+    <section class="section callout"><strong>What changed?</strong><p>This page reads from <code>site-data/changelog.json</code> and gives users a quick path through recent repo additions.</p></section>
+    <section class="section"><div id="newGrid" class="wide-grid"></div></section>
   </main>
-
   <footer class="footer">
-    <p>
-      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
-      knowledge bases, platform packs, and deployable AI product assets.
-    </p>
-
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
     <p>
       <a href="terms.html">Terms</a> ·
       <a href="privacy.html">Privacy</a> ·
@@ -91,30 +43,14 @@
       <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
       <a href="contribute.html">Contribute</a>
     </p>
-
     <p>© <span data-year></span> AI Agent Library.</p>
   </footer>
-
   <script src="script.js"></script>
-
   <script>
     (async () => {
       const items = await AILibrary.fetchJSON("site-data/changelog.json", []);
-      const list = document.getElementById("newItems");
-
-      list.innerHTML = items.map((item) => {
-        return `
-          <article class="timeline-item">
-            <div class="pill-row">
-              <span class="pill gold">${AILibrary.escapeHTML(item.type)}</span>
-              <span class="pill">${AILibrary.escapeHTML(item.date)}</span>
-            </div>
-
-            <h2>${AILibrary.escapeHTML(item.title)}</h2>
-            <p>${AILibrary.escapeHTML(item.summary)}</p>
-          </article>
-        `;
-      }).join("") || `<div class="empty-state">No changelog data yet.</div>`;
+      const grid = document.getElementById("newGrid");
+      grid.innerHTML = items.map(item => `<article class="card"><div class="pill-row"><span class="pill gold">${AILibrary.escapeHTML(item.type)}</span><span class="pill">${AILibrary.escapeHTML(item.date)}</span></div><h2>${AILibrary.escapeHTML(item.title)}</h2><p>${AILibrary.escapeHTML(item.summary)}</p></article>`).join("") || `<div class="empty-state">No changelog entries found.</div>`;
     })();
   </script>
 </body>

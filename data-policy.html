@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Data Policy | AI Agent Library</title>
+  <meta name="description" content="Data handling rules for AI Agent Library examples, schemas, prompts, forms, integrations, knowledge-base files, public pages, and repo contributions.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Legal & Trust</div>
+    <h1>Data Policy</h1>
+    <p>
+      Data handling rules for AI Agent Library examples, schemas, prompts, forms,
+      integrations, knowledge-base files, public pages, and repo contributions.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section callout warning">
+      <strong>Default rule:</strong>
+      <p>
+        Public repo files and public static pages should use synthetic, sanitized,
+        non-sensitive, public-safe data only.
+      </p>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Allowed data</h2>
+        <ul class="mini-list">
+          <li>Public product descriptions.</li>
+          <li>Generic operating examples.</li>
+          <li>Synthetic customer scenarios.</li>
+          <li>Sanitized workflow examples.</li>
+          <li>Public repo file paths.</li>
+          <li>Non-sensitive metadata.</li>
+          <li>Public platform documentation references.</li>
+          <li>Placeholder partner profiles.</li>
+          <li>Example schemas with fake values.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Restricted data</h2>
+        <ul class="mini-list">
+          <li>API keys, tokens, passwords, or private credentials.</li>
+          <li>Private client files or borrower records.</li>
+          <li>Bank statements, tax returns, or credit reports.</li>
+          <li>Unredacted personal information.</li>
+          <li>Confidential provider terms or backend logic.</li>
+          <li>Private CRM exports.</li>
+          <li>Protected health, legal, financial, or employment records.</li>
+          <li>Customer messages without permission.</li>
+          <li>Internal secrets or environment variables.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section card">
+      <h2>1. Purpose</h2>
+      <p>
+        This policy defines how data should be handled when creating, editing, publishing,
+        or contributing to AI Agent Library resources.
+      </p>
+
+      <p>
+        It applies to static HTML pages, JSON files, Markdown files, schemas, examples,
+        prompt chains, knowledge-base folders, portfolio folders, partner pages, agent
+        specs, skill files, and implementation notes.
+      </p>
+    </section>
+
+    <section class="section card">
+      <h2>2. Public data standard</h2>
+      <p>
+        Public assets should be safe to publish, clone, reuse, and inspect. Assume that
+        any file committed to a public repository or deployed on a public static site can
+        be copied, indexed, archived, and redistributed.
+      </p>
+
+      <ul class="mini-list">
+        <li>Use synthetic examples whenever possible.</li>
+        <li>Replace real names with placeholders.</li>
+        <li>Replace real emails, phone numbers, and addresses with fake examples.</li>
+        <li>Remove exact private financial details.</li>
+        <li>Avoid private provider names when white-label rules require abstraction.</li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h2>3. Knowledge-base data rules</h2>
+      <p>
+        Knowledge-base files may contain operating rules, source summaries, product family
+        notes, implementation instructions, or reusable examples. They should separate
+        public-safe guidance from internal-only logic.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Knowledge-base type</th>
+              <th>Allowed</th>
+              <th>Restricted</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Funding</strong></td>
+              <td>Product family summaries, intake questions, generic documentation checklists.</td>
+              <td>Private underwriting logic, confidential provider terms, client files.</td>
+            </tr>
+            <tr>
+              <td><strong>Partner Enablement</strong></td>
+              <td>Launch workflows, public resource-card templates, attribution principles.</td>
+              <td>Private commission terms, unapproved provider claims, undisclosed tracking details.</td>
+            </tr>
+            <tr>
+              <td><strong>CRM</strong></td>
+              <td>Generic lead-stage definitions and workflow examples.</td>
+              <td>Unredacted CRM exports, customer notes, private pipeline data.</td>
+            </tr>
+            <tr>
+              <td><strong>Content Ops</strong></td>
+              <td>Brief templates, content workflows, SEO structure, synthetic examples.</td>
+              <td>Copied third-party paid content, private editorial calendars if not approved.</td>
+            </tr>
+            <tr>
+              <td><strong>Automation</strong></td>
+              <td>Trigger patterns, event schemas, review gates, synthetic payloads.</td>
+              <td>Live secrets, webhook signing keys, production tokens, private endpoints.</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section card">
+      <h2>4. Prompt and AI workflow data rules</h2>
+      <p>
+        Prompts should not require users to paste sensitive data unless the workflow is
+        explicitly private, authorized, and secure. Public prompt examples should use
+        placeholders or synthetic inputs.
+      </p>
+
+      <ul class="mini-list">
+        <li>Use <code>[CLIENT_NAME]</code>, <code>[BUSINESS_NAME]</code>, and <code>[EXAMPLE_EMAIL]</code> placeholders.</li>
+        <li>Do not include live API keys or account IDs.</li>
+        <li>Do not include unredacted deal notes, bank data, or private messages.</li>
+        <li>Keep model outputs reviewable and reversible.</li>
+        <li>Include human approval gates for outbound or high-stakes actions.</li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h2>5. Schema data rules</h2>
+      <p>
+        JSON schemas should define structure, validation expectations, and safe example
+        fields. Example values should be synthetic unless the data is intentionally public.
+      </p>
+
+      <pre>{
+  "name": "Example Agent",
+  "category": "Funding Ops",
+  "buyer": "Funding operator",
+  "pain_solved": "Synthetic example only",
+  "file": "agents/example-agent.md"
+}</pre>
+    </section>
+
+    <section class="section card">
+      <h2>6. Forms, affiliates, and partner data</h2>
+      <p>
+        Partner pages, affiliate pages, referral pages, and application CTAs may collect
+        personal or business contact information if connected to an external form or CRM.
+      </p>
+
+      <p>
+        If forms are added, disclose what is collected, where submissions go, who can
+        review them, and how users can request changes or deletion where applicable.
+      </p>
+    </section>
+
+    <section class="section card">
+      <h2>7. Secrets and environment variables</h2>
+      <p>
+        Never commit secrets to static site files, public JSON, Markdown docs, screenshots,
+        examples, issue comments, pull requests, or generated code.
+      </p>
+
+      <ul class="mini-list">
+        <li>Use environment variables for private configuration.</li>
+        <li>Use deployment platform secret managers where appropriate.</li>
+        <li>Rotate exposed credentials immediately.</li>
+        <li>Do not include secrets in screenshots or sample terminal output.</li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h2>8. Review checklist before publishing</h2>
+      <div class="checklist">
+        <label class="check-item">
+          <input type="checkbox">
+          All names, emails, phone numbers, and private identifiers are removed or synthetic.
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox">
+          No API keys, tokens, passwords, or secrets are included.
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox">
+          Funding and business-credit content avoids guarantees and unsupported claims.
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox">
+          Affiliate or partner relationships are disclosed where relevant.
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox">
+          Examples are labeled as synthetic unless verified otherwise.
+        </label>
+
+        <label class="check-item">
+          <input type="checkbox">
+          Public and internal-only materials are clearly separated.
+        </label>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Recommended repo locations</h2>
+        <pre>data-policy.html
+knowledge-base/
+examples/
+schemas/
+site-data/
+contribute.html</pre>
+      </article>
+
+      <article class="card">
+        <h2>Related pages</h2>
+        <div class="pill-row">
+          <a class="pill gold" href="terms.html">Terms</a>
+          <a class="pill gold" href="privacy.html">Privacy</a>
+          <a class="pill gold" href="disclaimer.html">Disclaimer</a>
+          <a class="pill gold" href="affiliate-disclosure.html">Affiliate Disclosure</a>
+        </div>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
+```
+
+Batch 5 will be **AI Builder Resources / Platform + Knowledge Pages**:
+
+```text id="batch-5-list"
+platforms.html
+knowledge-bases.html
+portfolio.html
+roadmap.html
+changelog.html
+contribute.html
