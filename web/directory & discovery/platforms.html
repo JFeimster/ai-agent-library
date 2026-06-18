@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
+    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
+    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
+    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
+    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
+    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
+    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
+    .page-card h2, .page-card h3 { margin-top: 0; }
+    .page-card p, .muted { color: var(--secondary-text-color); }
+    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
+    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
+    .pill strong { color: var(--text-color); }
+    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
+    .button-link { display: inline-block; margin-top: 1rem; }
+    .button-link:hover, .page-link:hover { text-decoration: underline; }
+    .section { margin: 2.5rem 0; }
+    .section h2 { margin-bottom: .65rem; }
+    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
+    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
+    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
+    .mini-list li { margin: .35rem 0; }
+    footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+  </style>
+  <title>Platforms | AI Agent Library</title>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="agent-catalog.html">Agents</a>
+    <a href="skill-catalog.html">Skills</a>
+    <a href="platforms.html" aria-current="page">Platforms</a>
+    <a href="categories.html">Categories</a>
+    <a href="prompt-chains.html">Prompt Chains</a>
+    <a href="search.html">Search</a>
+    <a href="roadmap.html">Roadmap</a>
+  </nav>
+  <header class="page-hero">
+    <h1>Platform Hub</h1>
+    <p>Convert the agent library into platform-specific implementations for Custom GPTs, Claude Projects, Gemini Gems, n8n agents, Notion AI, and Vercel web apps.</p>
+  </header>
+  <main>
+    <section id="platform-grid" class="page-grid"></section>
+    <section class="section page-card">
+      <h2>Platform pack rule</h2>
+      <p>Each platform page should map the same core agent spec into that platform’s exact fields: instructions, knowledge files, actions, project docs, automations, UI files, or deployment assets.</p>
+    </section>
+  </main>
+  <footer>
+    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+  </footer>
+  <script>
+    const platforms = [
+      {name:'ChatGPT GPTs', path:'platforms/chatgpt-gpts/README.md', status:'Platform pack', purpose:'Convert agent specs into Custom GPT instructions, knowledge files, actions, and publishing standards.'},
+      {name:'Claude Projects', path:'platforms/claude-projects/README.md', status:'Platform pack', purpose:'Package specs into Claude project instructions, project files, and reusable workflows.'},
+      {name:'Gemini Gems', path:'platforms/gemini-gems/README.md', status:'Platform pack', purpose:'Adapt agents into Gemini Gem-style assistants and reusable instructions.'},
+      {name:'Notion AI', path:'platforms/notion-ai/README.md', status:'Platform pack', purpose:'Turn specs into Notion workspace assistants, databases, and operating docs.'},
+      {name:'n8n Agents', path:'platforms/n8n-agents/README.md', status:'Platform pack', purpose:'Map agents into automation workflows, triggers, actions, and webhook-ready processes.'},
+      {name:'Vercel Web Apps', path:'platforms/vercel-web-apps/README.md', status:'Platform pack', purpose:'Ship agents as static sites, widgets, forms, dashboards, and deployable web tools.'}
+    ];
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    document.getElementById('platform-grid').innerHTML = platforms.map(platform => `
+      <article class="page-card">
+        <span class="pill">${escapeHTML(platform.status)}</span>
+        <h2>${escapeHTML(platform.name)}</h2>
+        <p>${escapeHTML(platform.purpose)}</p>
+        <a class="button-link" href="${escapeHTML(platform.path)}">Open platform docs →</a>
+      </article>`).join('');
+  </script>
+</body>
+</html>

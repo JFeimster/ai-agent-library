@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="style.css">
+  <style>
+    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
+    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
+    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
+    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
+    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
+    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
+    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
+    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
+    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
+    .page-card h2, .page-card h3 { margin-top: 0; }
+    .page-card p, .muted { color: var(--secondary-text-color); }
+    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
+    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
+    .pill strong { color: var(--text-color); }
+    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
+    .button-link { display: inline-block; margin-top: 1rem; }
+    .button-link:hover, .page-link:hover { text-decoration: underline; }
+    .section { margin: 2.5rem 0; }
+    .section h2 { margin-bottom: .65rem; }
+    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
+    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
+    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
+    .mini-list li { margin: .35rem 0; }
+    footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+  </style>
+  <title>Skill Catalog | AI Agent Library</title>
+</head>
+<body>
+  <nav class="site-nav" aria-label="Primary navigation">
+    <a href="index.html">Home</a>
+    <a href="agent-catalog.html">Agents</a>
+    <a href="skill-catalog.html" aria-current="page">Skills</a>
+    <a href="platforms.html">Platforms</a>
+    <a href="categories.html">Categories</a>
+    <a href="prompt-chains.html">Prompt Chains</a>
+    <a href="search.html">Search</a>
+    <a href="roadmap.html">Roadmap</a>
+  </nav>
+  <header class="page-hero">
+    <h1>Skill Catalog</h1>
+    <p>Browse modular Agent Skills for funding workflows, partner tools, widgets, CRM operations, landing pages, automation, and compliance checks.</p>
+    <div class="toolbar">
+      <input id="skill-search" type="search" placeholder="Search skills...">
+      <select id="skill-category"><option value="all">All categories</option></select>
+      <select id="skill-priority"><option value="all">All priorities</option><option>P0</option><option>P1</option><option>P2</option></select>
+    </div>
+  </header>
+  <main>
+    <section id="skill-grid" class="wide-grid"><div class="empty-state">Loading skills...</div></section>
+  </main>
+  <footer>
+    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+  </footer>
+  <script>
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+    const fallbackSkills = [
+      {number:1,name:'Funding Fit Triage Skill',category:'funding',problem_solved:'Determines best-fit funding path or not-ready status from intake answers.',priority:'P0',status:'proposed',recommended_apps:['funding landing pages','partner portals']},
+      {number:2,name:'Fast Disqualifier Detection Skill',category:'funding',problem_solved:'Flags obvious no-go issues before wasting applicant or partner time.',priority:'P0',status:'proposed',recommended_apps:['intake forms','routing widgets']},
+      {number:3,name:'Required Docs Checklist Skill',category:'funding',problem_solved:'Generates document checklists by product family and profile.',priority:'P0',status:'proposed',recommended_apps:['funding apps','partner dashboards']}
+    ];
+    let skills = [];
+    function render() {
+      const q = document.getElementById('skill-search').value.toLowerCase();
+      const category = document.getElementById('skill-category').value;
+      const priority = document.getElementById('skill-priority').value;
+      const filtered = skills.filter(skill => {
+        const haystack = [skill.name, skill.category, skill.problem_solved, (skill.audience || []).join(' '), (skill.recommended_apps || []).join(' ')].join(' ').toLowerCase();
+        return haystack.includes(q) && (category === 'all' || skill.category === category) && (priority === 'all' || skill.priority === priority);
+      });
+      document.getElementById('skill-grid').innerHTML = filtered.map(skill => `
+        <article class="page-card">
+          <div class="pill-row"><span class="pill">#${escapeHTML(skill.number ?? '')}</span><span class="pill">${escapeHTML(skill.category)}</span><span class="pill">${escapeHTML(skill.priority || 'Priority unknown')}</span><span class="pill">${escapeHTML(skill.status || 'Unknown')}</span></div>
+          <h2>${escapeHTML(skill.name)}</h2>
+          <p>${escapeHTML(skill.problem_solved || 'No problem statement available.')}</p>
+          <ul class="mini-list">${(skill.recommended_apps || []).slice(0,4).map(app => `<li>${escapeHTML(app)}</li>`).join('')}</ul>
+        </article>`).join('') || '<div class="empty-state">No skills match the current filters.</div>';
+    }
+    async function load() {
+      try { skills = await fetch('skills/skill-index.json').then(r => r.ok ? r.json() : Promise.reject()); } catch { skills = fallbackSkills; }
+      const categories = [...new Set(skills.map(s => s.category).filter(Boolean))].sort();
+      document.getElementById('skill-category').innerHTML += categories.map(c => `<option value="${escapeHTML(c)}">${escapeHTML(c)}</option>`).join('');
+      ['skill-search','skill-category','skill-priority'].forEach(id => document.getElementById(id).addEventListener('input', render));
+      render();
+    }
+    load();
+  </script>
+</body>
+</html>
