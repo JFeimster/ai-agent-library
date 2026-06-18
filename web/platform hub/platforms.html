@@ -3,39 +3,78 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
   <style>
-    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
-    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
-    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
-    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
-    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
-    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
-    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
-    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
-    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
-    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
-    .page-card h2, .page-card h3 { margin-top: 0; }
-    .page-card p, .muted { color: var(--secondary-text-color); }
-    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
-    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
+    :root {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --secondary-text-color: #b7b7b7;
+      --accent-color: #f4b942;
+      --card-bg: #1d1d1d;
+      --card-border: #333;
+      --soft-bg: rgba(255,255,255,.04);
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; background: var(--bg-color); color: var(--text-color); font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(18,18,18,.82); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(10px); }
+    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 800; font-size: .92rem; padding: .35rem .65rem; border: 1px solid transparent; border-radius: 999px; }
+    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); background: rgba(244,185,66,.08); }
+    .page-hero { max-width: 1080px; margin: 0 auto; padding: 3.5rem 1rem 1.5rem; text-align: center; }
+    .eyebrow { color: var(--accent-color); text-transform: uppercase; letter-spacing: .16em; font-size: .78rem; font-weight: 900; margin-bottom: .8rem; }
+    .page-hero h1 { font-size: clamp(2.1rem, 6vw, 4.6rem); line-height: 1.02; margin: 0 0 1rem; }
+    .page-hero p { color: var(--secondary-text-color); max-width: 780px; margin: 0 auto; font-size: 1.05rem; line-height: 1.65; }
+    main { width: min(1180px, calc(100% - 2rem)); margin: 0 auto; }
+    .section { margin: 2.6rem 0; }
+    .section-head { display: flex; gap: 1rem; justify-content: space-between; align-items: end; flex-wrap: wrap; margin-bottom: 1rem; }
+    .section h2 { font-size: clamp(1.6rem, 4vw, 2.45rem); margin: 0 0 .4rem; }
+    .section p, .muted { color: var(--secondary-text-color); line-height: 1.65; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(245px, 1fr)); gap: 1.05rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(315px, 1fr)); gap: 1.15rem; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
+    .card { background: linear-gradient(180deg, rgba(255,255,255,.045), rgba(255,255,255,.02)); border: 1px solid var(--card-border); border-radius: 16px; padding: 1.25rem; box-shadow: 0 18px 60px rgba(0,0,0,.22); }
+    .card:hover { border-color: rgba(244,185,66,.65); transform: translateY(-2px); transition: .18s ease; }
+    .card h2, .card h3, .card h4 { margin-top: 0; }
+    .card h3 { font-size: 1.18rem; }
+    .pill-row { display: flex; flex-wrap: wrap; gap: .45rem; margin: .75rem 0; }
+    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: rgba(255,255,255,.055); color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .6rem; font-size: .78rem; font-weight: 800; }
     .pill strong { color: var(--text-color); }
-    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
-    .button-link { display: inline-block; margin-top: 1rem; }
-    .button-link:hover, .page-link:hover { text-decoration: underline; }
-    .section { margin: 2.5rem 0; }
-    .section h2 { margin-bottom: .65rem; }
-    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
-    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
-    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
-    .mini-list li { margin: .35rem 0; }
+    .button, .button-link { display: inline-flex; align-items: center; justify-content: center; gap: .4rem; margin-top: .85rem; color: #111; background: var(--accent-color); border: 1px solid var(--accent-color); border-radius: 999px; padding: .68rem .92rem; font-weight: 900; text-decoration: none; cursor: pointer; }
+    .button.secondary, .button-link.secondary { color: var(--text-color); background: transparent; border-color: var(--card-border); }
+    .button:hover, .button-link:hover { filter: brightness(1.05); transform: translateY(-1px); }
+    .toolbar { display: flex; gap: .8rem; flex-wrap: wrap; justify-content: center; margin: 1.4rem auto 0; max-width: 960px; }
+    input, select, textarea { background: #171717; color: var(--text-color); border: 1px solid var(--card-border); border-radius: 10px; padding: .8rem .9rem; font: inherit; }
+    textarea { width: 100%; min-height: 140px; resize: vertical; }
+    input[type="search"], .toolbar input, .toolbar select { min-width: min(100%, 260px); }
+    label { display: grid; gap: .35rem; font-weight: 800; color: var(--text-color); }
+    label span { color: var(--secondary-text-color); font-weight: 700; font-size: .9rem; }
+    .form-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1rem; }
+    .table-wrap { overflow-x: auto; border: 1px solid var(--card-border); border-radius: 16px; }
+    table { width: 100%; border-collapse: collapse; background: var(--card-bg); min-width: 760px; }
+    th, td { border-bottom: 1px solid var(--card-border); padding: .9rem; text-align: left; vertical-align: top; }
+    th { color: var(--accent-color); font-size: .85rem; text-transform: uppercase; letter-spacing: .08em; }
+    td { color: var(--secondary-text-color); line-height: 1.55; }
+    td strong { color: var(--text-color); }
+    .mini-list { margin: .85rem 0 0; padding-left: 1.15rem; color: var(--secondary-text-color); line-height: 1.6; }
+    .mini-list li { margin: .28rem 0; }
+    .stat-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(170px, 1fr)); gap: .85rem; margin-top: 1rem; }
+    .stat { border: 1px solid var(--card-border); border-radius: 14px; padding: 1rem; background: rgba(255,255,255,.035); }
+    .stat strong { display: block; font-size: 1.55rem; color: var(--accent-color); }
+    .empty-state { border: 1px dashed var(--card-border); border-radius: 16px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
+    pre { white-space: pre-wrap; background: #090909; border: 1px solid var(--card-border); color: #f7f7f7; border-radius: 14px; padding: 1rem; overflow-x: auto; line-height: 1.55; }
+    code { color: var(--accent-color); }
     footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+    @media (max-width: 720px) {
+      .site-nav { justify-content: flex-start; overflow-x: auto; flex-wrap: nowrap; }
+      .page-hero { padding-top: 2.4rem; }
+      main { width: min(100% - 1rem, 1180px); }
+    }
   </style>
-  <title>Platforms | AI Agent Library</title>
+
+  <title>Platform Hub | AI Agent Library</title>
 </head>
 <body>
+
   <nav class="site-nav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="agent-catalog.html">Agents</a>
@@ -43,40 +82,33 @@
     <a href="platforms.html" aria-current="page">Platforms</a>
     <a href="categories.html">Categories</a>
     <a href="prompt-chains.html">Prompt Chains</a>
-    <a href="search.html">Search</a>
+    <a href="prompt-library.html">Prompts</a>
+    <a href="examples.html">Examples</a>
     <a href="roadmap.html">Roadmap</a>
   </nav>
+
   <header class="page-hero">
+    <div class="eyebrow">Platform Hub</div>
     <h1>Platform Hub</h1>
-    <p>Convert the agent library into platform-specific implementations for Custom GPTs, Claude Projects, Gemini Gems, n8n agents, Notion AI, and Vercel web apps.</p>
+    <p>Choose the best destination for each agent: GPT, Claude Project, Gemini Gem, Notion system, n8n workflow, or Vercel app.</p>
   </header>
   <main>
-    <section id="platform-grid" class="page-grid"></section>
-    <section class="section page-card">
-      <h2>Platform pack rule</h2>
-      <p>Each platform page should map the same core agent spec into that platform’s exact fields: instructions, knowledge files, actions, project docs, automations, UI files, or deployment assets.</p>
+
+    <section class="section">
+      <div class="grid">
+        <article class="card"><h3>ChatGPT GPTs</h3><p>Convert agent specs into Custom GPT instructions, starters, knowledge files, and publishing checklists.</p><a class="button-link" href="chatgpt-gpts.html">Open hub →</a></article>
+        <article class="card"><h3>Claude Projects</h3><p>Package agents as Claude project instructions, source docs, and reusable artifacts.</p><a class="button-link" href="claude-projects.html">Open hub →</a></article>
+        <article class="card"><h3>Gemini Gems</h3><p>Adapt agents into lightweight Gemini Gems for repeatable workflows and user-facing helpers.</p><a class="button-link" href="gemini-gems.html">Open hub →</a></article>
+        <article class="card"><h3>Notion Agents</h3><p>Use Notion databases as the agent planning, tracking, and content operating layer.</p><a class="button-link" href="notion-agents.html">Open hub →</a></article>
+        <article class="card"><h3>n8n Agents</h3><p>Turn agent logic into webhook-driven automations, trigger flows, and workflow specs.</p><a class="button-link" href="n8n-agents.html">Open hub →</a></article>
+        <article class="card"><h3>Vercel Web Apps</h3><p>Deploy static pages, widgets, calculators, and agent-facing directories.</p><a class="button-link" href="platforms/vercel-web-apps/README.md">Open docs →</a></article>
+      </div>
     </section>
+
   </main>
   <footer>
-    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+    <p>AI Agent Library — productized agents, skills, platform packs, prompt systems, and deployable AI operating patterns.</p>
   </footer>
-  <script>
-    const platforms = [
-      {name:'ChatGPT GPTs', path:'platforms/chatgpt-gpts/README.md', status:'Platform pack', purpose:'Convert agent specs into Custom GPT instructions, knowledge files, actions, and publishing standards.'},
-      {name:'Claude Projects', path:'platforms/claude-projects/README.md', status:'Platform pack', purpose:'Package specs into Claude project instructions, project files, and reusable workflows.'},
-      {name:'Gemini Gems', path:'platforms/gemini-gems/README.md', status:'Platform pack', purpose:'Adapt agents into Gemini Gem-style assistants and reusable instructions.'},
-      {name:'Notion AI', path:'platforms/notion-ai/README.md', status:'Platform pack', purpose:'Turn specs into Notion workspace assistants, databases, and operating docs.'},
-      {name:'n8n Agents', path:'platforms/n8n-agents/README.md', status:'Platform pack', purpose:'Map agents into automation workflows, triggers, actions, and webhook-ready processes.'},
-      {name:'Vercel Web Apps', path:'platforms/vercel-web-apps/README.md', status:'Platform pack', purpose:'Ship agents as static sites, widgets, forms, dashboards, and deployable web tools.'}
-    ];
-    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-    document.getElementById('platform-grid').innerHTML = platforms.map(platform => `
-      <article class="page-card">
-        <span class="pill">${escapeHTML(platform.status)}</span>
-        <h2>${escapeHTML(platform.name)}</h2>
-        <p>${escapeHTML(platform.purpose)}</p>
-        <a class="button-link" href="${escapeHTML(platform.path)}">Open platform docs →</a>
-      </article>`).join('');
-  </script>
+
 </body>
 </html>
