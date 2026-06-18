@@ -3,75 +3,673 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
   <style>
-    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
-    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
-    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
-    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
-    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
-    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
-    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
-    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
-    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
-    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
-    .page-card h2, .page-card h3 { margin-top: 0; }
-    .page-card p, .muted { color: var(--secondary-text-color); }
-    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
-    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
-    .pill strong { color: var(--text-color); }
-    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
-    .button-link { display: inline-block; margin-top: 1rem; }
-    .button-link:hover, .page-link:hover { text-decoration: underline; }
-    .section { margin: 2.5rem 0; }
-    .section h2 { margin-bottom: .65rem; }
-    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
-    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
-    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
-    .mini-list li { margin: .35rem 0; }
-    footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+    :root {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --secondary-text-color: #b8b8b8;
+      --accent-color: #f4b942;
+      --card-bg: #1d1d1d;
+      --card-border: #333333;
+      --danger: #ff6b6b;
+      --success: #4ade80;
+      --info: #60a5fa;
+      --purple: #c084fc;
+      --surface-1: rgba(255,255,255,.045);
+      --surface-2: rgba(255,255,255,.025);
+      --shadow: 0 18px 60px rgba(0,0,0,.24);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(244,185,66,.12), transparent 38rem),
+        radial-gradient(circle at top right, rgba(96,165,250,.08), transparent 34rem),
+        var(--bg-color);
+      color: var(--text-color);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--accent-color);
+      color: #101010;
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      font-weight: 900;
+      z-index: 100;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(18,18,18,.86);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    .site-nav a {
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      font-weight: 850;
+      font-size: .9rem;
+      padding: .42rem .7rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--text-color);
+      border-color: rgba(244,185,66,.75);
+      background: rgba(244,185,66,.09);
+    }
+
+    .page-hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 1rem 1.75rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      font-weight: 950;
+      margin-bottom: .85rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.25rem, 6vw, 5rem);
+      line-height: 1.02;
+      margin: 0 0 1rem;
+      letter-spacing: -.05em;
+    }
+
+    .page-hero p {
+      color: var(--secondary-text-color);
+      max-width: 840px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .section { margin: 2.75rem 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .section h2 {
+      font-size: clamp(1.55rem, 4vw, 2.5rem);
+      margin: 0 0 .45rem;
+      letter-spacing: -.03em;
+    }
+
+    .section p,
+    .muted {
+      color: var(--secondary-text-color);
+      line-height: 1.65;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.05rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.15rem; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.25rem; }
+
+    .card {
+      background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      border-color: rgba(244,185,66,.62);
+      transform: translateY(-2px);
+      transition: .18s ease;
+    }
+
+    .card h2,
+    .card h3,
+    .card h4 { margin-top: 0; }
+
+    .card h3 {
+      font-size: 1.18rem;
+      letter-spacing: -.02em;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .mini-list {
+      margin: .8rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--secondary-text-color);
+      line-height: 1.62;
+    }
+
+    .mini-list li { margin: .28rem 0; }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--secondary-text-color);
+    }
+
+    .plain-list li { margin: .36rem 0; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin: .85rem 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.055);
+      color: var(--secondary-text-color);
+      border-radius: 999px;
+      padding: .25rem .62rem;
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .pill.gold { color: #111; background: var(--accent-color); border-color: var(--accent-color); }
+    .pill.green { color: #0b2514; background: var(--success); border-color: var(--success); }
+    .pill.blue { color: #071525; background: var(--info); border-color: var(--info); }
+    .pill.red { color: #2b0909; background: var(--danger); border-color: var(--danger); }
+    .pill.purple { color: #1f0d2f; background: var(--purple); border-color: var(--purple); }
+
+    .button,
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: .85rem;
+      color: #111;
+      background: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      border-radius: 999px;
+      padding: .68rem .95rem;
+      font-weight: 950;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.secondary,
+    .button-link.secondary {
+      color: var(--text-color);
+      background: transparent;
+      border-color: var(--card-border);
+    }
+
+    .button:hover,
+    .button-link:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.4rem auto 0;
+      max-width: 980px;
+    }
+
+    input,
+    select,
+    textarea {
+      background: #171717;
+      color: var(--text-color);
+      border: 1px solid var(--card-border);
+      border-radius: 11px;
+      padding: .82rem .92rem;
+      font: inherit;
+    }
+
+    input[type="search"],
+    .toolbar input,
+    .toolbar select { min-width: min(100%, 260px); }
+
+    textarea {
+      width: 100%;
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    label {
+      display: grid;
+      gap: .35rem;
+      font-weight: 850;
+      color: var(--text-color);
+    }
+
+    label span {
+      color: var(--secondary-text-color);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--card-border);
+      padding: .95rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent-color);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: rgba(255,255,255,.025);
+    }
+
+    td {
+      color: var(--secondary-text-color);
+      line-height: 1.55;
+    }
+
+    td strong { color: var(--text-color); }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: .85rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.035);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      color: var(--accent-color);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .callout {
+      border: 1px solid rgba(244,185,66,.45);
+      border-radius: 18px;
+      padding: 1.2rem;
+      background: rgba(244,185,66,.08);
+    }
+
+    .callout strong { color: var(--accent-color); }
+
+    .warning {
+      border-color: rgba(255,107,107,.45);
+      background: rgba(255,107,107,.08);
+    }
+
+    .warning strong { color: var(--danger); }
+
+    .success {
+      border-color: rgba(74,222,128,.45);
+      background: rgba(74,222,128,.08);
+    }
+
+    .success strong { color: var(--success); }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.035);
+      border-radius: 18px;
+      padding: 1.1rem;
+    }
+
+    .timeline-item h3 { margin: 0 0 .35rem; }
+
+    .checklist {
+      display: grid;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .check-item {
+      display: flex;
+      gap: .65rem;
+      align-items: flex-start;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: .85rem;
+      background: rgba(255,255,255,.03);
+      color: var(--secondary-text-color);
+    }
+
+    .check-item input { margin-top: .22rem; accent-color: var(--accent-color); }
+
+    .empty-state {
+      border: 1px dashed var(--card-border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--secondary-text-color);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #090909;
+      border: 1px solid var(--card-border);
+      color: #f7f7f7;
+      border-radius: 16px;
+      padding: 1rem;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    code {
+      color: var(--accent-color);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    details {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.03);
+    }
+
+    details + details { margin-top: .75rem; }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--secondary-text-color);
+      padding: 3rem 1rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 740px) {
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+      .page-hero { padding-top: 2.75rem; }
+      main { width: min(100% - 1rem, 1180px); }
+      table { min-width: 680px; }
+    }
   </style>
+
   <title>Schemas | AI Agent Library</title>
+  <meta name="description" content="Schema browser for machine-readable agent, skill, GPT, Vercel, funding product, partner resource, prompt, integration, example, and roadmap models.">
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="agent-catalog.html">Agents</a>
     <a href="skill-catalog.html">Skills</a>
     <a href="platforms.html">Platforms</a>
-    <a href="categories.html">Categories</a>
     <a href="prompt-chains.html">Prompt Chains</a>
-    <a href="search.html">Search</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="templates.html">Templates</a>
+    <a href="schemas.html" aria-current="page">Schemas</a>
+    <a href="knowledge-bases.html">Knowledge Bases</a>
     <a href="roadmap.html">Roadmap</a>
+    <a href="contribute.html">Contribute</a>
   </nav>
+
   <header class="page-hero">
+    <div class="eyebrow">AI Builder Resources</div>
     <h1>Schemas</h1>
-    <p>Structured data definitions for agents, skills, platform packs, funding products, webhooks, and future app validation.</p>
+    <p>Schema browser for machine-readable agent, skill, GPT, Vercel, funding product, partner resource, prompt, integration, example, and roadmap models.</p>
   </header>
-  <main>
-    <section class="page-card section">
-      <h2>Schema purpose</h2>
-      <p>Schemas turn this repo from a document library into a machine-readable source of truth for future directories, dashboards, GPT Actions, and static apps.</p>
+  <main id="main">
+
+    <section class="section callout">
+      <strong>Schema layer purpose:</strong>
+      <p>Schemas make the repo machine-readable. They are the bridge between markdown source files, static directories, dashboards, validators, GPT Actions, and future APIs.</p>
     </section>
-    <section id="schema-grid" class="wide-grid"></section>
+
+    <section class="section">
+      <div class="toolbar">
+        <input id="schema-search" type="search" placeholder="Search schema names, entities, fields...">
+        <select id="schema-status">
+          <option value="all">All statuses</option>
+          <option value="Recommended">Recommended</option>
+          <option value="Future">Future</option>
+          <option value="Core">Core</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section">
+      <div id="schema-grid" class="wide-grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Schema usage pattern</h2>
+        <ol class="mini-list">
+          <li>Define the entity model in markdown first.</li>
+          <li>Create a JSON Schema under <code>schemas/</code>.</li>
+          <li>Add one or more examples under <code>examples/</code>.</li>
+          <li>Render the schema-backed content into a static HTML page.</li>
+          <li>Validate future imports before they enter the catalog.</li>
+        </ol>
+      </article>
+      <article class="card">
+        <h2>Base schema shell</h2>
+        <pre>{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://example.com/schemas/entity.schema.json",
+  "title": "Entity",
+  "type": "object",
+  "required": ["id", "name", "status"],
+  "properties": {
+    "id": { "type": "string" },
+    "name": { "type": "string" },
+    "status": { "type": "string" }
+  },
+  "additionalProperties": false
+}</pre>
+      </article>
+    </section>
+
   </main>
+
   <footer>
-    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+    <p><strong>AI Agent Library</strong> — productized agents, skills, platform packs, prompt systems, and deployable AI operating patterns.</p>
+    <p class="muted">Static, dependency-free pages designed to work from the repository root.</p>
   </footer>
+
+
+  <script>
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  </script>
+
   <script>
     const schemas = [
-      ['agent.schema.json','Canonical structure for productized agent specs.','schemas/agent.schema.json'],
-      ['custom-gpt.schema.json','Custom GPT inventory, URL, description, image, category, and publishing fields.','schemas/custom-gpt.schema.json'],
-      ['skill.schema.json','Agent Skill metadata, category, priority, status, inputs, outputs, and app targets.','schemas/skill.schema.json'],
-      ['vercel-project.schema.json','Static site, widget, page, and deployment metadata.','schemas/vercel-project.schema.json'],
-      ['funding-product.schema.json','Funding product-family metadata, requirements, readiness, and routing categories.','schemas/funding-product.schema.json'],
-      ['webhook-event.schema.json','Webhook event payloads, source IDs, timestamps, and routing metadata.','schemas/webhook-event.schema.json']
+      {
+        name: "agent.schema.json",
+        status: "Core",
+        entity: "Productized AI Agent",
+        path: "schemas/agent.schema.json",
+        fields: ["id", "name", "category", "buyer", "pain_solved", "inputs", "outputs", "guardrails", "monetization", "file"],
+        usage: "Validate agent-index.json and future agent import workflows."
+      },
+      {
+        name: "skill.schema.json",
+        status: "Core",
+        entity: "Agent Skill",
+        path: "schemas/skill.schema.json",
+        fields: ["id", "name", "category", "audience", "problem_solved", "recommended_apps", "priority", "status"],
+        usage: "Validate skills/skill-index.json and render skill catalogs."
+      },
+      {
+        name: "custom-gpt.schema.json",
+        status: "Recommended",
+        entity: "Custom GPT",
+        path: "schemas/custom-gpt.schema.json",
+        fields: ["name", "description", "instructions", "conversation_starters", "knowledge_files", "visibility", "url"],
+        usage: "Standardize GPT inventory, publishing packs, and GPT conversion workflows."
+      },
+      {
+        name: "vercel-project.schema.json",
+        status: "Recommended",
+        entity: "Vercel Project",
+        path: "schemas/vercel-project.schema.json",
+        fields: ["project_id", "name", "repo", "production_url", "framework", "deployment_policy", "status"],
+        usage: "Track Vercel web app assets and deployment rules."
+      },
+      {
+        name: "funding-product.schema.json",
+        status: "Recommended",
+        entity: "Funding Product",
+        path: "schemas/funding-product.schema.json",
+        fields: ["name", "family", "credit_tier", "time_to_funding", "documents", "disqualifiers", "routing_notes"],
+        usage: "Structure funding knowledge-base content for private routing tools and public-safe summaries."
+      },
+      {
+        name: "partner-resource-card.schema.json",
+        status: "Recommended",
+        entity: "Partner Resource Card",
+        path: "schemas/partner-resource-card.schema.json",
+        fields: ["title", "description", "cta", "page_type", "vertical", "product_intent", "asset_id"],
+        usage: "Render partner microsite cards and attribution-safe resource blocks."
+      },
+      {
+        name: "prompt-pack.schema.json",
+        status: "Future",
+        entity: "Prompt Pack",
+        path: "schemas/prompt-pack.schema.json",
+        fields: ["name", "purpose", "inputs", "steps", "outputs", "stop_condition", "review_rules"],
+        usage: "Power prompt library, prompt generator, and execution-framework pages."
+      },
+      {
+        name: "integration.schema.json",
+        status: "Future",
+        entity: "Integration",
+        path: "schemas/integration.schema.json",
+        fields: ["name", "type", "auth_model", "use_cases", "outputs", "risks", "repo_path"],
+        usage: "Drive connector directory and integration implementation checklist."
+      },
+      {
+        name: "example.schema.json",
+        status: "Future",
+        entity: "Example Scenario",
+        path: "schemas/example.schema.json",
+        fields: ["scenario", "inputs", "agent_output", "guardrails", "reusable_asset"],
+        usage: "Normalize examples for agents, skills, workflows, and platform packs."
+      },
+      {
+        name: "roadmap-item.schema.json",
+        status: "Future",
+        entity: "Roadmap Item",
+        path: "schemas/roadmap-item.schema.json",
+        fields: ["phase", "title", "status", "priority", "issue", "owner", "dependencies"],
+        usage: "Render roadmap, changelog, and issue tracking pages from structured data."
+      }
     ];
-    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
-    document.getElementById('schema-grid').innerHTML = schemas.map(([title,desc,path]) => `
-      <article class="page-card"><span class="pill">Schema</span><h2>${escapeHTML(title)}</h2><p>${escapeHTML(desc)}</p><a class="button-link" href="${escapeHTML(path)}">Open planned schema →</a></article>`).join('');
+
+    function renderSchemas() {
+      const query = document.getElementById("schema-search").value.toLowerCase();
+      const status = document.getElementById("schema-status").value;
+      const filtered = schemas.filter(item => {
+        const text = [item.name, item.status, item.entity, item.path, item.fields.join(" "), item.usage].join(" ").toLowerCase();
+        return text.includes(query) && (status === "all" || item.status === status);
+      });
+
+      document.getElementById("schema-grid").innerHTML = filtered.map(item => `
+        <article class="card">
+          <div class="pill-row">
+            <span class="pill ${item.status === "Core" ? "green" : item.status === "Recommended" ? "gold" : ""}">${escapeHTML(item.status)}</span>
+            <span class="pill">${escapeHTML(item.entity)}</span>
+          </div>
+          <h2>${escapeHTML(item.name)}</h2>
+          <p>${escapeHTML(item.usage)}</p>
+          <p><strong>Path:</strong> <code>${escapeHTML(item.path)}</code></p>
+          <h3>Fields</h3>
+          <div class="pill-row">${item.fields.map(field => `<span class="pill">${escapeHTML(field)}</span>`).join("")}</div>
+        </article>
+      `).join("") || `<div class="empty-state">No matching schemas.</div>`;
+    }
+
+    ["schema-search", "schema-status"].forEach(id => document.getElementById(id).addEventListener("input", renderSchemas));
+    renderSchemas();
   </script>
+
 </body>
 </html>
