@@ -3,70 +3,636 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <link rel="stylesheet" href="style.css">
   <style>
-    .site-nav { display: flex; flex-wrap: wrap; gap: .75rem; justify-content: center; padding: 1rem; border-bottom: 1px solid var(--card-border); background: rgba(30,30,30,.72); position: sticky; top: 0; z-index: 10; backdrop-filter: blur(8px); }
-    .site-nav a { color: var(--secondary-text-color); text-decoration: none; font-weight: 700; font-size: .92rem; padding: .35rem .6rem; border: 1px solid transparent; border-radius: 999px; }
-    .site-nav a:hover, .site-nav a[aria-current="page"] { color: var(--text-color); border-color: var(--accent-color); }
-    .page-hero { max-width: 1000px; margin: 0 auto; padding: 3rem 1rem 1.5rem; text-align: center; }
-    .page-hero h1 { font-size: clamp(2rem, 5vw, 4rem); line-height: 1.05; margin: 0 0 1rem; }
-    .page-hero p { color: var(--secondary-text-color); max-width: 760px; margin: 0 auto; }
-    .toolbar { display: flex; gap: 1rem; flex-wrap: wrap; justify-content: center; margin: 1.5rem auto 0; max-width: 900px; }
-    .toolbar input, .toolbar select { background: var(--card-bg); color: var(--text-color); border: 1px solid var(--card-border); border-radius: 8px; padding: .8rem 1rem; min-width: min(100%, 260px); }
-    .page-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 1.25rem; }
-    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem; }
-    .page-card { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 1.25rem; transition: transform .2s, border-color .2s; }
-    .page-card:hover { transform: translateY(-3px); border-color: var(--accent-color); }
-    .page-card h2, .page-card h3 { margin-top: 0; }
-    .page-card p, .muted { color: var(--secondary-text-color); }
-    .pill-row { display: flex; gap: .5rem; flex-wrap: wrap; margin-top: .85rem; }
-    .pill { display: inline-flex; align-items: center; gap: .35rem; border: 1px solid var(--card-border); background: #252525; color: var(--secondary-text-color); border-radius: 999px; padding: .25rem .55rem; font-size: .78rem; font-weight: 700; }
-    .pill strong { color: var(--text-color); }
-    .page-link, .button-link { color: var(--accent-color); font-weight: 800; text-decoration: none; }
-    .button-link { display: inline-block; margin-top: 1rem; }
-    .button-link:hover, .page-link:hover { text-decoration: underline; }
-    .section { margin: 2.5rem 0; }
-    .section h2 { margin-bottom: .65rem; }
-    .empty-state { border: 1px dashed var(--card-border); border-radius: 14px; padding: 2rem; text-align: center; color: var(--secondary-text-color); }
-    .count-badge { color: var(--text-color); background: #333; border-radius: 999px; padding: .2rem .55rem; font-size: .75rem; }
-    .mini-list { margin: 1rem 0 0; padding-left: 1.1rem; color: var(--secondary-text-color); }
-    .mini-list li { margin: .35rem 0; }
-    footer { text-align: center; color: var(--secondary-text-color); padding: 3rem 1rem; border-top: 1px solid var(--card-border); margin-top: 3rem; }
+    :root {
+      --bg-color: #121212;
+      --text-color: #f5f5f5;
+      --secondary-text-color: #b8b8b8;
+      --accent-color: #f4b942;
+      --card-bg: #1d1d1d;
+      --card-border: #333333;
+      --danger: #ff6b6b;
+      --success: #4ade80;
+      --info: #60a5fa;
+      --purple: #c084fc;
+      --surface-1: rgba(255,255,255,.045);
+      --surface-2: rgba(255,255,255,.025);
+      --shadow: 0 18px 60px rgba(0,0,0,.24);
+    }
+
+    * { box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      margin: 0;
+      background:
+        radial-gradient(circle at top left, rgba(244,185,66,.12), transparent 38rem),
+        radial-gradient(circle at top right, rgba(96,165,250,.08), transparent 34rem),
+        var(--bg-color);
+      color: var(--text-color);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      line-height: 1.55;
+    }
+
+    a { color: inherit; }
+
+    .skip-link {
+      position: absolute;
+      top: -100px;
+      left: 1rem;
+      background: var(--accent-color);
+      color: #101010;
+      padding: .7rem 1rem;
+      border-radius: 999px;
+      font-weight: 900;
+      z-index: 100;
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    .site-nav {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      justify-content: center;
+      align-items: center;
+      padding: 1rem;
+      border-bottom: 1px solid var(--card-border);
+      background: rgba(18,18,18,.86);
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(12px);
+    }
+
+    .site-nav a {
+      color: var(--secondary-text-color);
+      text-decoration: none;
+      font-weight: 850;
+      font-size: .9rem;
+      padding: .42rem .7rem;
+      border: 1px solid transparent;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+
+    .site-nav a:hover,
+    .site-nav a[aria-current="page"] {
+      color: var(--text-color);
+      border-color: rgba(244,185,66,.75);
+      background: rgba(244,185,66,.09);
+    }
+
+    .page-hero {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 4rem 1rem 1.75rem;
+      text-align: center;
+    }
+
+    .eyebrow {
+      color: var(--accent-color);
+      text-transform: uppercase;
+      letter-spacing: .16em;
+      font-size: .78rem;
+      font-weight: 950;
+      margin-bottom: .85rem;
+    }
+
+    .page-hero h1 {
+      font-size: clamp(2.25rem, 6vw, 5rem);
+      line-height: 1.02;
+      margin: 0 0 1rem;
+      letter-spacing: -.05em;
+    }
+
+    .page-hero p {
+      color: var(--secondary-text-color);
+      max-width: 840px;
+      margin: 0 auto;
+      font-size: 1.05rem;
+      line-height: 1.7;
+    }
+
+    main {
+      width: min(1180px, calc(100% - 2rem));
+      margin: 0 auto;
+    }
+
+    .section { margin: 2.75rem 0; }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 1rem;
+    }
+
+    .section h2 {
+      font-size: clamp(1.55rem, 4vw, 2.5rem);
+      margin: 0 0 .45rem;
+      letter-spacing: -.03em;
+    }
+
+    .section p,
+    .muted {
+      color: var(--secondary-text-color);
+      line-height: 1.65;
+    }
+
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 1.05rem; }
+    .wide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.15rem; }
+    .two-col { display: grid; grid-template-columns: repeat(auto-fit, minmax(330px, 1fr)); gap: 1.25rem; }
+
+    .card {
+      background: linear-gradient(180deg, var(--surface-1), var(--surface-2));
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      padding: 1.25rem;
+      box-shadow: var(--shadow);
+    }
+
+    .card:hover {
+      border-color: rgba(244,185,66,.62);
+      transform: translateY(-2px);
+      transition: .18s ease;
+    }
+
+    .card h2,
+    .card h3,
+    .card h4 { margin-top: 0; }
+
+    .card h3 {
+      font-size: 1.18rem;
+      letter-spacing: -.02em;
+    }
+
+    .card p:last-child { margin-bottom: 0; }
+
+    .mini-list {
+      margin: .8rem 0 0;
+      padding-left: 1.15rem;
+      color: var(--secondary-text-color);
+      line-height: 1.62;
+    }
+
+    .mini-list li { margin: .28rem 0; }
+
+    .plain-list {
+      margin: 0;
+      padding-left: 1.1rem;
+      color: var(--secondary-text-color);
+    }
+
+    .plain-list li { margin: .36rem 0; }
+
+    .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .45rem;
+      margin: .85rem 0;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.055);
+      color: var(--secondary-text-color);
+      border-radius: 999px;
+      padding: .25rem .62rem;
+      font-size: .78rem;
+      font-weight: 850;
+    }
+
+    .pill.gold { color: #111; background: var(--accent-color); border-color: var(--accent-color); }
+    .pill.green { color: #0b2514; background: var(--success); border-color: var(--success); }
+    .pill.blue { color: #071525; background: var(--info); border-color: var(--info); }
+    .pill.red { color: #2b0909; background: var(--danger); border-color: var(--danger); }
+    .pill.purple { color: #1f0d2f; background: var(--purple); border-color: var(--purple); }
+
+    .button,
+    .button-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+      margin-top: .85rem;
+      color: #111;
+      background: var(--accent-color);
+      border: 1px solid var(--accent-color);
+      border-radius: 999px;
+      padding: .68rem .95rem;
+      font-weight: 950;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .button.secondary,
+    .button-link.secondary {
+      color: var(--text-color);
+      background: transparent;
+      border-color: var(--card-border);
+    }
+
+    .button:hover,
+    .button-link:hover {
+      filter: brightness(1.05);
+      transform: translateY(-1px);
+    }
+
+    .toolbar {
+      display: flex;
+      gap: .8rem;
+      flex-wrap: wrap;
+      justify-content: center;
+      margin: 1.4rem auto 0;
+      max-width: 980px;
+    }
+
+    input,
+    select,
+    textarea {
+      background: #171717;
+      color: var(--text-color);
+      border: 1px solid var(--card-border);
+      border-radius: 11px;
+      padding: .82rem .92rem;
+      font: inherit;
+    }
+
+    input[type="search"],
+    .toolbar input,
+    .toolbar select { min-width: min(100%, 260px); }
+
+    textarea {
+      width: 100%;
+      min-height: 145px;
+      resize: vertical;
+    }
+
+    label {
+      display: grid;
+      gap: .35rem;
+      font-weight: 850;
+      color: var(--text-color);
+    }
+
+    label span {
+      color: var(--secondary-text-color);
+      font-weight: 700;
+      font-size: .9rem;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid var(--card-border);
+      border-radius: 18px;
+      background: var(--card-bg);
+      box-shadow: var(--shadow);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 760px;
+    }
+
+    th,
+    td {
+      border-bottom: 1px solid var(--card-border);
+      padding: .95rem;
+      text-align: left;
+      vertical-align: top;
+    }
+
+    th {
+      color: var(--accent-color);
+      font-size: .8rem;
+      text-transform: uppercase;
+      letter-spacing: .08em;
+      background: rgba(255,255,255,.025);
+    }
+
+    td {
+      color: var(--secondary-text-color);
+      line-height: 1.55;
+    }
+
+    td strong { color: var(--text-color); }
+
+    .stat-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: .85rem;
+      margin-top: 1rem;
+    }
+
+    .stat {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.035);
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.55rem;
+      color: var(--accent-color);
+      line-height: 1;
+      margin-bottom: .4rem;
+    }
+
+    .callout {
+      border: 1px solid rgba(244,185,66,.45);
+      border-radius: 18px;
+      padding: 1.2rem;
+      background: rgba(244,185,66,.08);
+    }
+
+    .callout strong { color: var(--accent-color); }
+
+    .warning {
+      border-color: rgba(255,107,107,.45);
+      background: rgba(255,107,107,.08);
+    }
+
+    .warning strong { color: var(--danger); }
+
+    .success {
+      border-color: rgba(74,222,128,.45);
+      background: rgba(74,222,128,.08);
+    }
+
+    .success strong { color: var(--success); }
+
+    .timeline {
+      display: grid;
+      gap: 1rem;
+      position: relative;
+    }
+
+    .timeline-item {
+      border: 1px solid var(--card-border);
+      background: rgba(255,255,255,.035);
+      border-radius: 18px;
+      padding: 1.1rem;
+    }
+
+    .timeline-item h3 { margin: 0 0 .35rem; }
+
+    .checklist {
+      display: grid;
+      gap: .7rem;
+      margin-top: 1rem;
+    }
+
+    .check-item {
+      display: flex;
+      gap: .65rem;
+      align-items: flex-start;
+      border: 1px solid var(--card-border);
+      border-radius: 14px;
+      padding: .85rem;
+      background: rgba(255,255,255,.03);
+      color: var(--secondary-text-color);
+    }
+
+    .check-item input { margin-top: .22rem; accent-color: var(--accent-color); }
+
+    .empty-state {
+      border: 1px dashed var(--card-border);
+      border-radius: 18px;
+      padding: 2rem;
+      text-align: center;
+      color: var(--secondary-text-color);
+    }
+
+    pre {
+      white-space: pre-wrap;
+      background: #090909;
+      border: 1px solid var(--card-border);
+      color: #f7f7f7;
+      border-radius: 16px;
+      padding: 1rem;
+      overflow-x: auto;
+      line-height: 1.55;
+    }
+
+    code {
+      color: var(--accent-color);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+    }
+
+    details {
+      border: 1px solid var(--card-border);
+      border-radius: 16px;
+      padding: 1rem;
+      background: rgba(255,255,255,.03);
+    }
+
+    details + details { margin-top: .75rem; }
+
+    summary {
+      cursor: pointer;
+      font-weight: 900;
+      color: var(--text-color);
+    }
+
+    footer {
+      text-align: center;
+      color: var(--secondary-text-color);
+      padding: 3rem 1rem;
+      border-top: 1px solid var(--card-border);
+      margin-top: 3rem;
+    }
+
+    @media (max-width: 740px) {
+      .site-nav {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+      }
+      .page-hero { padding-top: 2.75rem; }
+      main { width: min(100% - 1rem, 1180px); }
+      table { min-width: 680px; }
+    }
   </style>
+
   <title>Roadmap | AI Agent Library</title>
+  <meta name="description" content="Public roadmap for the AI Agent Library, including completed site work, next knowledge-base work, schema/data registry plans, and future marketplace layers.">
 </head>
 <body>
+
+  <a class="skip-link" href="#main">Skip to content</a>
   <nav class="site-nav" aria-label="Primary navigation">
     <a href="index.html">Home</a>
     <a href="agent-catalog.html">Agents</a>
     <a href="skill-catalog.html">Skills</a>
     <a href="platforms.html">Platforms</a>
-    <a href="categories.html">Categories</a>
     <a href="prompt-chains.html">Prompt Chains</a>
-    <a href="search.html">Search</a>
+    <a href="integrations.html">Integrations</a>
+    <a href="templates.html">Templates</a>
+    <a href="schemas.html">Schemas</a>
+    <a href="knowledge-bases.html">Knowledge Bases</a>
     <a href="roadmap.html" aria-current="page">Roadmap</a>
+    <a href="contribute.html">Contribute</a>
   </nav>
+
   <header class="page-hero">
+    <div class="eyebrow">Community &amp; Trust</div>
     <h1>Roadmap</h1>
-    <p>A practical build sequence for turning the AI Agent Library into a browsable directory, platform-pack system, knowledge base, and agent operating layer.</p>
+    <p>Public roadmap for the AI Agent Library, including completed site work, next knowledge-base work, schema/data registry plans, and future marketplace layers.</p>
   </header>
-  <main>
-    <section class="wide-grid">
-      <article class="page-card"><span class="pill">Phase A</span><h2>Directory Foundation</h2><p>Agents, skills, categories, search, and platform pages.</p><ul class="mini-list"><li>categories.html</li><li>agent-catalog.html</li><li>skill-catalog.html</li><li>search.html</li></ul></article>
-      <article class="page-card"><span class="pill">Phase B</span><h2>Builder Resources</h2><p>Templates, schemas, integrations, and examples.</p><ul class="mini-list"><li>templates.html</li><li>schemas.html</li><li>integrations.html</li><li>examples.html</li></ul></article>
-      <article class="page-card"><span class="pill">Phase C</span><h2>Platform Packs</h2><p>Dedicated implementation hubs for GPTs, Claude, Gemini, n8n, Notion, and Vercel.</p><ul class="mini-list"><li>platforms.html</li><li>chatgpt-gpts.html</li><li>n8n-agents.html</li></ul></article>
-      <article class="page-card"><span class="pill">Phase D</span><h2>Operational Layer</h2><p>Prompt chains, issue sequencing, PR review protocols, and contributor workflows.</p><ul class="mini-list"><li>prompt-chains.html</li><li>contribute.html</li><li>changelog.html</li></ul></article>
+  <main id="main">
+
+    <section class="section">
+      <div class="toolbar">
+        <input id="roadmap-search" type="search" placeholder="Search roadmap...">
+        <select id="roadmap-status">
+          <option value="all">All statuses</option>
+          <option value="Complete">Complete</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Next">Next</option>
+          <option value="Planned">Planned</option>
+        </select>
+      </div>
     </section>
-    <section class="page-card section">
-      <h2>Next 10 recommended pages</h2>
-      <ol class="mini-list">
-        <li>categories.html</li><li>skill-catalog.html</li><li>agent-catalog.html</li><li>platforms.html</li><li>prompt-chains.html</li><li>search.html</li><li>templates.html</li><li>integrations.html</li><li>schemas.html</li><li>roadmap.html</li>
-      </ol>
+
+    <section class="section">
+      <div id="roadmap-stats" class="stat-row"></div>
     </section>
+
+    <section class="section">
+      <div id="roadmap-list" class="timeline"></div>
+    </section>
+
+    <section class="section card">
+      <h2>Roadmap repo model</h2>
+      <pre>roadmap/
+  phase-1-fast-mvp.md
+  phase-2-distribution-system.md
+  phase-3-marketplace-layer.md
+  phase-4-platform-layer.md
+  roadmap-index.json</pre>
+    </section>
+
   </main>
+
   <footer>
-    <p>AI Agent Library — static directory pages for productized agents, skills, platforms, and build systems.</p>
+    <p><strong>AI Agent Library</strong> — productized agents, skills, platform packs, prompt systems, and deployable AI operating patterns.</p>
+    <p class="muted">Static, dependency-free pages designed to work from the repository root.</p>
   </footer>
+
+
+  <script>
+    const escapeHTML = value => String(value ?? '').replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  </script>
+
+  <script>
+    const roadmap = [
+      {
+        phase: "Phase 1",
+        title: "Static AI Agent Directory",
+        status: "Complete",
+        priority: "High",
+        description: "Render core agent inventory, categories, skills, platform pages, prompt pages, templates, schemas, and roadmap views as dependency-free static pages."
+      },
+      {
+        phase: "Phase 1",
+        title: "Agent and Skill Catalog Expansion",
+        status: "In Progress",
+        priority: "High",
+        description: "Expand browseable pages for agents, skills, categories, use cases, and platform-specific implementation packs."
+      },
+      {
+        phase: "Phase 2",
+        title: "Knowledge Base Layer",
+        status: "Next",
+        priority: "High",
+        description: "Add funding, business credit, partner enablement, CRM, automation, content ops, local referral, and engineering-as-marketing knowledge bases."
+      },
+      {
+        phase: "Phase 2",
+        title: "Schema and Data Registry",
+        status: "Next",
+        priority: "High",
+        description: "Add JSON schemas and data files that can power static rendering, future dashboards, validators, and agent import workflows."
+      },
+      {
+        phase: "Phase 2",
+        title: "Portfolio Inventories",
+        status: "Planned",
+        priority: "Medium",
+        description: "Catalog Custom GPTs, Vercel apps, templates, skills, lead magnets, and reusable platform assets."
+      },
+      {
+        phase: "Phase 3",
+        title: "Searchable Marketplace Layer",
+        status: "Planned",
+        priority: "Medium",
+        description: "Turn the directory into a searchable marketplace-like interface for agents, skills, prompt packs, examples, and implementations."
+      },
+      {
+        phase: "Phase 3",
+        title: "Submission and Review Workflow",
+        status: "Planned",
+        priority: "Medium",
+        description: "Let contributors propose new agents, skills, prompt packs, schemas, and examples using standardized templates and review rules."
+      },
+      {
+        phase: "Phase 4",
+        title: "Cross-platform Agent Operating System",
+        status: "Planned",
+        priority: "Strategic",
+        description: "Use the repo as a source layer for GPTs, Claude Projects, Gemini Gems, n8n workflows, Vercel apps, and internal operator systems."
+      }
+    ];
+
+    function renderRoadmap() {
+      const query = document.getElementById("roadmap-search").value.toLowerCase();
+      const status = document.getElementById("roadmap-status").value;
+      const filtered = roadmap.filter(item => {
+        const text = [item.phase, item.title, item.status, item.priority, item.description].join(" ").toLowerCase();
+        return text.includes(query) && (status === "all" || item.status === status);
+      });
+
+      const complete = roadmap.filter(item => item.status === "Complete").length;
+      const next = roadmap.filter(item => item.status === "Next").length;
+      document.getElementById("roadmap-stats").innerHTML = `
+        <div class="stat"><strong>${roadmap.length}</strong><span>Total roadmap items</span></div>
+        <div class="stat"><strong>${complete}</strong><span>Complete</span></div>
+        <div class="stat"><strong>${next}</strong><span>Next items</span></div>
+      `;
+
+      document.getElementById("roadmap-list").innerHTML = filtered.map(item => `
+        <article class="timeline-item">
+          <div class="pill-row">
+            <span class="pill gold">${escapeHTML(item.phase)}</span>
+            <span class="pill ${item.status === "Complete" ? "green" : item.status === "Next" ? "blue" : ""}">${escapeHTML(item.status)}</span>
+            <span class="pill">${escapeHTML(item.priority)}</span>
+          </div>
+          <h2>${escapeHTML(item.title)}</h2>
+          <p>${escapeHTML(item.description)}</p>
+        </article>
+      `).join("") || `<div class="empty-state">No matching roadmap items.</div>`;
+    }
+
+    ["roadmap-search", "roadmap-status"].forEach(id => document.getElementById(id).addEventListener("input", renderRoadmap));
+    renderRoadmap();
+  </script>
 
 </body>
 </html>
