@@ -177,3 +177,9 @@ The content avoids:
 - [x] Legal/trust pages are present.
 - [x] No private data or secrets included.
 - [x] No ZIP files committed unless intentionally included.
+
+## Secondary Repair Notes
+- Reverted `vercel.json` deployment toggle back to `true` (restored file to match main).
+- Re-extracted `portfolio/vercel/README.md` correctly matching quadruple backtick bounds.
+- Fixed priority sorting in `top-skills.html` by adding mapping for canonical `P0, P1, P2, P3` weights.
+- Restored `styles.css` from main and appended required static classes, maintaining base grid variables without truncating structural styles.
