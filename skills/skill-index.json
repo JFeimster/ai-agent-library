@@ -1,338 +1,313 @@
 [
   {
-    "id": "funding-fit-triage",
-    "number": 1,
-    "name": "Funding Fit Triage Skill",
-    "slug": "funding-fit-triage",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Determines best-fit funding path or not-ready status from intake answers.",
-    "recommended_apps": ["funding landing pages", "partner portals", "embedded calculators"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Static Site Page Builder",
+    "slug": "static-site-page-builder",
+    "category": "Static Sites",
+    "audience": "Static site builders, Vercel operators, and AI product teams",
+    "problem_solved": "Generates dependency-free HTML pages with consistent structure, navigation, CTAs, metadata, and public-safe page sections.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "GitHub",
+      "Vercel"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/static-site-page-builder/SKILL.md",
+    "related_agents": [
+      "agents/static-site-page-generator.md",
+      "agents/vercel-deployment-control-agent.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/engineering-as-marketing/README.md"
+    ]
   },
   {
-    "id": "fast-disqualifier-detection",
-    "number": 2,
-    "name": "Fast Disqualifier Detection Skill",
-    "slug": "fast-disqualifier-detection",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Flags obvious no-go issues before wasting applicant or partner time.",
-    "recommended_apps": ["intake forms", "routing widgets"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Agent Spec Packager",
+    "slug": "agent-spec-packager",
+    "category": "AI Builder Resources",
+    "audience": "AI builders, prompt engineers, platform packagers, and repo maintainers",
+    "problem_solved": "Turns agent concepts into structured specs with buyer, pain solved, inputs, outputs, workflow, guardrails, and platform targets.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/agent-spec-packager/SKILL.md",
+    "related_agents": [
+      "agents/ai-agent-library-builder.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/engineering-as-marketing/README.md"
+    ]
   },
   {
-    "id": "required-docs-checklist",
-    "number": 3,
-    "name": "Required Docs Checklist Skill",
-    "slug": "required-docs-checklist",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Generates document checklists by funding product family and applicant profile.",
-    "recommended_apps": ["funding apps", "partner dashboards"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "SKILL.md Generator",
+    "slug": "skill-md-generator",
+    "category": "Skills Library",
+    "audience": "AI Agent Library maintainers and reusable capability builders",
+    "problem_solved": "Creates structured SKILL.md files with purpose, inputs, outputs, workflow, examples, guardrails, and suggested repo paths.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Codex"
+    ],
+    "priority": "high",
+    "status": "ready",
+    "path": "skills/skill-md-generator/SKILL.md",
+    "related_agents": [
+      "agents/ai-agent-library-builder.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/engineering-as-marketing/README.md"
+    ]
   },
   {
-    "id": "funding-product-match",
-    "number": 4,
-    "name": "Funding Product Match Skill",
-    "slug": "funding-product-match",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Matches borrower needs to the best funding product category.",
-    "recommended_apps": ["broker tools", "public funnels"],
-    "status": "proposed",
-    "priority": "P1"
+    "name": "Funding Language Safety Review",
+    "slug": "funding-language-safety-review",
+    "category": "Funding Ops",
+    "audience": "Funding brokers, affiliate operators, partner managers, and content publishers",
+    "problem_solved": "Reviews funding copy for guaranteed approval claims, unsafe speed claims, unsupported terms, missing educational framing, and high-risk language.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Custom GPT",
+      "GitHub"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/funding-language-safety-review/SKILL.md",
+    "related_agents": [
+      "agents/funding-pipeline-triage-agent.md",
+      "agents/business-credit-readiness-helper.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/funding/README.md"
+    ]
   },
   {
-    "id": "revenue-band-normalization",
-    "number": 5,
-    "name": "Revenue Band Normalization Skill",
-    "slug": "revenue-band-normalization",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Converts messy revenue answers into structured revenue bands.",
-    "recommended_apps": ["CRM automations"],
-    "status": "proposed",
-    "priority": "P1"
+    "name": "Partner Resource Card Builder",
+    "slug": "partner-resource-card-builder",
+    "category": "Partner Enablement",
+    "audience": "Partner managers, affiliates, brokers, referral agents, and ISO operators",
+    "problem_solved": "Creates resource cards with audience, problem solved, CTAs, disclosure language, restricted claims, and tracking notes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Vercel",
+      "Notion"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/partner-resource-card-builder/SKILL.md",
+    "related_agents": [
+      "agents/partner-resource-card-builder.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/partner-enablement/README.md",
+      "knowledge-base/local-referrals/README.md"
+    ]
   },
   {
-    "id": "use-of-funds-classifier",
-    "number": 6,
-    "name": "Use-of-Funds Classifier Skill",
-    "slug": "use-of-funds-classifier",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Categorizes funding purpose such as payroll, inventory, equipment, acquisition, or expansion.",
-    "recommended_apps": ["intake forms"],
-    "status": "proposed",
-    "priority": "P1"
+    "name": "Prompt Chain Sequencer",
+    "slug": "prompt-chain-sequencer",
+    "category": "Prompt Systems",
+    "audience": "Prompt builders, Codex users, Jules users, implementation operators, and repo maintainers",
+    "problem_solved": "Breaks large tasks into ordered prompts with inputs, outputs, acceptance criteria, validation steps, and PR-ready instructions.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "Jules",
+      "GitHub"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/prompt-chain-sequencer/SKILL.md",
+    "related_agents": [
+      "agents/prompt-chain-architect.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/automation/README.md"
+    ]
   },
   {
-    "id": "funding-readiness-score",
-    "number": 7,
-    "name": "Funding Readiness Score Skill",
-    "slug": "funding-readiness-score",
-    "category": "funding",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Produces a readiness score from revenue, time in business, docs, urgency, and credit profile.",
-    "recommended_apps": ["lead magnets"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Schema Starter Builder",
+    "slug": "schema-starter-builder",
+    "category": "Schemas",
+    "audience": "Repo maintainers, automation builders, structured data operators, and platform package builders",
+    "problem_solved": "Generates JSON Schema files with required fields, enums, examples, descriptions, validation notes, and public-safe data rules.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Codex"
+    ],
+    "priority": "medium",
+    "status": "draft",
+    "path": "skills/schema-starter-builder/SKILL.md",
+    "related_agents": [
+      "agents/ai-agent-library-builder.md",
+      "agents/automation-workflow-spec-agent.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/engineering-as-marketing/README.md",
+      "knowledge-base/automation/README.md"
+    ]
   },
   {
-    "id": "fundability-diagnostic",
-    "number": 16,
-    "name": "Fundability Diagnostic Skill",
-    "slug": "fundability-diagnostic",
-    "category": "business-credit",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Scores business credit readiness using entity, banking, tradeline, utilization, and bureau signals.",
-    "recommended_apps": ["BizCredit widgets"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Knowledge Base Folder Builder",
+    "slug": "knowledge-base-folder-builder",
+    "category": "Knowledge Bases",
+    "audience": "Custom GPT builders, source-doc operators, AI system maintainers, and repo maintainers",
+    "problem_solved": "Creates README, index.json, examples, source boundaries, guardrails, and output rules for reusable knowledge-base folders.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/knowledge-base-folder-builder/SKILL.md",
+    "related_agents": [
+      "agents/knowledge-base-packager.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/engineering-as-marketing/README.md"
+    ]
   },
   {
-    "id": "utilization-math",
-    "number": 18,
-    "name": "Utilization Math Skill",
-    "slug": "utilization-math",
-    "category": "business-credit",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Calculates utilization and shows how paydowns or new limits improve profile strength.",
-    "recommended_apps": ["calculators"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Automation Workflow Spec Writer",
+    "slug": "automation-workflow-spec-writer",
+    "category": "Automation",
+    "audience": "n8n builders, CRM admins, automation operators, and workflow designers",
+    "problem_solved": "Creates workflow specs with triggers, inputs, steps, outputs, approval gates, failure modes, fallback behavior, and data rules.",
+    "recommended_apps": [
+      "ChatGPT",
+      "n8n",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "high",
+    "status": "draft",
+    "path": "skills/automation-workflow-spec-writer/SKILL.md",
+    "related_agents": [
+      "agents/automation-workflow-spec-agent.md",
+      "agents/crm-follow-up-drafting-agent.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/automation/README.md"
+    ]
   },
   {
-    "id": "credit-readiness-roadmap",
-    "number": 22,
-    "name": "Credit Readiness Roadmap Skill",
-    "slug": "credit-readiness-roadmap",
-    "category": "business-credit",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Generates a 30/60/90-day business credit build plan.",
-    "recommended_apps": ["lead magnets"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "CRM Note Summarizer",
+    "slug": "crm-note-summarizer",
+    "category": "CRM",
+    "audience": "Sales teams, processors, closers, brokers, and RevOps operators",
+    "problem_solved": "Converts messy CRM notes into known facts, missing fields, current status, caution flags, and suggested next action.",
+    "recommended_apps": [
+      "ChatGPT",
+      "HubSpot",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "medium",
+    "status": "draft",
+    "path": "skills/crm-note-summarizer/SKILL.md",
+    "related_agents": [
+      "agents/crm-follow-up-drafting-agent.md",
+      "agents/funding-pipeline-triage-agent.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/crm/README.md"
+    ]
   },
   {
-    "id": "partner-game-plan",
-    "number": 26,
-    "name": "Partner Game Plan Skill",
-    "slug": "partner-game-plan",
-    "category": "partner-enablement",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Converts income goals into daily lead, call, referral, and follow-up targets.",
-    "recommended_apps": ["partner portals"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Content Brief Builder",
+    "slug": "content-brief-builder",
+    "category": "Content Ops",
+    "audience": "SEO writers, content teams, AI publishers, blog operators, and editorial strategists",
+    "problem_solved": "Builds article briefs with keywords, search intent, audience, headings, internal links, CTA, metadata, excerpt, and do-not-claim list.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Notion",
+      "GitHub",
+      "Wix"
+    ],
+    "priority": "high",
+    "status": "ready",
+    "path": "skills/content-brief-builder/SKILL.md",
+    "related_agents": [
+      "agents/content-brief-generator.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/content-ops/README.md"
+    ]
   },
   {
-    "id": "commission-estimator",
-    "number": 27,
-    "name": "Commission Estimator Skill",
-    "slug": "commission-estimator",
-    "category": "partner-enablement",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Calculates potential commissions based on funding amount, close rate, and comp tier.",
-    "recommended_apps": ["partner recruiting pages"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Portfolio Inventory Normalizer",
+    "slug": "portfolio-inventory-normalizer",
+    "category": "Portfolio",
+    "audience": "AI product operators, Vercel builders, GPT portfolio maintainers, and repo maintainers",
+    "problem_solved": "Normalizes public assets into portfolio records with name, URL, source repo, status, CTA, related agent, related skill, and review date.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Vercel",
+      "Notion"
+    ],
+    "priority": "medium",
+    "status": "draft",
+    "path": "skills/portfolio-inventory-normalizer/SKILL.md",
+    "related_agents": [
+      "agents/vercel-deployment-control-agent.md",
+      "agents/ai-agent-library-builder.md"
+    ],
+    "related_knowledge_bases": [
+      "portfolio/vercel/README.md",
+      "portfolio/custom-gpts/README.md"
+    ]
   },
   {
-    "id": "partner-profile-builder",
-    "number": 32,
-    "name": "Partner Profile Builder Skill",
-    "slug": "partner-profile-builder",
-    "category": "partner-enablement",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Creates polished broker/partner profiles from short intake answers.",
-    "recommended_apps": ["partner directory"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Affiliate Disclosure Checker",
+    "slug": "affiliate-disclosure-checker",
+    "category": "Trust & Safety",
+    "audience": "Affiliate publishers, partner operators, resource directory maintainers, and content reviewers",
+    "problem_solved": "Checks pages and cards for visible affiliate disclosure, non-neutral paid placement language, restricted claims, and CTA clarity.",
+    "recommended_apps": [
+      "ChatGPT",
+      "GitHub",
+      "Notion"
+    ],
+    "priority": "medium",
+    "status": "draft",
+    "path": "skills/affiliate-disclosure-checker/SKILL.md",
+    "related_agents": [
+      "agents/affiliate-disclosure-reviewer.md",
+      "agents/partner-resource-card-builder.md"
+    ],
+    "related_knowledge_bases": [
+      "knowledge-base/partner-enablement/README.md"
+    ]
   },
   {
-    "id": "partner-resource-recommender",
-    "number": 33,
-    "name": "Partner Resource Recommender Skill",
-    "slug": "partner-resource-recommender",
-    "category": "partner-enablement",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Recommends tools, scripts, calculators, and guides based on partner profile.",
-    "recommended_apps": ["portal home"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "cpa-referral-opportunity",
-    "number": 36,
-    "name": "CPA Referral Opportunity Skill",
-    "slug": "cpa-referral-opportunity",
-    "category": "referral-partners",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Helps CPAs identify clients who may need capital, credit, cash-flow, or tax-time financing support.",
-    "recommended_apps": ["CPA landing pages"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "business-broker-deal-funding",
-    "number": 37,
-    "name": "Business Broker Deal Funding Skill",
-    "slug": "business-broker-deal-funding",
-    "category": "referral-partners",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Helps brokers identify acquisition, bridge, working capital, and post-close funding needs.",
-    "recommended_apps": ["business broker tools"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "trucker-repair-to-revenue",
-    "number": 56,
-    "name": "Trucker Repair-to-Revenue Skill",
-    "slug": "trucker-repair-to-revenue",
-    "category": "widget-tools",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Calculates how long a repair takes to recover through weekly revenue.",
-    "recommended_apps": ["trucker widget"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "inventory-cash-crunch",
-    "number": 57,
-    "name": "Inventory Cash Crunch Skill",
-    "slug": "inventory-cash-crunch",
-    "category": "widget-tools",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Helps ecomm sellers estimate inventory funding need and payback window.",
-    "recommended_apps": ["ecomm calculators"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "contractor-job-float",
-    "number": 59,
-    "name": "Contractor Job Float Skill",
-    "slug": "contractor-job-float",
-    "category": "widget-tools",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Calculates working capital needed to float labor/materials before payment.",
-    "recommended_apps": ["contractor funnels"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "funnel-fit-router",
-    "number": 66,
-    "name": "Funnel Fit Router Skill",
-    "slug": "funnel-fit-router",
-    "category": "landing-pages",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Routes users to the right CTA based on intent, readiness, and partner source.",
-    "recommended_apps": ["landing pages"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "landing-page-copy-audit",
-    "number": 69,
-    "name": "Landing Page Copy Audit Skill",
-    "slug": "landing-page-copy-audit",
-    "category": "landing-pages",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Scores headline, subhead, CTA, social proof, objection handling, and conversion clarity.",
-    "recommended_apps": ["SiteForge tools"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "widget-cta-router",
-    "number": 78,
-    "name": "Widget CTA Router Skill",
-    "slug": "widget-cta-router",
-    "category": "widget-tools",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Routes widget users to different next steps based on score, result, source, and intent.",
-    "recommended_apps": ["embedded tools", "Next.js widgets"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "lead-webhook-payload",
-    "number": 81,
-    "name": "Lead Webhook Payload Skill",
-    "slug": "lead-webhook-payload",
-    "category": "widget-tools",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Structures widget submissions for n8n, HubSpot, Google Sheets, or Notion.",
-    "recommended_apps": ["automation", "webhooks"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "lead-scoring",
-    "number": 86,
-    "name": "Lead Scoring Skill",
-    "slug": "lead-scoring",
-    "category": "crm-ops",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Scores leads based on urgency, fit, revenue, source, niche, and next action.",
-    "recommended_apps": ["HubSpot", "n8n"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "crm-field-mapper",
-    "number": 87,
-    "name": "CRM Field Mapper Skill",
-    "slug": "crm-field-mapper",
-    "category": "crm-ops",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Maps form/widget fields to HubSpot, Notion, Sheets, or Wix CRM properties.",
-    "recommended_apps": ["automation docs"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "public-claims-review",
-    "number": 96,
-    "name": "Public Claims Review Skill",
-    "slug": "public-claims-review",
-    "category": "compliance",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Flags risky claims like guaranteed approval, same-day promises, or misleading terms.",
-    "recommended_apps": ["landing pages", "public docs"],
-    "status": "proposed",
-    "priority": "P0"
-  },
-  {
-    "id": "affiliate-disclosure",
-    "number": 97,
-    "name": "Affiliate Disclosure Skill",
-    "slug": "affiliate-disclosure",
-    "category": "compliance",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Generates FTC-style affiliate disclosures and earnings disclaimers.",
-    "recommended_apps": ["affiliate content"],
-    "status": "proposed",
-    "priority": "P1"
-  },
-  {
-    "id": "white-label-language",
-    "number": 99,
-    "name": "White-Label Language Skill",
-    "slug": "white-label-language",
-    "category": "compliance",
-    "audience": ["affiliate partners", "referral partners", "strategic partners", "SMB operators"],
-    "problem_solved": "Rewrites backend-provider language into Moonshine-safe public copy.",
-    "recommended_apps": ["public site", "docs"],
-    "status": "proposed",
-    "priority": "P0"
+    "name": "Vercel Deployment Checklist Builder",
+    "slug": "vercel-deployment-checklist-builder",
+    "category": "Platform Ops",
+    "audience": "Static site builders, repo maintainers, Vercel operators, and deployment reviewers",
+    "problem_solved": "Creates deployment checklists covering root files, Vercel settings, auto-deploy behavior, CTA links, legal pages, and rollback notes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Vercel",
+      "GitHub"
+    ],
+    "priority": "medium",
+    "status": "draft",
+    "path": "skills/vercel-deployment-checklist-builder/SKILL.md",
+    "related_agents": [
+      "agents/vercel-deployment-control-agent.md",
+      "agents/static-site-page-generator.md"
+    ],
+    "related_knowledge_bases": [
+      "portfolio/vercel/README.md"
+    ]
   }
 ]
