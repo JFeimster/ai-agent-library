@@ -1,109 +1,608 @@
 # Next Task Update Protocol
 
-Use this protocol after a PR is merged and the repo is ready to advance the queue.
+## Purpose
 
-`NEXT_TASK.md` is the control file for Jules. Keep it boring, explicit, and narrow.
+This protocol defines how to update `NEXT_TASK.md` after completing a task or batch.
 
-## When to update
+`NEXT_TASK.md` is the repo’s execution pointer. It tells Jules, Codex, ChatGPT, and human operators what work is currently approved.
 
-Update `NEXT_TASK.md` only after:
+Without this file, the repo queue turns into “just one more thing” soup. With it, work stays scoped, sequential, and reviewable. 🍜
 
-- The current PR has merged.
-- The completed issue is done or intentionally closed.
-- The next issue is selected by the user or confirmed by the roadmap.
+## Core Rule
 
-Do not update `NEXT_TASK.md` while a PR is still open unless the user explicitly wants to re-queue work.
+Only one next task should be approved at a time.
 
-## Update rules
+`NEXT_TASK.md` should point to the next approved batch or issue — not the whole roadmap.
 
-- [ ] Set Current Approved Task to exactly one issue.
-- [ ] Include issue number.
-- [ ] Include issue title.
-- [ ] Include branch name.
-- [ ] Set status to `Ready for Jules`.
-- [ ] Remove the approved issue from Upcoming Tasks.
-- [ ] Preserve the reusable Jules prompt.
-- [ ] Do not add multiple current tasks.
+## When To Use
 
-## Template
+Use this protocol after:
 
-```markdown
-# Next Task Queue
+- a batch is generated
+- a batch PR is opened
+- a batch PR is merged
+- the user approves the next batch
+- an issue is selected for Jules
+- a task queue changes
+- a previous next task is no longer valid
+- a PR is closed and replaced with a new task
+- the repo enters audit or launch-readiness mode
 
-This file tells Jules which single task is currently approved.
+## When Not To Use
+
+Do not update `NEXT_TASK.md`:
+
+- before a task is actually approved
+- just because a future batch exists
+- during unrelated file edits
+- inside a PR that is not about task sequencing unless explicitly approved
+- to sneak in extra scope
+- to approve several future tasks at once
+- after a failed or abandoned PR without human direction
+
+## Required Inputs
+
+Before updating `NEXT_TASK.md`, know:
+
+```text
+Current completed task:
+Current PR status:
+Next approved task:
+Target branch:
+Base branch:
+Files to create/update:
+Objective:
+Scope restrictions:
+Validation requirements:
+Out-of-scope items:
+Done means:
+```
+
+## Status Values
+
+Use one of these status values:
+
+```text
+Queued
+In Progress
+PR Open
+Blocked
+Needs Review
+Merged
+Paused
+Replaced
+Completed
+```
+
+Recommended usage:
+
+- `Queued` — next task is approved but not started.
+- `In Progress` — a repo agent is actively working.
+- `PR Open` — task PR exists and is waiting for review/merge.
+- `Blocked` — task cannot proceed without input or repair.
+- `Needs Review` — output exists but needs human review.
+- `Merged` — task PR merged; update to next task.
+- `Paused` — queue intentionally stopped.
+- `Replaced` — task was superseded.
+- `Completed` — task completed outside PR flow.
+
+## File Update Rules
+
+When updating `NEXT_TASK.md`:
+
+- keep it focused on one task
+- list exact file paths
+- define objective clearly
+- include scope restrictions
+- include validation requirements
+- include PR requirements if relevant
+- include out-of-scope items
+- include done means
+- do not include unrelated roadmap commentary
+- do not list several future batches as approved
+
+## Standard `NEXT_TASK.md` Template
+
+Use this template:
+
+```md
+# Next Task
+
+## Purpose
+
+This file tells Jules, Codex, ChatGPT, and human repo operators what the next approved task is.
+
+Only the task listed here is approved for execution.
+
+Do not start future tasks unless this file is updated or the user explicitly approves the next batch.
 
 ## Current Approved Task
 
-Issue: #[NUMBER]  
-Title: [ISSUE TITLE]  
-Branch: `[BRANCH NAME]`  
-Status: Ready for Jules
+```text
+[Batch Number] — [Task Title]
+```
 
-## Rule
+## Status
 
-Jules should only work the Current Approved Task.
+```text
+Queued
+```
 
-After Jules opens a PR:
+## Repository
 
+```text
+JFeimster/ai-agent-library
+```
+
+## Target Branch
+
+```text
+[branch-name]
+```
+
+## Base Branch
+
+```text
+main
+```
+
+## Files To Create Or Update
+
+```text
+[file]
+[file]
+[file]
+```
+
+## Objective
+
+[What this task should accomplish.]
+
+## Required File Purposes
+
+### `[file]`
+
+Should explain:
+
+- Requirement 1
+- Requirement 2
+- Requirement 3
+
+## Scope Rules
+
+Jules may only create or update:
+
+```text
+[file]
+[file]
+[file]
+```
+
+Do not change:
+
+```text
+[file or folder to avoid]
+[file or folder to avoid]
+```
+
+unless explicitly required by the user in a separate instruction.
+
+## Content Requirements
+
+Each Markdown file should include:
+
+- Purpose
+- Scope
+- Rules
+- Examples
+- Review checklist
+- Done means
+
+## Public-Safe Language Requirements
+
+Use safe, qualified language.
+
+Avoid:
+
+```text
+approval promises
+funding outcome promises
+income outcome promises
+traffic or ranking promises
+credit repair promises
+bypass language
+secret-provider-route language
+```
+
+Use:
+
+```text
+educational
+planning
+readiness
+review required
+possible fit
+compare options
+terms vary
+human review recommended
+```
+
+## Security Rules
+
+Do not include:
+
+- API keys
+- access tokens
+- OAuth secrets
+- webhook secrets
+- `.env` file contents
+- private keys
+- private customer data
+- borrower/client records
+- bank statements
+- tax records
+- credit reports
+- IDs or sensitive documents
+- backend provider bypass paths
+- private admin/editor URLs
+- fake testimonials
+- unsupported outcome promises
+
+## Validation Required
+
+Before PR:
+
+- [ ] Markdown reviewed
+- [ ] JSON validates if changed
+- [ ] YAML reviewed if changed
+- [ ] No secrets included
+- [ ] No private data included
+- [ ] No unsupported claims included
+- [ ] No unrelated files changed
+- [ ] Links and paths are repo-relative where possible
+
+## PR Requirements
+
+Open a PR into `main` with:
+
+```text
+Title: [PR title]
+```
+
+PR body should include:
+
+- summary
+- files changed
+- validation performed
+- scope confirmation
+- known issues
+
+## Out Of Scope
+
+Do not include:
+
+- future batch work
+- unrelated refactors
+- deployment config changes unless listed
+- package manager changes
+- private data
+- secrets
+
+## Done Means
+
+This task is done when:
+
+- listed files exist or are updated
+- content is complete and usable
+- validation is complete
+- PR is opened
+- repo agent stops after opening PR
+```
+
+## Batch-to-Next-Task Conversion
+
+When moving from one batch to the next, use this pattern.
+
+Completed:
+
+```text
+Batch 37 — Prompt Chain Control Layer
+```
+
+Next approved:
+
+```text
+Batch 38 — Execution Prompts for Repo Agents
+```
+
+Update:
+
+```text
+Current Approved Task: Batch 38 — Execution Prompts for Repo Agents
+Status: Queued
+Target Branch: batch-38-execution-prompts
+Files:
+prompt-chains/jules-execution-prompts.md
+prompt-chains/codex-execution-prompts.md
+prompt-chains/chatgpt-execution-prompts.md
+prompt-chains/review-and-merge-checklist.md
+```
+
+## Status Update Patterns
+
+### Mark Task In Progress
+
+Use when Jules/Codex starts work.
+
+```md
+## Status
+
+```text
+In Progress
+```
+```
+
+### Mark PR Open
+
+Use when a PR has been opened but not merged.
+
+```md
+## Status
+
+```text
+PR Open
+```
+
+## Pull Request
+
+```text
+#[PR number]
+```
+```
+
+### Mark Blocked
+
+Use when task cannot proceed.
+
+```md
+## Status
+
+```text
+Blocked
+```
+
+## Blocker
+
+```text
+[Explain blocker]
+```
+
+## Needed To Continue
+
+```text
+[Input or repair needed]
+```
+```
+
+### Mark Replaced
+
+Use when a task is superseded.
+
+```md
+## Status
+
+```text
+Replaced
+```
+
+## Replacement Task
+
+```text
+[New task]
+```
+
+## Reason
+
+```text
+[Reason]
+```
+```
+
+## Update Prompt For Jules
+
+Use this prompt when asking Jules to update `NEXT_TASK.md` after a merge:
+
+```text
+You are working in JFeimster/ai-agent-library.
+
+Update NEXT_TASK.md to point to the next approved task.
+
+Current completed task:
+[completed task]
+
+Next approved task:
+[next task]
+
+Target branch:
+[branch]
+
+Files:
+[file]
+[file]
+[file]
+
+Rules:
+- Only update NEXT_TASK.md.
+- Do not start the task.
+- Do not edit the listed task files.
+- Do not modify unrelated files.
+- Keep the structure consistent with the existing NEXT_TASK.md.
+- Include objective, scope rules, validation, PR requirements, out-of-scope items, and done means.
+- Commit the update.
+- Open a PR into main.
 - Stop.
-- Do not begin the next task.
-- Wait for human review, merge, and queue update.
+```
 
-## Reusable Jules Prompt
+## Update Prompt For ChatGPT
+
+Use this prompt when generating a new `NEXT_TASK.md` manually:
 
 ```text
-Use repository JFeimster/ai-agent-library.
+Generate a complete replacement for NEXT_TASK.md.
 
-Read JULES.md and NEXT_TASK.md.
+Next approved task:
+[next task]
 
-Work only the Current Approved Task listed in NEXT_TASK.md.
+Repository:
+JFeimster/ai-agent-library
 
-Follow the linked GitHub issue exactly.
+Target branch:
+[branch]
 
-Create the branch, complete the task, commit changes, open a PR into main, then stop.
+Files to create/update:
+[file]
+[file]
+[file]
 
-Do not begin the next task.
+Objective:
+[objective]
+
+Constraints:
+- Only this task is approved.
+- Do not approve future batches.
+- Use public-safe language.
+- Use synthetic examples only.
+- Do not include secrets or private data.
+- Include validation and PR requirements.
 ```
 
-## Upcoming Tasks
+## Update Prompt For Codex
 
-1. #[NEXT] [TITLE]
-2. #[NEXT] [TITLE]
-```
-
-## Recommended issue order after #4
-
-If Issue #20 has not merged yet, consider queueing #20 before #5 so the prompt-chain system exists before the heavier knowledge-base buildout.
-
-Otherwise:
-
-1. #5 Add Moonshine Capital funding knowledge base
-2. #6 Add partner enablement knowledge base
-3. #7 Add engineering-as-marketing knowledge base
-4. #8 Add CRM, automation, content ops, and local referral knowledge bases
-5. #9 Add schema definitions
-6. #10 Expand platform implementation packs
-7. #11 Expand reusable templates
-8. #12 Add portfolio inventories
-9. #13 Add roadmap folder
-10. #14 Add agent usage examples
-11. #15 Add GitHub project hygiene files
-12. #16 Add final indexes and crosslinks
-
-## Commit message format
+Use this prompt when asking Codex to update the file locally:
 
 ```text
-Update next task to issue #[NUMBER]
+Edit only NEXT_TASK.md.
+
+Set the current approved task to:
+[next task]
+
+Use target branch:
+[branch]
+
+List exactly these files:
+[file]
+[file]
+[file]
+
+Preserve the existing structure.
+Do not edit any other files.
+Do not start implementing the task.
+Run a quick markdown review.
+Commit with:
+Update NEXT_TASK for [task]
 ```
 
-## Final confirmation format
+## Scope Guardrails
+
+`NEXT_TASK.md` must not:
+
+- approve multiple future batches
+- include unrelated roadmap ideas as current scope
+- tell agents to merge PRs
+- tell agents to deploy automatically
+- include real secrets or private data
+- include private provider links
+- include fake validation results
+- reference files as existing if they do not exist unless clearly planned
+
+## Review Checklist
+
+Before merging a `NEXT_TASK.md` update:
+
+- [ ] Current approved task is clear.
+- [ ] Status is correct.
+- [ ] Repository is correct.
+- [ ] Target branch is specific.
+- [ ] Base branch is listed.
+- [ ] File list is exact.
+- [ ] Objective is specific.
+- [ ] Scope rules are clear.
+- [ ] Files to avoid are listed where helpful.
+- [ ] Validation requirements are included.
+- [ ] PR requirements are included.
+- [ ] Out-of-scope items are included.
+- [ ] Done means is clear.
+- [ ] No future tasks are accidentally approved.
+- [ ] No secrets/private data are included.
+
+## Common Mistakes
+
+Avoid:
 
 ```text
-NEXT_TASK.md updated to:
-
-Issue #[NUMBER] — [TITLE]
-Branch: [BRANCH]
-Status: Ready for Jules
-
-Commit: [SHA]
+Adding the whole roadmap as the approved task.
+Updating NEXT_TASK.md and implementing the task in the same PR when not requested.
+Leaving the target branch vague.
+Listing files that are not part of the next task.
+Forgetting validation requirements.
+Forgetting stop rules.
+Approving deployment changes casually.
 ```
+
+## Good Example
+
+```md
+## Current Approved Task
+
+```text
+Batch 38 — Execution Prompts for Repo Agents
+```
+
+## Status
+
+```text
+Queued
+```
+
+## Target Branch
+
+```text
+batch-38-execution-prompts
+```
+
+## Files To Create Or Update
+
+```text
+prompt-chains/jules-execution-prompts.md
+prompt-chains/codex-execution-prompts.md
+prompt-chains/chatgpt-execution-prompts.md
+prompt-chains/review-and-merge-checklist.md
+```
+```
+
+## Bad Example
+
+```md
+## Current Approved Task
+
+Do batches 38 through 50 and whatever else seems useful.
+```
+
+Why bad:
+
+- too broad
+- not reviewable
+- no exact file scope
+- encourages future-batch sprawl
+
+## Done Means
+
+`NEXT_TASK.md` is properly updated when:
+
+- it names exactly one approved task
+- it lists exact files
+- it gives a branch name
+- it includes validation
+- it includes out-of-scope boundaries
+- it tells repo agents when to stop
+- future work stays future work

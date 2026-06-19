@@ -1,130 +1,629 @@
 # ChatGPT Execution Prompts
 
-Use these prompts when ChatGPT is planning, drafting, reviewing, or creating scoped PRs while Jules is slow or blocked.
+## Purpose
 
-ChatGPT may plan across a phase, but implementation should remain PR-scoped.
+This file stores reusable prompts for using ChatGPT to plan, draft, review, and package AI Agent Library repo work.
 
----
+ChatGPT is useful for generating file contents, prompt chains, issue bodies, PR reviews, audit checklists, templates, static-site copy, and batch handoffs. These prompts keep outputs structured, copyable, reviewable, and safe.
 
-## Universal ChatGPT Repo Execution Prompt
+Use this file when ChatGPT is acting as the planning desk, drafting desk, or review desk — not as a rogue repo bulldozer with markdown confetti. 🧠
+
+## Core ChatGPT Rules
+
+ChatGPT should:
+
+- ask for missing critical scope only when needed
+- generate complete file contents when requested
+- keep outputs copy/paste-ready
+- avoid unnecessary commentary around files
+- use exact file path headings
+- use fenced code blocks
+- preserve repo conventions
+- use public-safe language
+- use synthetic examples only
+- avoid secrets/private data
+- avoid unsupported claims
+- clearly mark assumptions
+- suggest the next batch when relevant
+
+## Manual Batch Generation Prompt
+
+Use this prompt when generating a batch manually in ChatGPT.
 
 ```text
-This thread manages execution for JFeimster/ai-agent-library.
+Proceed to Batch [NUMBER].
 
-Use GitHub connector as needed.
+Generate complete and detailed file contents for:
 
-Before making repo changes:
-1. Check current open PRs.
-2. Check the relevant issue.
-3. Confirm the intended branch and file scope.
-4. Avoid touching unrelated files.
+[file]
+[file]
+[file]
+[file]
 
-Task:
-[INSERT TASK]
+Output format:
+- Start with: Batch [NUMBER] — [Title]
+- For each file:
+  - Use the file path as a heading.
+  - Provide the full file content in a fenced code block.
+  - Do not summarize instead of providing content.
+- End with the suggested next batch file list.
 
 Rules:
-- Keep work scoped to the requested issue or planning artifact.
-- Do not combine unrelated tasks.
-- Use reviewed PRs for implementation.
-- Do not include secrets, API keys, private client data, or backend-provider bypass paths.
-- If source data is missing, say so and mark values Unknown rather than inventing.
+- Make every file complete and useful, not a stub.
+- Use repo-relative paths.
+- Use lowercase kebab-case for slugs.
+- Use public-safe language.
+- Use synthetic examples only.
+- Do not include secrets, tokens, credentials, .env files, private data, backend provider bypass paths, fake testimonials, or unsupported claims.
+- Do not create future batch files.
+- Do not include unrelated files.
+- Do not add frameworks, package managers, or build steps.
+```
 
-Deliver:
-- Branch name
-- Files changed
-- Commit message
-- PR title/body
+## Manual Batch With Handoff Prompt
+
+Use this prompt when ChatGPT should create a compiled batch handoff file.
+
+```text
+Generate a compiled handoff Markdown file for Batch [NUMBER].
+
+Batch title:
+[title]
+
+Files:
+[file]
+[file]
+[file]
+[file]
+
+The handoff file should be named:
+
+batch-handoffs/batch-[NUMBER]-files.md
+
+Output the complete contents of that handoff file.
+
+The handoff file must include:
+1. Batch title
+2. File list
+3. One section per file
+4. Full file path as the heading
+5. Full file contents inside fenced code blocks
+6. Validation checklist
+7. PR notes
+
+Rules:
+- Include complete file contents.
+- Do not summarize.
+- Use public-safe language.
+- Use synthetic examples only.
+- Do not include secrets/private data.
+- Do not include unsupported claims.
+```
+
+## ChatGPT File Draft Prompt
+
+Use this for one file.
+
+```text
+Generate the complete contents for this repo file:
+
+[file path]
+
+Repo:
+JFeimster/ai-agent-library
+
+Purpose:
+[purpose]
+
+Audience:
+[audience]
+
+Required sections:
+[sections]
+
+Constraints:
+- Static-first and documentation-first.
+- Use repo-relative paths.
+- Use lowercase kebab-case slugs.
+- Use public-safe language.
+- Use synthetic examples only.
+- Do not include secrets, tokens, .env files, private data, backend provider bypass paths, fake testimonials, or unsupported claims.
+- Make the file complete and useful, not a stub.
+
+Output only:
+1. The file path heading
+2. A fenced code block with complete file contents
+```
+
+## ChatGPT Prompt Chain Draft Prompt
+
+Use this to create a new prompt-chain file.
+
+```text
+Create a complete prompt-chain file for:
+
+[prompt chain name]
+
+Repo path:
+
+prompt-chains/[file-name].md
+
+The prompt chain should help with:
+
+[use case]
+
+Include:
+- Purpose
+- When to use
+- When not to use
+- Inputs required
+- Operating rules
+- Prompt template
+- Output format
+- Validation
+- Stop rules
 - Review checklist
+- Done means
+
+Rules:
+- Use public-safe language.
+- Do not include secrets/private data.
+- Do not invent repo state.
+- Do not encourage auto-merge.
+- Do not encourage future-batch work without approval.
+- Keep it reusable.
 ```
 
----
+## ChatGPT Issue Body Prompt
 
-## Phase A Planning Prompt — Core Knowledge Bases
+Use this to create a GitHub issue.
 
 ```text
-Plan Phase A for JFeimster/ai-agent-library without implementing files yet.
+Create a complete GitHub issue body for:
 
-Phase A issues:
-- #5 Add Moonshine Capital funding knowledge base
-- #6 Add partner enablement knowledge base
-- #7 Add engineering-as-marketing knowledge base
-- #8 Add CRM, automation, content ops, and local referral knowledge bases
+[issue title]
 
-For each issue, produce:
-- Recommended branch name
-- Exact file list
-- Source assumptions
-- Crosslinks to existing agents/platforms
-- Guardrails
-- PR stop condition
+Repo:
+JFeimster/ai-agent-library
 
-Do not create files yet unless explicitly approved.
+Issue type:
+[agent / skill / knowledge-base / platform-pack / bug / feature / repo maintenance / PR review / batch]
+
+Files involved:
+[file]
+[file]
+[file]
+
+Objective:
+[objective]
+
+Include:
+- Objective
+- Files
+- Scope
+- Content requirements
+- Validation
+- Safety requirements
+- Out of scope
+- Acceptance criteria
+- Done means
+
+Rules:
+- Keep the issue specific and actionable.
+- Use checklists.
+- Do not include future unrelated work.
+- Use public-safe language.
+- Do not include secrets/private data.
 ```
 
----
+## ChatGPT PR Review Prompt
 
-## Issue Implementation Draft Prompt
+Use this to review a PR from pasted diff, summary, or connector output.
 
 ```text
-Prepare an implementation plan for Issue #[NUMBER] in JFeimster/ai-agent-library.
+Review this pull request for the AI Agent Library repo.
 
-Use the issue body as source of truth.
+PR:
+[PR number/title]
+
+Summary:
+[paste summary]
+
+Changed files:
+[paste files]
+
+Diff or relevant excerpts:
+[paste diff/excerpts]
+
+Review for:
+- Scope match
+- Expected files
+- Unrelated changes
+- Markdown completeness
+- JSON validity
+- YAML/workflow risk
+- Static-site behavior if applicable
+- Links and paths
+- Secrets/private data
+- Public-safe language
+- Deployment impact
+- Merge readiness
 
 Output:
-1. Scope summary
-2. Branch name
-3. Exact files to create/update
-4. Files not to touch
-5. Content structure for each file
-6. Risk notes
-7. Review checklist
-8. Jules prompt if this should be delegated
-9. ChatGPT execution plan if this should be done here
-
-Do not implement until approved.
-```
-
----
-
-## PR Review Prompt
-
-```text
-Review PR #[NUMBER] in JFeimster/ai-agent-library.
-
-Check:
-- Does it match the linked issue?
-- Are changed files in scope?
-- Did it start future issues?
-- Are there secrets, private data, or unsafe backend-provider details?
-- Are generated indexes consistent with source files?
-- Are README links accurate?
-- Are conflicts resolved?
-
-Return:
-- Approve or request changes
-- Blocking issues
-- Non-blocking notes
-- Exact comment to leave on the PR if revisions are needed
-```
-
----
-
-## Queue Update Prompt
-
-```text
-A PR has merged in JFeimster/ai-agent-library.
-
-Update NEXT_TASK.md to the next approved issue.
-
-Inputs:
-- Merged PR number: [PR]
-- Completed issue: #[NUMBER]
-- Next issue: #[NUMBER]
-- Next branch: [BRANCH]
+1. Decision: Approve / Comment / Request changes
+2. Summary
+3. Findings
+4. Required changes
+5. Suggested PR comment
+6. Merge recommendation
 
 Rules:
-- Update only NEXT_TASK.md unless explicitly asked otherwise.
-- Remove the next issue from Upcoming Tasks.
-- Preserve the reusable Jules prompt.
-- Commit directly to main.
+- Do not assume files not shown.
+- Mark uncertainty clearly.
+- Do not approve if there are safety, privacy, validation, or scope blockers.
 ```
+
+## ChatGPT Conflict Recommendation Prompt
+
+Use this when reviewing conflict screenshots or conflict markers.
+
+```text
+Review these merge conflicts.
+
+Repo:
+JFeimster/ai-agent-library
+
+PR:
+[PR number]
+
+Conflicted files:
+[file]
+[file]
+
+Conflict content:
+[paste conflict markers or screenshots description]
+
+For each file, recommend:
+- accept current
+- accept incoming
+- accept both
+- manual surgical merge
+- close PR and reopen clean branch
+
+Review for:
+- Which side preserves repo conventions
+- Which side matches issue scope
+- Which side avoids deleting useful content
+- Which side avoids future-batch leakage
+- Which side avoids secrets/private data
+- Which side avoids unsafe claims
+- Validation needed after repair
+
+Output:
+- Per-file recommendation
+- Reason
+- Exact next steps
+- Merge readiness notes
+```
+
+## ChatGPT Repo Audit Prompt
+
+Use this for a structured repo audit.
+
+```text
+Audit the AI Agent Library repo.
+
+Available repo information:
+[paste tree/search results/files]
+
+Audit these areas:
+1. Top-level structure
+2. GitHub issue templates
+3. GitHub workflows
+4. Core docs
+5. Security/privacy docs
+6. Prompt chains
+7. Agents
+8. Skills
+9. Knowledge bases
+10. Templates
+11. Platforms
+12. Portfolio
+13. Schemas
+14. Registry
+15. Examples
+16. Site data
+17. Static site files
+
+For each area, provide:
+- Present files
+- Missing files
+- Naming issues
+- Broken path risks
+- Public-safe issues
+- Validation concerns
+- Recommended next action
+
+Rules:
+- Do not invent repo state.
+- Clearly distinguish observed facts from recommendations.
+- Keep output structured.
+```
+
+## ChatGPT Repo Tree Planning Prompt
+
+Use this when converting a desired structure into a batch plan.
+
+```text
+Create a sequential batch plan for the AI Agent Library repo.
+
+Desired files:
+[paste file list]
+
+Constraints:
+- 3–5 files per batch where practical.
+- Group related files together.
+- Sequence dependencies logically.
+- Isolate high-risk files.
+- Keep static-first and documentation-first.
+- Do not add frameworks/package managers/build steps.
+- Use public-safe language.
+- Use synthetic examples only.
+
+Output:
+- Batch number
+- Batch title
+- File list
+- Intent
+- Dependencies
+- Validation
+- Out of scope
+- Recommended first batch
+
+Do not generate file contents yet.
+```
+
+## ChatGPT Static Site Page Prompt
+
+Use this for static-site page drafts.
+
+```text
+Generate complete static-site files for:
+
+[page or feature]
+
+Repo:
+JFeimster/ai-agent-library
+
+Files:
+[file.html]
+[styles.css if needed]
+[script.js if needed]
+[data json if needed]
+
+Rules:
+- Plain HTML/CSS/JS only.
+- No React.
+- No Next.js.
+- No npm.
+- No build step.
+- Use accessible semantic HTML.
+- Keep links repo-relative.
+- Use public-safe language.
+- Do not expose private/internal links.
+- Use synthetic examples only.
+- Include clear CTA text where relevant.
+
+Output:
+- Each file path heading
+- Complete fenced code block for each file
+- Validation checklist
+```
+
+## ChatGPT JSON/Data Prompt
+
+Use this for structured data files.
+
+```text
+Generate a complete JSON file for:
+
+[file path]
+
+Purpose:
+[purpose]
+
+Records needed:
+[records]
+
+Required fields:
+[fields]
+
+Rules:
+- Valid JSON only.
+- Two-space indentation.
+- Lowercase kebab-case slugs.
+- No comments.
+- No trailing commas.
+- No invented URLs.
+- No private data.
+- Synthetic examples only.
+- Use null for unknown values where appropriate.
+
+Output only the file path heading and fenced JSON code block.
+```
+
+## ChatGPT Schema Prompt
+
+Use this for JSON schemas.
+
+```text
+Generate a JSON Schema file for:
+
+[file path]
+
+The schema should validate:
+[record/object type]
+
+Required properties:
+[properties]
+
+Optional properties:
+[properties]
+
+Rules:
+- Use JSON Schema draft 2020-12 unless another draft is specified.
+- Valid JSON only.
+- Two-space indentation.
+- Include helpful descriptions.
+- Use lowercase kebab-case examples for slugs.
+- Do not include private data.
+- Use synthetic examples only.
+
+Output only the file path heading and fenced JSON code block.
+```
+
+## ChatGPT Rewrite Prompt For Public-Safe Language
+
+Use this when reviewing public-facing copy.
+
+```text
+Rewrite the following content to be public-safe.
+
+Content:
+[paste content]
+
+Rules:
+- Remove guaranteed approval claims.
+- Remove guaranteed funding claims.
+- Remove guaranteed income/revenue claims.
+- Remove guaranteed ranking/traffic claims.
+- Remove credit repair promises.
+- Remove bypass language.
+- Keep the message clear and useful.
+- Use terms like educational, readiness, compare options, possible fit, terms vary, review required, and human review recommended.
+- Include affiliate/referral disclosure language if monetized links are present.
+- Preserve legitimate CTAs and URLs.
+
+Output:
+- Revised copy
+- Claims removed
+- Notes
+```
+
+## ChatGPT Batch Review Prompt
+
+Use this to review a generated batch before adding it to the repo.
+
+```text
+Review this generated batch before repo implementation.
+
+Batch:
+[batch number/title]
+
+Files:
+[paste generated files]
+
+Check:
+- All required files are present.
+- File paths are correct.
+- Content is complete.
+- No unrelated files are included.
+- Markdown fences are valid.
+- JSON is valid if present.
+- YAML is plausible if present.
+- No secrets/private data.
+- No unsupported claims.
+- Public-safe language is used.
+- Next batch suggestion is correct.
+
+Output:
+- Pass/fail
+- Required fixes
+- Optional improvements
+- Final copy-ready corrected files if needed
+```
+
+## ChatGPT Output Format Rules
+
+When generating files, ChatGPT should use:
+
+```md
+## `path/to/file.md`
+
+```md
+[complete file content]
+```
+```
+
+For JSON:
+
+```md
+## `path/to/file.json`
+
+```json
+{
+  "example": true
+}
+```
+```
+
+For YAML:
+
+```md
+## `path/to/file.yml`
+
+```yaml
+name: Example
+```
+```
+
+## ChatGPT Safety Guardrails
+
+Do not generate:
+
+- API keys
+- access tokens
+- OAuth secrets
+- webhook secrets
+- `.env` contents
+- private keys
+- real customer data
+- borrower/client records
+- bank statements
+- tax records
+- credit reports
+- IDs
+- backend provider bypass paths
+- fake testimonials
+- unverifiable social proof
+- guaranteed funding/approval/income/ranking claims
+
+## ChatGPT Review Checklist
+
+Before finalizing generated repo content:
+
+- [ ] File paths are exact.
+- [ ] Content is complete.
+- [ ] Markdown fences are closed.
+- [ ] JSON validates conceptually.
+- [ ] YAML is plausible.
+- [ ] No secrets.
+- [ ] No private data.
+- [ ] No backend provider bypass paths.
+- [ ] No unsupported claims.
+- [ ] Public-safe language is used.
+- [ ] Future work is not executed early.
+- [ ] Next batch suggestion is included when useful.
+
+## Done Means
+
+ChatGPT execution prompts are useful when they produce:
+
+- copy-ready file contents
+- scoped issue bodies
+- usable PR reviews
+- safe prompt chains
+- clean batch handoffs
+- clear next-step sequencing
+- less thread clutter
+- fewer accidental markdown landmines
