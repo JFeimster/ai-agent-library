@@ -1,0 +1,119 @@
+{
+  "name": "Partner Enablement Knowledge Base",
+  "slug": "partner-enablement",
+  "description": "Partner launch kits, attribution rules, affiliate protection, resource cards, broker enablement assets, partner-safe CTAs, and distribution workflows.",
+  "status": "draft",
+  "visibility": "public-safe with partner-specific review",
+  "primary_users": [
+    "Referral agents",
+    "Affiliates",
+    "Business funding brokers",
+    "ISO reps",
+    "Consultants",
+    "Local referral partners",
+    "Strategic partners",
+    "Partner managers",
+    "Static site builders"
+  ],
+  "partner_types": [
+    {
+      "type": "Referral Agent",
+      "best_resources": [
+        "Simple explainer pages",
+        "Intake links",
+        "Partner profile pages",
+        "Resource cards",
+        "Follow-up scripts"
+      ]
+    },
+    {
+      "type": "Affiliate Publisher",
+      "best_resources": [
+        "Public landing pages",
+        "Comparison pages",
+        "Resource hubs",
+        "Disclosure-ready CTAs",
+        "SEO briefs"
+      ]
+    },
+    {
+      "type": "Broker / ISO Rep",
+      "best_resources": [
+        "Funding readiness pages",
+        "Resource cards",
+        "Intake scripts",
+        "Follow-up templates",
+        "Partner microsites"
+      ]
+    },
+    {
+      "type": "Consultant / Agency",
+      "best_resources": [
+        "AI workflow audits",
+        "Automation templates",
+        "Tool directories",
+        "Prompt packs",
+        "Implementation checklists"
+      ]
+    },
+    {
+      "type": "Strategic Partner",
+      "best_resources": [
+        "Co-branded resource pages",
+        "Tool bundles",
+        "Partner portals",
+        "Campaign briefs",
+        "Shared directories"
+      ]
+    }
+  ],
+  "asset_types": [
+    "Resource Card",
+    "Partner Profile Page",
+    "Partner Launch Kit",
+    "Provider Directory Listing",
+    "Partner Microsite",
+    "Tracked CTA",
+    "Disclosure Snippet"
+  ],
+  "safe_language": [
+    "Resource",
+    "Readiness",
+    "Educational guide",
+    "Common requirements",
+    "Potential fit",
+    "Next steps",
+    "Partner resource",
+    "Learn more",
+    "Check readiness",
+    "Compare options"
+  ],
+  "restricted_language": [
+    "Guaranteed approval",
+    "Guaranteed funding",
+    "Guaranteed results",
+    "Instant approval for everyone",
+    "No risk",
+    "Everyone qualifies",
+    "Best rates guaranteed",
+    "No documents needed"
+  ],
+  "required_review_checks": [
+    "CTA links are approved",
+    "Tracking parameters are correct",
+    "Affiliate or referral disclosure is visible",
+    "No private contact details are exposed",
+    "No guaranteed outcome claims are included",
+    "Partner bio is public-safe",
+    "Provider claims are verified or removed"
+  ],
+  "related_paths": [
+    "get-started.html",
+    "partners.html",
+    "team.html",
+    "profile.html",
+    "affiliate-disclosure.html",
+    "knowledge-base/partner-enablement/README.md",
+    "examples/partner-enablement/"
+  ]
+}

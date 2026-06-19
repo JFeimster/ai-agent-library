@@ -1,0 +1,467 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-agent-library.local/schemas/vercel-project.schema.json",
+  "title": "Vercel Project Schema",
+  "description": "Schema for tracking Vercel static sites, AI tools, calculators, directories, landing pages, and deployable AI Agent Library assets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "name",
+    "slug",
+    "status",
+    "site_type",
+    "repo",
+    "deployment",
+    "files",
+    "owner"
+  ],
+  "properties": {
+    "name": {
+      "type": "string",
+      "description": "Human-readable Vercel project or site name.",
+      "minLength": 2,
+      "maxLength": 140
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe project slug.",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+    },
+    "status": {
+      "type": "string",
+      "description": "Current project status.",
+      "enum": [
+        "idea",
+        "draft",
+        "local",
+        "preview",
+        "production",
+        "paused",
+        "needs-refresh",
+        "deprecated",
+        "archived"
+      ]
+    },
+    "site_type": {
+      "type": "string",
+      "description": "Primary site or deployable asset type.",
+      "enum": [
+        "static-site",
+        "landing-page",
+        "directory",
+        "calculator",
+        "scorecard",
+        "generator",
+        "portfolio",
+        "documentation",
+        "partner-page",
+        "knowledge-base",
+        "tool",
+        "other"
+      ]
+    },
+    "description": {
+      "type": "string",
+      "maxLength": 800
+    },
+    "audience": {
+      "type": "array",
+      "description": "Primary audiences for the project.",
+      "items": {
+        "type": "string",
+        "maxLength": 140
+      },
+      "default": []
+    },
+    "repo": {
+      "type": "object",
+      "description": "GitHub source repository details.",
+      "additionalProperties": false,
+      "required": [
+        "provider",
+        "repository",
+        "default_branch"
+      ],
+      "properties": {
+        "provider": {
+          "type": "string",
+          "enum": [
+            "github",
+            "gitlab",
+            "bitbucket",
+            "manual",
+            "other"
+          ],
+          "default": "github"
+        },
+        "repository": {
+          "type": "string",
+          "description": "Repository in owner/name format when applicable.",
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "examples": [
+            "JFeimster/ai-agent-library"
+          ]
+        },
+        "repo_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "default_branch": {
+          "type": "string",
+          "default": "main"
+        },
+        "local_path": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "deployment": {
+      "type": "object",
+      "description": "Vercel deployment configuration and current URLs.",
+      "additionalProperties": false,
+      "required": [
+        "deployment_mode",
+        "auto_deploy_enabled"
+      ],
+      "properties": {
+        "vercel_project_id": {
+          "type": "string",
+          "pattern": "^prj_[A-Za-z0-9]+$"
+        },
+        "vercel_team_id": {
+          "type": "string",
+          "pattern": "^team_[A-Za-z0-9]+$"
+        },
+        "deployment_mode": {
+          "type": "string",
+          "enum": [
+            "manual",
+            "git-auto",
+            "disabled",
+            "unknown"
+          ]
+        },
+        "auto_deploy_enabled": {
+          "type": "boolean",
+          "description": "Whether Git-triggered auto deployments are enabled."
+        },
+        "production_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "preview_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "custom_domains": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "pattern": "^[a-z0-9.-]+\\.[a-z]{2,}$"
+          },
+          "default": []
+        },
+        "last_deployment_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "last_deployed_at": {
+          "type": "string",
+          "format": "date-time"
+        },
+        "vercel_json": {
+          "type": "object",
+          "description": "Important deployment controls from vercel.json.",
+          "additionalProperties": true,
+          "properties": {
+            "cleanUrls": {
+              "type": "boolean"
+            },
+            "trailingSlash": {
+              "type": "boolean"
+            },
+            "git": {
+              "type": "object",
+              "additionalProperties": true,
+              "properties": {
+                "deploymentEnabled": {
+                  "type": "boolean"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "description": "Core project file inventory.",
+      "additionalProperties": false,
+      "required": [
+        "root_files"
+      ],
+      "properties": {
+        "root_files": {
+          "type": "array",
+          "description": "Root files required by the static site.",
+          "items": {
+            "type": "string"
+          },
+          "default": [
+            "index.html",
+            "styles.css",
+            "script.js"
+          ]
+        },
+        "pages": {
+          "type": "array",
+          "description": "Static HTML pages.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "data_files": {
+          "type": "array",
+          "description": "JSON, CSV, or other data files.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "asset_files": {
+          "type": "array",
+          "description": "Images, icons, downloads, or other static assets.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "config_files": {
+          "type": "array",
+          "description": "Deployment or repo config files.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "environment": {
+      "type": "object",
+      "description": "Environment variable and secret handling notes.",
+      "additionalProperties": false,
+      "properties": {
+        "requires_env_vars": {
+          "type": "boolean",
+          "default": false
+        },
+        "env_vars": {
+          "type": "array",
+          "items": {
+            "$ref": "#/$defs/env_var"
+          },
+          "default": []
+        },
+        "secret_policy": {
+          "type": "string",
+          "description": "Rules for secrets, tokens, and API keys.",
+          "maxLength": 1000
+        }
+      }
+    },
+    "ctas": {
+      "type": "array",
+      "description": "Primary site CTAs.",
+      "items": {
+        "$ref": "#/$defs/cta"
+      },
+      "default": []
+    },
+    "analytics": {
+      "type": "object",
+      "description": "Analytics and tracking configuration.",
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "provider": {
+          "type": "string",
+          "enum": [
+            "none",
+            "vercel-analytics",
+            "google-analytics",
+            "plausible",
+            "posthog",
+            "custom",
+            "other"
+          ],
+          "default": "none"
+        },
+        "events": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "privacy_note": {
+          "type": "string",
+          "maxLength": 800
+        }
+      }
+    },
+    "safety": {
+      "type": "object",
+      "description": "Public-safe language, legal, privacy, and deployment guardrails.",
+      "additionalProperties": false,
+      "properties": {
+        "requires_legal_pages": {
+          "type": "boolean",
+          "default": true
+        },
+        "restricted_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "required_disclaimers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "data_policy_notes": {
+          "type": "string",
+          "maxLength": 1200
+        }
+      }
+    },
+    "owner": {
+      "type": "object",
+      "description": "Project ownership and maintenance.",
+      "additionalProperties": false,
+      "required": [
+        "name"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "email": {
+          "type": "string",
+          "format": "email"
+        },
+        "github": {
+          "type": "string",
+          "maxLength": 140
+        }
+      }
+    },
+    "maintenance": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "next_review_due": {
+          "type": "string",
+          "format": "date"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    }
+  },
+  "$defs": {
+    "env_var": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "required",
+        "scope",
+        "secret"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[A-Z0-9_]+$"
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "scope": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "enum": [
+              "development",
+              "preview",
+              "production"
+            ]
+          },
+          "uniqueItems": true
+        },
+        "secret": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500
+        }
+      }
+    },
+    "cta": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "label",
+        "url",
+        "placement"
+      ],
+      "properties": {
+        "label": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160
+        },
+        "url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "placement": {
+          "type": "string",
+          "enum": [
+            "hero",
+            "footer",
+            "card",
+            "navigation",
+            "form",
+            "results",
+            "other"
+          ]
+        },
+        "purpose": {
+          "type": "string",
+          "maxLength": 400
+        }
+      }
+    }
+  }
+}

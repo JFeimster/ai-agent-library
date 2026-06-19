@@ -3,23 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Categories | AI Agent Library</title>
-  <meta name="description" content="Browse the AI Agent Library by major operating categories including funding, partner enablement, content, automation, business credit, and asset management.">
-
+  <meta name="description" content="Browse the library by operating category across agents, skills, prompts, knowledge bases, platform packs, examples, and portfolio assets.">
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
-
   <header class="site-header">
     <div class="nav-wrap">
-      <a class="brand" href="index.html">
-        <span class="brand-mark">AI</span>
-        <span>Agent Library</span>
-      </a>
-
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="agent-catalog.html">Agents</a>
@@ -33,52 +25,17 @@
       </nav>
     </div>
   </header>
-
   <section class="hero">
-    <div class="eyebrow">Directory & Discovery</div>
+    <div class="eyebrow">Discovery</div>
     <h1>Categories</h1>
-    <p>
-      Browse the AI Agent Library by major operating categories including funding,
-      partner enablement, content, automation, business credit, and asset management.
-    </p>
+    <p>Browse the library by operating category across agents, skills, prompts, knowledge bases, platform packs, examples, and portfolio assets.</p>
   </section>
-
   <main id="main">
-    <section class="section">
-      <div class="toolbar">
-        <input id="categorySearch" type="search" placeholder="Search categories...">
-      </div>
-    </section>
-
-    <section class="section">
-      <div id="categoryGrid" class="grid"></div>
-    </section>
-
-    <section class="section card">
-      <h2>Category strategy</h2>
-      <p>
-        Categories are the main browsing layer. Keep them broad enough to avoid clutter
-        and specific enough to help users pick the right agent, skill, prompt system,
-        knowledge base, or implementation pack.
-      </p>
-
-      <ul class="mini-list">
-        <li><strong>Funding Ops</strong> should cover intake, triage, routing, documents, and follow-up.</li>
-        <li><strong>Partner Enablement</strong> should cover affiliates, brokers, resource cards, and launch kits.</li>
-        <li><strong>Content Ops</strong> should cover SEO, publishing workflows, repurposing, and briefs.</li>
-        <li><strong>Automation</strong> should cover workflows, webhooks, CRM actions, review gates, and triggers.</li>
-        <li><strong>Business Credit</strong> should stay educational, readiness-based, and non-promissory.</li>
-        <li><strong>Asset Management</strong> should cover Vercel, GPTs, Gemini Gems, Flash UI, and portfolio inventory.</li>
-      </ul>
-    </section>
+    <section class="section callout"><strong>Category rule:</strong><p>Categories are the first layer of navigation. Tags handle cross-cutting discovery. Keep category names durable and obvious.</p></section>
+    <section class="section"><div id="categoryGrid" class="grid"></div></section>
   </main>
-
   <footer class="footer">
-    <p>
-      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
-      knowledge bases, platform packs, and deployable AI product assets.
-    </p>
-
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
     <p>
       <a href="terms.html">Terms</a> ·
       <a href="privacy.html">Privacy</a> ·
@@ -86,50 +43,14 @@
       <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
       <a href="contribute.html">Contribute</a>
     </p>
-
     <p>© <span data-year></span> AI Agent Library.</p>
   </footer>
-
   <script src="script.js"></script>
-
   <script>
     (async () => {
       const categories = await AILibrary.fetchJSON("site-data/categories.json", []);
       const grid = document.getElementById("categoryGrid");
-      const input = document.getElementById("categorySearch");
-
-      function renderCategories() {
-        const query = input.value.toLowerCase();
-
-        const filtered = categories.filter((category) => {
-          return [category.name, category.description]
-            .join(" ")
-            .toLowerCase()
-            .includes(query);
-        });
-
-        grid.innerHTML = filtered.map((category) => {
-          const slug = category.name.toLowerCase().replace(/[^a-z0-9]+/g, "-");
-
-          return `
-            <article class="card" id="${AILibrary.escapeHTML(slug)}">
-              <div class="pill-row">
-                <span class="pill gold">Category</span>
-              </div>
-
-              <h2>${AILibrary.escapeHTML(category.name)}</h2>
-              <p>${AILibrary.escapeHTML(category.description)}</p>
-
-              <a class="button-link secondary" href="search.html?q=${encodeURIComponent(category.name)}">
-                Search this category →
-              </a>
-            </article>
-          `;
-        }).join("") || `<div class="empty-state">No categories found.</div>`;
-      }
-
-      input.addEventListener("input", renderCategories);
-      renderCategories();
+      grid.innerHTML = categories.map(c => `<article class="card"><div class="pill-row"><span class="pill gold">Category</span></div><h2>${AILibrary.escapeHTML(c.name)}</h2><p>${AILibrary.escapeHTML(c.description)}</p><a class="button-link secondary" href="search.html?q=${encodeURIComponent(c.name)}">Search this category →</a></article>`).join("") || `<div class="empty-state">No categories found.</div>`;
     })();
   </script>
 </body>

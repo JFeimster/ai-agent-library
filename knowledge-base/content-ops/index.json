@@ -1,0 +1,82 @@
+{
+  "name": "Content Ops Knowledge Base",
+  "slug": "content-ops",
+  "description": "SEO briefs, article frameworks, repurposing systems, video-to-blog workflows, content calendars, metadata checklists, and content-to-agent conversion.",
+  "status": "draft",
+  "visibility": "public-safe",
+  "primary_users": [
+    "Content operators",
+    "AI SEO builders",
+    "Blog writers",
+    "YouTube operators",
+    "Newsletter operators",
+    "Custom GPT builders",
+    "Static site builders",
+    "Affiliate content teams",
+    "Marketing agencies",
+    "Business tool publishers"
+  ],
+  "asset_types": [
+    "SEO Article Brief",
+    "Blog Article",
+    "YouTube Script",
+    "Prompt Pack",
+    "Landing Page",
+    "FAQ Page",
+    "Social Post Set",
+    "Metadata Pack"
+  ],
+  "required_seo_brief_sections": [
+    "Working title",
+    "Primary keyword",
+    "Secondary keywords",
+    "Search intent",
+    "Audience",
+    "Problem solved",
+    "Recommended H2s/H3s",
+    "Internal links",
+    "External citation needs",
+    "CTA",
+    "Meta description",
+    "Article excerpt",
+    "Do-not-claim list"
+  ],
+  "metadata_fields": [
+    "Page title",
+    "Meta description",
+    "H1",
+    "Primary keyword or topic",
+    "Short excerpt",
+    "Category",
+    "Tags",
+    "CTA",
+    "Canonical URL",
+    "Open Graph image",
+    "Last reviewed date"
+  ],
+  "recommended_ctas": [
+    "Browse related agents",
+    "Open the skill builder",
+    "Use the prompt generator",
+    "Check funding readiness",
+    "Compare partner resources",
+    "View platform pack",
+    "Download the template",
+    "Start with the resource page"
+  ],
+  "restricted_cta_patterns": [
+    "Vague learn more as the only CTA",
+    "Guaranteed outcome language",
+    "Premature form-first CTA",
+    "Multiple competing primary CTAs"
+  ],
+  "related_paths": [
+    "knowledge-base/content-ops/README.md",
+    "knowledge-base/content-ops/examples.md",
+    "examples/content-ops/",
+    "prompt-library.html",
+    "prompt-generator.html",
+    "templates.html",
+    "schemas/"
+  ]
+}

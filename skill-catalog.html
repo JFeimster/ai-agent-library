@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Skill Catalog | AI Agent Library</title>
+  <meta name="description" content="Browse reusable agent skills by category, audience, recommended platform, status, and implementation priority.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html" aria-current="page">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Skills Library</div>
+    <h1>Skill Catalog</h1>
+    <p>
+      Browse reusable agent skills by category, audience, recommended platform,
+      status, and implementation priority.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section">
+      <div class="toolbar">
+        <input id="skillSearch" type="search" placeholder="Search skills...">
+
+        <select id="skillCategory">
+          <option value="all">All categories</option>
+        </select>
+
+        <select id="skillSort">
+          <option value="priority">Sort by priority</option>
+          <option value="name">Sort by name</option>
+          <option value="category">Sort by category</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="section">
+      <div id="skillStats" class="stat-row"></div>
+    </section>
+
+    <section class="section">
+      <div id="skillGrid" class="wide-grid"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>What counts as a skill?</h2>
+        <p>
+          A skill is a reusable capability that can power multiple agents, pages,
+          workflows, platform packs, or internal operating systems.
+        </p>
+
+        <ul class="mini-list">
+          <li>It should have a narrow job.</li>
+          <li>It should define required inputs.</li>
+          <li>It should produce a structured output.</li>
+          <li>It should include guardrails.</li>
+          <li>It should be reusable across more than one asset.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Recommended skill file format</h2>
+        <pre>skills/
+  [skill-slug]/
+    SKILL.md
+    examples.md
+    inputs.json
+    output.schema.json
+    tests.md</pre>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    (async () => {
+      const rawSkills = await AILibrary.fetchJSON(
+        ["skills/skill-index.json", "site-data/skills.fallback.json"],
+        []
+      );
+
+      const skills = rawSkills.map((skill, index) => {
+        return AILibrary.normalizeSkill(skill, index);
+      });
+
+      const categorySelect = document.getElementById("skillCategory");
+      const searchInput = document.getElementById("skillSearch");
+      const sortSelect = document.getElementById("skillSort");
+      const stats = document.getElementById("skillStats");
+      const grid = document.getElementById("skillGrid");
+
+      AILibrary.unique(skills.map((skill) => skill.category)).forEach((category) => {
+        categorySelect.insertAdjacentHTML(
+          "beforeend",
+          `<option value="${AILibrary.escapeHTML(category)}">${AILibrary.escapeHTML(category)}</option>`
+        );
+      });
+
+      function priorityWeight(priority) {
+        const weights = {
+          High: 1,
+          Medium: 2,
+          Low: 3
+        };
+
+        return weights[priority] || 99;
+      }
+
+      function renderSkills() {
+        const query = searchInput.value.toLowerCase();
+        const category = categorySelect.value;
+        const sort = sortSelect.value;
+
+        let filtered = skills.filter((skill) => {
+          const searchableText = [
+            skill.name,
+            skill.category,
+            skill.audience,
+            skill.problem_solved,
+            skill.status,
+            skill.priority,
+            (skill.recommended_apps || []).join(" ")
+          ].join(" ").toLowerCase();
+
+          return searchableText.includes(query) &&
+            (category === "all" || skill.category === category);
+        });
+
+        if (sort === "name") {
+          filtered = filtered.sort((a, b) => a.name.localeCompare(b.name));
+        }
+
+        if (sort === "category") {
+          filtered = filtered.sort((a, b) => {
+            return `${a.category}${a.name}`.localeCompare(`${b.category}${b.name}`);
+          });
+        }
+
+        if (sort === "priority") {
+          filtered = filtered.sort((a, b) => {
+            return priorityWeight(a.priority) - priorityWeight(b.priority);
+          });
+        }
+
+        stats.innerHTML = `
+          <div class="stat">
+            <strong>${skills.length}</strong>
+            <span>Total skills</span>
+          </div>
+
+          <div class="stat">
+            <strong>${AILibrary.unique(skills.map((skill) => skill.category)).length}</strong>
+            <span>Categories</span>
+          </div>
+
+          <div class="stat">
+            <strong>${filtered.length}</strong>
+            <span>Visible results</span>
+          </div>
+        `;
+
+        grid.innerHTML = filtered.map((skill) => {
+          return `
+            <article class="card">
+              <div class="pill-row">
+                <span class="pill gold">${AILibrary.escapeHTML(skill.category)}</span>
+                <span class="pill">${AILibrary.escapeHTML(skill.priority)}</span>
+                <span class="pill">${AILibrary.escapeHTML(skill.status)}</span>
+              </div>
+
+              <h2>${AILibrary.escapeHTML(skill.name)}</h2>
+
+              <p>
+                <strong>Audience:</strong>
+                ${AILibrary.escapeHTML(skill.audience)}
+              </p>
+
+              <p>${AILibrary.escapeHTML(skill.problem_solved)}</p>
+
+              <h3>Recommended platforms</h3>
+              <div class="pill-row">
+                ${(skill.recommended_apps || []).map((app) => {
+                  return `<span class="pill">${AILibrary.escapeHTML(app)}</span>`;
+                }).join("") || `<span class="pill">Platform TBD</span>`}
+              </div>
+
+              <a class="button-link secondary" href="skill-builder.html">
+                Build from this pattern →
+              </a>
+            </article>
+          `;
+        }).join("") || `<div class="empty-state">No matching skills.</div>`;
+      }
+
+      searchInput.addEventListener("input", renderSkills);
+      categorySelect.addEventListener("input", renderSkills);
+      categorySelect.addEventListener("change", renderSkills);
+      sortSelect.addEventListener("input", renderSkills);
+      sortSelect.addEventListener("change", renderSkills);
+
+      renderSkills();
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,84 @@
+{
+  "portfolio": "flash-ui",
+  "name": "Flash UI Portfolio",
+  "description": "Inventory for reusable static site variants, landing page patterns, visual systems, interface experiments, and deployable UI shells.",
+  "status": "draft",
+  "items": [
+    {
+      "name": "AI Agent Library Dark Directory",
+      "slug": "ai-agent-library-dark-directory",
+      "status": "draft",
+      "visual_style": "dark, high-contrast, card-based, operator-focused",
+      "best_use_case": "Agent libraries, skill catalogs, knowledge-base hubs, and AI product directories",
+      "source_path": "index.html",
+      "preview_url": "",
+      "included_files": [
+        "index.html",
+        "styles.css",
+        "script.js"
+      ],
+      "related_site_type": "directory",
+      "related_cta_pattern": "Primary browse CTA with secondary builder CTA",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Current AI Agent Library root site style."
+    },
+    {
+      "name": "Partner Resource Grid",
+      "slug": "partner-resource-grid",
+      "status": "draft",
+      "visual_style": "card-grid partner enablement layout",
+      "best_use_case": "Affiliate pages, referral partner resources, provider directories, and team profile systems",
+      "source_path": "partners.html",
+      "preview_url": "",
+      "included_files": [
+        "partners.html",
+        "team.html",
+        "profile.html",
+        "styles.css"
+      ],
+      "related_site_type": "partner-page",
+      "related_cta_pattern": "Partner application CTA plus disclosure CTA",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Reusable pattern for affiliate and partner distribution pages."
+    },
+    {
+      "name": "Skill Builder Generator UI",
+      "slug": "skill-builder-generator-ui",
+      "status": "draft",
+      "visual_style": "form-to-output generator interface",
+      "best_use_case": "Prompt generators, schema builders, resource-card generators, and SKILL.md builders",
+      "source_path": "skill-builder.html",
+      "preview_url": "",
+      "included_files": [
+        "skill-builder.html",
+        "styles.css",
+        "script.js"
+      ],
+      "related_site_type": "generator",
+      "related_cta_pattern": "Generate output plus copy output",
+      "last_reviewed_at": "2026-06-18",
+      "notes": "Can be adapted for prompt generation, partner card generation, and static file builders."
+    }
+  ],
+  "recommended_fields": [
+    "name",
+    "slug",
+    "status",
+    "visual_style",
+    "best_use_case",
+    "source_path",
+    "preview_url",
+    "included_files",
+    "related_site_type",
+    "related_cta_pattern",
+    "last_reviewed_at",
+    "notes"
+  ],
+  "related_paths": [
+    "portfolio/flash-ui/README.md",
+    "portfolio/vercel/README.md",
+    "knowledge-base/engineering-as-marketing/README.md",
+    "styles.css",
+    "roadmap/phase-4-platform-layer.md"
+  ]
+}

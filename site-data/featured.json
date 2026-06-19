@@ -1,0 +1,72 @@
+[
+  {
+    "type": "Agent",
+    "category": "Funding Ops",
+    "title": "Funding Pipeline Triage Agent",
+    "description": "Summarizes funding leads, identifies missing information, flags caution items, and suggests a likely product-family path using public-safe language.",
+    "url": "agent-catalog.html"
+  },
+  {
+    "type": "Skill",
+    "category": "Static Sites",
+    "title": "Static Site Page Builder",
+    "description": "Generates dependency-free HTML pages with consistent navigation, CTAs, metadata, cards, sections, and public-safe copy structure.",
+    "url": "skill-catalog.html"
+  },
+  {
+    "type": "Knowledge Base",
+    "category": "Funding Ops",
+    "title": "Funding Knowledge Base",
+    "description": "Funding product-family routing, intake questions, document needs, qualification bands, caution flags, and restricted-claim rules.",
+    "url": "knowledge-base/funding/README.md"
+  },
+  {
+    "type": "Knowledge Base",
+    "category": "Partner Enablement",
+    "title": "Partner Enablement Knowledge Base",
+    "description": "Partner launch kits, resource cards, attribution rules, partner-safe CTAs, affiliate disclosure snippets, and profile-page guidance.",
+    "url": "knowledge-base/partner-enablement/README.md"
+  },
+  {
+    "type": "Schema",
+    "category": "AI Builder Resources",
+    "title": "Agent Schema",
+    "description": "A structured schema for documenting productized AI agent specs with inputs, outputs, workflow, guardrails, files, and metadata.",
+    "url": "schemas/agent.schema.json"
+  },
+  {
+    "type": "Schema",
+    "category": "Automation",
+    "title": "Webhook Event Schema",
+    "description": "A public-safe schema for webhook events, automation payloads, CRM triggers, partner events, processing status, and data policy rules.",
+    "url": "schemas/webhook-event.schema.json"
+  },
+  {
+    "type": "Portfolio",
+    "category": "Custom GPTs",
+    "title": "Custom GPT Portfolio",
+    "description": "Tracks GPT names, access URLs, descriptions, users, CTAs, knowledge files, safety notes, and related agent packages.",
+    "url": "portfolio/custom-gpts/README.md"
+  },
+  {
+    "type": "Page",
+    "category": "Affiliates & Partners",
+    "title": "Partner Get Started",
+    "description": "Recruitment landing page for referral agents, affiliates, brokers, ISO reps, consultants, local connectors, and strategic partners.",
+    "url": "get-started.html"
+  },
+  {
+    "type": "Tool",
+    "category": "Skills Library",
+    "title": "Skill Builder",
+    "description": "Browser-based generator for reusable SKILL.md files with purpose, audience, inputs, outputs, implementation notes, and guardrails.",
+    "url": "skill-builder.html"
+  },
+  {
+    "type": "Roadmap",
+    "category": "Platform Ops",
+    "title": "Phase 4 — Platform Layer",
+    "description": "Defines the cross-platform packaging strategy for Custom GPTs, Gemini Gems, Vercel sites, n8n workflows, Notion systems, and GitHub execution.",
+    "url": "roadmap/phase-4-platform-layer.md"
+  }
+]

@@ -1,0 +1,580 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://ai-agent-library.local/schemas/agent.schema.json",
+  "title": "AI Agent Library Agent Schema",
+  "description": "Schema for productized AI agent specifications used across the AI Agent Library repo, static site, platform packs, and portfolio assets.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "name",
+    "slug",
+    "version",
+    "status",
+    "category",
+    "audience",
+    "problem_solved",
+    "primary_job",
+    "inputs",
+    "outputs",
+    "workflow",
+    "guardrails",
+    "files"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Stable unique identifier for the agent.",
+      "pattern": "^[a-z0-9][a-z0-9-_]{2,120}$",
+      "examples": [
+        "funding-pipeline-triage-agent"
+      ]
+    },
+    "name": {
+      "type": "string",
+      "description": "Human-readable agent name.",
+      "minLength": 3,
+      "maxLength": 140,
+      "examples": [
+        "Funding Pipeline Triage Agent"
+      ]
+    },
+    "slug": {
+      "type": "string",
+      "description": "URL-safe slug used for file names, routes, and catalog filtering.",
+      "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+      "examples": [
+        "funding-pipeline-triage-agent"
+      ]
+    },
+    "version": {
+      "type": "string",
+      "description": "Agent specification version.",
+      "pattern": "^v?[0-9]+\\.[0-9]+\\.[0-9]+$",
+      "examples": [
+        "1.0.0"
+      ]
+    },
+    "status": {
+      "type": "string",
+      "description": "Current lifecycle status.",
+      "enum": [
+        "idea",
+        "draft",
+        "ready",
+        "in-review",
+        "published",
+        "needs-refresh",
+        "deprecated",
+        "archived"
+      ]
+    },
+    "visibility": {
+      "type": "string",
+      "description": "Whether the agent is safe for public use or should remain internal.",
+      "enum": [
+        "public",
+        "public-safe",
+        "internal",
+        "private",
+        "restricted"
+      ],
+      "default": "public-safe"
+    },
+    "category": {
+      "type": "string",
+      "description": "Primary operating category.",
+      "minLength": 2,
+      "maxLength": 80,
+      "examples": [
+        "Funding Ops",
+        "Partner Enablement",
+        "Content Ops",
+        "Automation",
+        "Business Credit",
+        "Static Sites"
+      ]
+    },
+    "tags": {
+      "type": "array",
+      "description": "Cross-cutting discovery tags.",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$"
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "audience": {
+      "type": "object",
+      "description": "Who the agent is for.",
+      "additionalProperties": false,
+      "required": [
+        "primary_user",
+        "secondary_users"
+      ],
+      "properties": {
+        "primary_user": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160,
+          "examples": [
+            "Funding brokers and intake operators"
+          ]
+        },
+        "secondary_users": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 160
+          },
+          "default": []
+        },
+        "not_for": {
+          "type": "array",
+          "description": "Users or use cases the agent should not serve.",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "problem_solved": {
+      "type": "string",
+      "description": "The main pain or operational problem this agent solves.",
+      "minLength": 10,
+      "maxLength": 600
+    },
+    "primary_job": {
+      "type": "string",
+      "description": "The core job the agent is expected to perform.",
+      "minLength": 10,
+      "maxLength": 600
+    },
+    "best_outcome": {
+      "type": "string",
+      "description": "The best practical result a user should get from the agent.",
+      "maxLength": 600
+    },
+    "platform_targets": {
+      "type": "array",
+      "description": "Platforms where this agent can be packaged or deployed.",
+      "items": {
+        "type": "string",
+        "enum": [
+          "ChatGPT Custom GPT",
+          "Claude Project",
+          "Gemini Gem",
+          "Notion",
+          "n8n",
+          "Vercel Static Site",
+          "GitHub Repo",
+          "Zapier",
+          "Make",
+          "HubSpot",
+          "Google Workspace",
+          "Other"
+        ]
+      },
+      "uniqueItems": true,
+      "default": []
+    },
+    "monetization": {
+      "type": "object",
+      "description": "How the agent could support revenue, lead generation, affiliate distribution, or internal productivity.",
+      "additionalProperties": false,
+      "properties": {
+        "model": {
+          "type": "string",
+          "enum": [
+            "free-resource",
+            "lead-magnet",
+            "affiliate",
+            "subscription",
+            "service-upsell",
+            "internal-tool",
+            "partner-enable",
+            "sponsored",
+            "other"
+          ]
+        },
+        "primary_cta": {
+          "type": "string",
+          "maxLength": 180
+        },
+        "primary_cta_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "secondary_cta": {
+          "type": "string",
+          "maxLength": 180
+        },
+        "secondary_cta_url": {
+          "type": "string",
+          "format": "uri"
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 1000
+        }
+      }
+    },
+    "inputs": {
+      "type": "array",
+      "description": "Required or optional inputs the agent needs to produce useful output.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/input_field"
+      }
+    },
+    "outputs": {
+      "type": "array",
+      "description": "Structured outputs the agent should return.",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/$defs/output_field"
+      }
+    },
+    "workflow": {
+      "type": "array",
+      "description": "Ordered steps the agent should follow.",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "step",
+          "name",
+          "description"
+        ],
+        "properties": {
+          "step": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 2,
+            "maxLength": 120
+          },
+          "description": {
+            "type": "string",
+            "minLength": 5,
+            "maxLength": 800
+          },
+          "requires_human_review": {
+            "type": "boolean",
+            "default": false
+          }
+        }
+      }
+    },
+    "knowledge_sources": {
+      "type": "array",
+      "description": "Knowledge-base files, docs, schemas, or source folders used by the agent.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "path",
+          "source_type"
+        ],
+        "properties": {
+          "title": {
+            "type": "string",
+            "maxLength": 180
+          },
+          "path": {
+            "type": "string",
+            "maxLength": 300
+          },
+          "source_type": {
+            "type": "string",
+            "enum": [
+              "markdown",
+              "json",
+              "schema",
+              "pdf",
+              "doc",
+              "spreadsheet",
+              "notion",
+              "google-drive",
+              "github",
+              "website",
+              "other"
+            ]
+          },
+          "visibility": {
+            "type": "string",
+            "enum": [
+              "public",
+              "public-safe",
+              "internal",
+              "private",
+              "restricted"
+            ],
+            "default": "public-safe"
+          }
+        }
+      },
+      "default": []
+    },
+    "actions": {
+      "type": "array",
+      "description": "Optional external actions, APIs, connectors, or workflow calls the agent may use.",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "auth_type",
+          "purpose"
+        ],
+        "properties": {
+          "name": {
+            "type": "string",
+            "maxLength": 140
+          },
+          "auth_type": {
+            "type": "string",
+            "enum": [
+              "none",
+              "api-key",
+              "oauth",
+              "webhook",
+              "manual",
+              "unknown"
+            ]
+          },
+          "purpose": {
+            "type": "string",
+            "maxLength": 500
+          },
+          "human_review_required": {
+            "type": "boolean",
+            "default": true
+          },
+          "schema_path": {
+            "type": "string",
+            "maxLength": 300
+          }
+        }
+      },
+      "default": []
+    },
+    "guardrails": {
+      "type": "object",
+      "description": "Safety, compliance, language, and data-use guardrails.",
+      "additionalProperties": false,
+      "required": [
+        "restricted_claims",
+        "required_disclaimers",
+        "data_rules",
+        "human_review_triggers"
+      ],
+      "properties": {
+        "restricted_claims": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "required_disclaimers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "data_rules": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "human_review_triggers": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "files": {
+      "type": "object",
+      "description": "Repo files connected to this agent.",
+      "additionalProperties": false,
+      "required": [
+        "agent_spec"
+      ],
+      "properties": {
+        "agent_spec": {
+          "type": "string",
+          "examples": [
+            "agents/funding-pipeline-triage-agent.md"
+          ]
+        },
+        "knowledge_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "schema_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "example_files": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "site_pages": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        }
+      }
+    },
+    "metadata": {
+      "type": "object",
+      "description": "Maintenance and attribution metadata.",
+      "additionalProperties": false,
+      "properties": {
+        "created_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "updated_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "last_reviewed_at": {
+          "type": "string",
+          "format": "date"
+        },
+        "owner": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "reviewer": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "source_repo": {
+          "type": "string",
+          "maxLength": 200
+        },
+        "notes": {
+          "type": "string",
+          "maxLength": 2000
+        }
+      }
+    }
+  },
+  "$defs": {
+    "input_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "type",
+        "required",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "label": {
+          "type": "string",
+          "maxLength": 140
+        },
+        "type": {
+          "type": "string",
+          "enum": [
+            "string",
+            "number",
+            "boolean",
+            "date",
+            "url",
+            "email",
+            "phone",
+            "select",
+            "multi_select",
+            "array",
+            "object",
+            "file",
+            "markdown",
+            "json"
+          ]
+        },
+        "required": {
+          "type": "boolean"
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "allowed_values": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "default": []
+        },
+        "example": {}
+      }
+    },
+    "output_field": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "name",
+        "format",
+        "description"
+      ],
+      "properties": {
+        "name": {
+          "type": "string",
+          "pattern": "^[a-z0-9_]+$"
+        },
+        "format": {
+          "type": "string",
+          "enum": [
+            "markdown",
+            "json",
+            "html",
+            "plain_text",
+            "table",
+            "checklist",
+            "schema",
+            "file",
+            "other"
+          ]
+        },
+        "description": {
+          "type": "string",
+          "maxLength": 500
+        },
+        "example": {}
+      }
+    }
+  }
+}

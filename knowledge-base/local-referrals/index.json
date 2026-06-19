@@ -1,0 +1,78 @@
+{
+  "name": "Local Referrals Knowledge Base",
+  "slug": "local-referrals",
+  "description": "Local referral partner discovery, outreach scripts, referral qualification, local profile pages, partner resource cards, and follow-up cadences.",
+  "status": "draft",
+  "visibility": "public-safe with partner review",
+  "primary_users": [
+    "Local referral partners",
+    "Business funding brokers",
+    "Affiliate operators",
+    "Consultants",
+    "Local service providers",
+    "Community builders",
+    "Chamber and networking groups",
+    "Agency owners",
+    "CRM operators",
+    "AI workflow builders"
+  ],
+  "referral_partner_categories": [
+    "Accountants and Bookkeepers",
+    "Insurance Agents",
+    "Real Estate Professionals",
+    "Equipment Vendors",
+    "Marketing Agencies",
+    "Local Business Consultants",
+    "Chambers and Business Groups"
+  ],
+  "recommended_assets": [
+    "Funding readiness checklist",
+    "Document preparation guide",
+    "Cash-flow gap explainer",
+    "Equipment finance resource card",
+    "Real estate capital checklist",
+    "AI workflow audit resource",
+    "Business automation resource card",
+    "Partner profile template"
+  ],
+  "qualification_questions": [
+    "Who is their audience?",
+    "How do they currently reach business owners?",
+    "Do they have a website, newsletter, social presence, or offline network?",
+    "What business categories do they serve?",
+    "Are they comfortable using disclosure language?",
+    "Can they follow public-safe messaging rules?",
+    "Do they need a profile page?",
+    "Do they need tracked links?",
+    "What resources are they allowed to promote?",
+    "How will referrals be attributed?"
+  ],
+  "safe_language": [
+    "Educational resource",
+    "Readiness checklist",
+    "Local business tool",
+    "Compare options",
+    "Review common requirements",
+    "Talk through next steps",
+    "Public resource page"
+  ],
+  "restricted_language": [
+    "Guaranteed funding",
+    "Guaranteed approvals",
+    "Everyone qualifies",
+    "No risk",
+    "No documents required",
+    "Secret lender access",
+    "Approved regardless of credit",
+    "Best rates guaranteed"
+  ],
+  "related_paths": [
+    "knowledge-base/local-referrals/README.md",
+    "knowledge-base/local-referrals/examples.md",
+    "knowledge-base/partner-enablement/README.md",
+    "partners.html",
+    "team.html",
+    "profile.html",
+    "get-started.html"
+  ]
+}

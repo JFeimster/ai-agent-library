@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Skill Builder | AI Agent Library</title>
+  <meta name="description" content="Generate a reusable SKILL.md file for agent capabilities, static pages, platform packs, and workflow systems.">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html">
+        <span class="brand-mark">AI</span>
+        <span>Agent Library</span>
+      </a>
+
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Skills Library</div>
+    <h1>Skill Builder</h1>
+    <p>
+      Generate a reusable SKILL.md file for agent capabilities, static pages,
+      platform packs, and workflow systems.
+    </p>
+  </section>
+
+  <main id="main">
+    <section class="section card">
+      <h2>Skill generator</h2>
+      <p>
+        Use this lightweight builder to draft a reusable skill file that can be added
+        under <code>skills/[skill-slug]/SKILL.md</code>.
+      </p>
+
+      <div class="form-grid">
+        <label>
+          Skill name
+          <input id="skillName" placeholder="Partner Resource Card Builder">
+        </label>
+
+        <label>
+          Category
+          <input id="skillCat" placeholder="Partner Enablement">
+        </label>
+
+        <label>
+          Audience
+          <input id="skillAudience" placeholder="Affiliate operators">
+        </label>
+
+        <label>
+          Problem solved
+          <input id="skillProblem" placeholder="Create reusable partner resource cards">
+        </label>
+
+        <label>
+          Recommended apps
+          <input id="skillApps" placeholder="ChatGPT, Vercel, Notion">
+        </label>
+
+        <label>
+          Priority
+          <select id="skillPriority">
+            <option>High</option>
+            <option>Medium</option>
+            <option>Low</option>
+          </select>
+        </label>
+
+        <label>
+          Status
+          <select id="skillStatus">
+            <option>Draft</option>
+            <option>Planned</option>
+            <option>Ready</option>
+            <option>Needs Review</option>
+          </select>
+        </label>
+
+        <label>
+          Suggested path
+          <input id="skillPath" placeholder="skills/partner-resource-card-builder/SKILL.md">
+        </label>
+      </div>
+
+      <label style="margin-top: 1rem;">
+        Implementation notes
+        <textarea id="skillNotes" placeholder="Inputs, outputs, guardrails, examples, and implementation notes..."></textarea>
+      </label>
+
+      <div class="pill-row">
+        <button class="button" id="buildSkill">Generate SKILL.md</button>
+        <button class="button secondary" id="copySkill">Copy generated markdown</button>
+      </div>
+    </section>
+
+    <section class="section">
+      <pre id="skillOutput">Generated skill file appears here.</pre>
+    </section>
+
+    <section class="section two-col">
+      <article class="card">
+        <h2>Skill file requirements</h2>
+        <ul class="mini-list">
+          <li>Use a clear capability name.</li>
+          <li>Define the audience and problem solved.</li>
+          <li>Specify required inputs.</li>
+          <li>Specify standard outputs.</li>
+          <li>Include implementation notes.</li>
+          <li>Include guardrails.</li>
+          <li>Include a suggested repo path.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Recommended add-on files</h2>
+        <pre>skills/[skill-slug]/
+  SKILL.md
+  examples.md
+  inputs.json
+  output.schema.json
+  tests.md
+  README.md</pre>
+      </article>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p>
+      <strong>AI Agent Library</strong> — reusable agents, skills, prompt systems,
+      knowledge bases, platform packs, and deployable AI product assets.
+    </p>
+
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+
+  <script>
+    const output = document.getElementById("skillOutput");
+    const buildButton = document.getElementById("buildSkill");
+    const copyButton = document.getElementById("copySkill");
+
+    function value(id) {
+      return document.getElementById(id).value.trim();
+    }
+
+    function slugify(text) {
+      return text
+        .toLowerCase()
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/(^-|-$)/g, "");
+    }
+
+    function buildMarkdown() {
+      const name = value("skillName") || "Untitled Skill";
+      const category = value("skillCat") || "Uncategorized";
+      const audience = value("skillAudience") || "Unknown";
+      const problem = value("skillProblem") || "Unknown";
+      const apps = value("skillApps") || "ChatGPT";
+      const priority = value("skillPriority") || "Medium";
+      const status = value("skillStatus") || "Draft";
+      const notes = value("skillNotes") || "Add implementation details here.";
+      const slug = slugify(name) || "untitled-skill";
+      const suggestedPath = value("skillPath") || `skills/${slug}/SKILL.md`;
+
+      return `# ${name}
+
+## Category
+
+${category}
+
+## Status
+
+${status}
+
+## Priority
+
+${priority}
+
+## Audience
+
+${audience}
+
+## Problem Solved
+
+${problem}
+
+## Recommended Apps
+
+${apps.split(",").map((app) => `- ${app.trim()}`).join("\n")}
+
+## When To Use This Skill
+
+Use this skill when an operator, builder, or AI assistant needs to perform this repeatable capability in a consistent, reusable, and reviewable way.
+
+## Required Inputs
+
+- Source material or operating context
+- Desired output type
+- Audience or end user
+- Brand rules or positioning constraints
+- Safety, compliance, or public-language restrictions
+- Required file path or destination platform
+
+## Standard Outputs
+
+- Reusable markdown, JSON, HTML, or workflow asset
+- Clear next-step checklist
+- Review-ready implementation notes
+- Guardrail summary
+- Suggested repo path
+- Optional examples or test cases
+
+## Workflow
+
+1. Confirm the user, buyer, operator, or audience.
+2. Identify the job the skill needs to complete.
+3. Collect required inputs and constraints.
+4. Generate the structured output.
+5. Check for unsupported claims, private data, or missing context.
+6. Return the output in a format that can be added directly to the repo.
+
+## Implementation Notes
+
+${notes}
+
+## Guardrails
+
+- Do not invent missing facts.
+- Do not expose secrets, API keys, private client data, or protected source material.
+- Do not make approval, funding, revenue, ranking, credit, legal, tax, or platform outcome guarantees.
+- Keep outputs structured and reusable.
+- Ask for clarification when required inputs are missing.
+- Prefer public-safe examples unless the workflow is explicitly internal.
+- Preserve repo path discipline and avoid unrelated file changes.
+
+## Example Prompt
+
+Use the ${name} skill to create a reusable output for the following context:
+
+\`\`\`text
+Audience:
+[Add audience]
+
+Source material:
+[Add source material]
+
+Desired output:
+[Add output format]
+
+Constraints:
+[Add constraints]
+\`\`\`
+
+## Suggested Path
+
+\`${suggestedPath}\`
+`;
+    }
+
+    buildButton.addEventListener("click", () => {
+      output.textContent = buildMarkdown();
+    });
+
+    copyButton.addEventListener("click", async () => {
+      const text = output.textContent;
+
+      if (!text || text === "Generated skill file appears here.") {
+        output.textContent = buildMarkdown();
+      }
+
+      await navigator.clipboard.writeText(output.textContent);
+      copyButton.textContent = "Copied";
+
+      setTimeout(() => {
+        copyButton.textContent = "Copy generated markdown";
+      }, 1200);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+[
+  {
+    "name": "Funding Ops",
+    "description": "Agents, skills, knowledge bases, schemas, and examples for funding readiness, lead intake, product-family routing, documentation, caution flags, and public-safe funding language."
+  },
+  {
+    "name": "Partner Enablement",
+    "description": "Resources for referral partners, affiliates, brokers, ISO reps, consultants, partner profiles, resource cards, launch kits, CTAs, attribution, and disclosures."
+  },
+  {
+    "name": "AI Builder Resources",
+    "description": "Tools and patterns for turning AI ideas into agent specs, skills, prompt systems, knowledge bases, schemas, examples, and static site files."
+  },
+  {
+    "name": "Skills Library",
+    "description": "Reusable capabilities that can power multiple agents, workflows, prompt systems, static pages, automations, and platform packages."
+  },
+  {
+    "name": "Prompt Systems",
+    "description": "Prompt packs, prompt chains, execution frameworks, task sequences, PR review prompts, and builder-ready instruction systems."
+  },
+  {
+    "name": "Knowledge Bases",
+    "description": "Structured source folders with README files, indexes, examples, guardrails, public-safe rules, and agent output standards."
+  },
+  {
+    "name": "Static Sites",
+    "description": "Dependency-free HTML, CSS, JavaScript, JSON, and Markdown assets for Vercel-ready pages, tools, directories, and launch assets."
+  },
+  {
+    "name": "Platform Ops",
+    "description": "Platform-specific packaging and deployment resources for Vercel, GitHub, ChatGPT Custom GPTs, Gemini Gems, Notion, n8n, and automation systems."
+  },
+  {
+    "name": "Automation",
+    "description": "Workflow specs, trigger libraries, webhook event payloads, approval gates, no-auth tools, API-key workflows, OAuth workflows, and failure handling."
+  },
+  {
+    "name": "CRM",
+    "description": "CRM cleanup, lead-stage handling, follow-up drafts, missing-document workflows, stalled deal review, pipeline notes, and signal scanning."
+  },
+  {
+    "name": "Content Ops",
+    "description": "SEO briefs, article frameworks, metadata, content calendars, video-to-blog workflows, prompt packs, landing pages, and repurposing systems."
+  },
+  {
+    "name": "Business Credit",
+    "description": "Educational business-credit readiness resources, setup checklists, vendor-readiness concepts, common gaps, and non-promissory next-step guidance."
+  },
+  {
+    "name": "Engineering-as-Marketing",
+    "description": "Public tools, calculators, scorecards, generators, widgets, directories, templates, and conversion assets that help users solve one practical problem."
+  },
+  {
+    "name": "Portfolio",
+    "description": "Inventory structures for Vercel assets, Custom GPTs, Gemini Gems, Flash UI variants, agent products, static sites, and deployable resources."
+  },
+  {
+    "name": "Trust & Safety",
+    "description": "Legal pages, disclaimers, affiliate disclosures, data policies, restricted-claim lists, privacy rules, and public-safe review workflows."
+  }
+]
