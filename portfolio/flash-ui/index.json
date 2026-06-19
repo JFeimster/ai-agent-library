@@ -82,14 +82,3 @@
     "roadmap/phase-4-platform-layer.md"
   ]
 }
-```
-
-Batch 13 will be **Site Data Files**:
-
-```text id="batch-13-list"
-site-data/agents.fallback.json
-site-data/skills.fallback.json
-site-data/categories.json
-site-data/tags.json
-site-data/featured.json
-site-data/changelog.json
