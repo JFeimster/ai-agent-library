@@ -1,380 +1,432 @@
 # AI Agent Library
 
-A practical, cross-platform library of **productized AI agent specs, prompt systems, knowledge-base templates, implementation guides, and deployment patterns**.
+## Purpose
 
-This repo starts with **28 complete Notion AI Agent specs**, then expands into platform packs for ChatGPT GPTs, Claude Projects, Gemini Gems, n8n agents, and Vercel-powered web apps.
+AI Agent Library is a structured repository for reusable AI-agent assets, including agent specs, skills, knowledge bases, prompt chains, templates, schemas, platform packs, examples, and repo operating docs.
 
-It is not just a list of clever prompts. It is a build system for turning agent ideas into reusable workflows, partner tools, lead magnets, internal operating systems, and deployable AI products.
+The repo exists to make AI-agent building repeatable instead of random. Each asset should be easy to find, easy to review, easy to reuse, and safe to adapt across ChatGPT, Jules, Codex, Claude, Gemini, Notion, GitHub, Vercel, n8n, static sites, and related operating workflows.
 
-## What this repo is for
+This is the repo where reusable AI-agent building blocks get organized before they turn into a folder full of mystery markdown and haunted JSON. 🧰
 
-Use this library to:
+## Primary Use Cases
 
-- Design productized AI agents with clear buyers, pain points, rules, prompts, and monetization paths
-- Convert Notion AI Agents into Custom GPTs, Claude Projects, Gemini Gems, n8n agents, and Vercel web apps
-- Build repeatable knowledge-base systems for funding, partner enablement, CRM, content ops, automation, and referral growth
-- Package agents as templates, internal tools, client deliverables, lead magnets, widgets, and SaaS-lite products
-- Maintain an organized inventory of agents, platform packs, project assets, and reusable implementation patterns
+Use this repo to:
 
-## Visual Directory / Vercel Preview
+- Define reusable AI agents
+- Create and review `SKILL.md` files
+- Package Custom GPTs and platform-specific assistants
+- Build repo-ready knowledge bases
+- Store prompt-chain execution systems
+- Create reusable templates
+- Maintain JSON schemas and registries
+- Support static-site directories and portfolios
+- Document platform workflows for GitHub, Vercel, Notion, n8n, Claude, Gemini, and ChatGPT
+- Give Jules, Codex, ChatGPT, and future repo agents clear execution instructions
 
-This repository includes a dependency-free, static Visual Directory of all AI agents.
+## Repository Philosophy
 
-To preview it locally, run `python3 -m http.server 8000` from the root directory and open `http://localhost:8000`.
+This repo is:
 
-To deploy it to Vercel, read the [Deployment Instructions](DEPLOYMENT.md) for a zero-config setup.
+- **Static-first** — plain files, Markdown, JSON, YAML, HTML/CSS/JS when needed.
+- **Documentation-first** — every reusable asset should explain what it is, when to use it, and how to review it.
+- **Issue-first** — work should be scoped through issues or explicit batch tasks.
+- **Review-first** — PRs should be reviewed for scope, safety, links, validation, and public-safe language.
+- **Public-safe by default** — do not commit secrets, private data, sensitive client records, or backend bypass paths.
+- **Agent-readable** — files should be structured so AI assistants can reliably parse, reference, and reuse them.
 
-## Agent Skills Library
-
-The [`skills/`](skills/) folder contains modular Agent Skills for static sites, Next.js apps, embedded widgets, partner portals, referral funnels, and strategic partner workflows.
-
-Start here:
-
-- [`skills/README.md`](skills/README.md) — skill library overview and guardrails
-- [`skills/skill-catalog.md`](skills/skill-catalog.md) — 100 proposed skills across funding, business credit, referral partners, widgets, landing pages, CRM, and compliance
-- [`skills/skill-index.json`](skills/skill-index.json) — structured skill metadata for apps and future site rendering
-- [`skills/top-25-build-priority.md`](skills/top-25-build-priority.md) — first skills to implement
-- [`skills/SKILL_TEMPLATE.md`](skills/SKILL_TEMPLATE.md) — reusable skill file template
-
-## Prompt-chain command layer
-
-The [`prompt-chains/`](prompt-chains/) folder contains the repo's execution control layer for grouped planning, issue sequencing, Jules prompts, ChatGPT prompts, PR review checklists, and `NEXT_TASK.md` update rules.
-
-Use it when a build thread needs to continue across multiple issues without losing the one-issue-at-a-time PR discipline.
-
-## Current contents
+## Repo Map
 
 ```text
-ai-agent-library/
+.github/
+  ISSUE_TEMPLATE/
+  workflows/
+agents/
   README.md
-  agents.md
-  agent-index.json
-
-  agents/
-    28 complete productized agent specs
-
-  skills/
-    Agent Skills Library for partner tools, widgets, landing pages, CRM workflows, and compliance checks
-
-  docs/
-    Foundation documentation, repo purpose, conventions, and standards
-
-  prompt-chains/
-    Master roadmap prompt, grouped issue phases, execution prompts, review checklist, and queue protocol
-
-  templates/
-    agent-build-checklist.md
-    agent-evaluation-scorecard.md
-    notion-database-schema.md
-
-  platforms/
-    vercel-web-apps/
-      architecture, conversion, deployment, API, UI, lead capture, monetization, examples, and templates
-```
-
-## Agent spec standard
-
-Each agent file is designed to be usable as a source spec for multiple platforms. Agent specs include:
-
-- Productized agent concept
-- Buyer
-- Pain solved
-- Monetization path
-- Agent bio / description
-- Best-fit use cases
-- Suggested instructions
-- Rules and guardrails
-- Conversation starters
-- Prompt library
-- Recommended knowledge-base files
-- Integrations / connectors
-- Suggested Notion database properties
-- Packaging angle
-- Success criteria
-- Future platform expansion notes
-
-## Agent list
-
-| # | Agent | Category | File |
-|---:|---|---|---|
-| 1 | Funding Pipeline Triage Agent | Funding Ops | `agents/01-funding-pipeline-triage-agent.md` |
-| 2 | Incomplete Application Rescue Agent | Funding Ops | `agents/02-incomplete-application-rescue-agent.md` |
-| 3 | Partner Launch Kit Builder | Partner Enablement | `agents/03-partner-launch-kit-builder.md` |
-| 4 | Broker Profile Builder | Partner Enablement | `agents/04-broker-profile-builder.md` |
-| 5 | Funding Tool Router Agent | Asset Routing | `agents/05-funding-tool-router-agent.md` |
-| 6 | Content-to-Agent Repurposer | Agent Creation | `agents/06-content-to-agent-repurposer.md` |
-| 7 | SOP Goblin | Operations | `agents/07-sop-goblin.md` |
-| 8 | Vercel Asset Librarian | Asset Management | `agents/08-vercel-asset-librarian.md` |
-| 9 | Partner Training Coach | Partner Enablement | `agents/09-partner-training-coach.md` |
-| 10 | Local Referral Partner Scout | Referral Growth | `agents/10-local-referral-partner-scout.md` |
-| 11 | CRM Note Cleaner | CRM Ops | `agents/11-crm-note-cleaner.md` |
-| 12 | Inbox Revenue Signal Scanner | Inbox Ops | `agents/12-inbox-revenue-signal-scanner.md` |
-| 13 | Applicant Support Agent | Support | `agents/13-applicant-support-agent.md` |
-| 14 | Market Intel Scout | Research | `agents/14-market-intel-scout.md` |
-| 15 | SEO Article Brief Builder | Content Ops | `agents/15-seo-article-brief-builder.md` |
-| 16 | Video-to-Blog Transformer | Content Ops | `agents/16-video-to-blog-transformer.md` |
-| 17 | Lead Magnet Factory Agent | Growth | `agents/17-lead-magnet-factory-agent.md` |
-| 18 | Affiliate Offer Matchmaker | Affiliate Ops | `agents/18-affiliate-offer-matchmaker.md` |
-| 19 | Business Credit Builder Coach | Financial Ops | `agents/19-business-credit-builder-coach.md` |
-| 20 | Cash Flow Copilot | Financial Ops | `agents/20-cash-flow-copilot.md` |
-| 21 | Micro-Acquisition Deal Screener | M&A | `agents/21-micro-acquisition-deal-screener.md` |
-| 22 | Grant Opportunity Scout | Funding Research | `agents/22-grant-opportunity-scout.md` |
-| 23 | Meeting-to-Action Agent | Operations | `agents/23-meeting-to-action-agent.md` |
-| 24 | Community Event Builder | Community | `agents/24-community-event-builder.md` |
-| 25 | Agency Offer Architect | Offer Design | `agents/25-agency-offer-architect.md` |
-| 26 | AI Wrapper Product Manager | Product | `agents/26-ai-wrapper-product-manager.md` |
-| 27 | Notion Database Architect | Notion Ops | `agents/27-notion-database-architect.md` |
-| 28 | Automation Workflow Spec Writer | Automation | `agents/28-automation-workflow-spec-writer.md` |
-
-## Platform packs
-
-Current:
-
-```text
-platforms/
-  vercel-web-apps/
-```
-
-Recommended next platform packs:
-
-```text
-platforms/
-  notion-ai/
-  chatgpt-gpts/
-  claude-projects/
-  gemini-gems/
-  n8n-agents/
-  vercel-web-apps/
-```
-
-## Recommended next folders
-
-```text
+  agent-template.md
+  agent-review-checklist.md
+skills/
+  README.md
+  skill-index.json
+  skill-template.md
+  skill-review-checklist.md
 knowledge-base/
-  funding/
-  partner-enablement/
-  crm/
-  content-ops/
-  automation/
-  local-referrals/
-  engineering-as-marketing/
-
+  README.md
+  index.json
+prompt-chains/
+  README.md
+  master-roadmap-prompt.md
+templates/
+  README.md
+  platform-packs/
+platforms/
+  README.md
 portfolio/
-  vercel/
-  custom-gpts/
-
+  README.md
 schemas/
-  agent.schema.json
-  custom-gpt.schema.json
-  vercel-project.schema.json
-  funding-product.schema.json
-  webhook-event.schema.json
-
-roadmap/
-  phase-1-fast-mvp.md
-  phase-2-distribution-system.md
-  phase-3-marketplace-layer.md
-  phase-4-platform-layer.md
-
+  README.md
+registry/
+  README.md
 examples/
-  funding/
-  partner-enablement/
-  content-ops/
-  automation/
-```
-
-## Suggested build order
-
-1. Finish importing the complete generated agent files and Vercel platform pack.
-2. Add `platforms/chatgpt-gpts/` using the Custom GPT inventory.
-3. Add `knowledge-base/funding/` using the funding handbook and product portfolio report.
-4. Add `knowledge-base/partner-enablement/` using partner routing and attribution rules.
-5. Add `knowledge-base/engineering-as-marketing/` using tool and widget specs.
-6. Add `portfolio/vercel/` and `portfolio/custom-gpts/` inventories.
-7. Add `schemas/` so the library can power future apps, dashboards, and validation workflows.
-8. Add `.github/` issue templates and PR templates for repeatable repo operations.
-
-## Build philosophy
-
-The goal is not to collect shiny AI toys.
-
-The goal is to build repeatable operational agents that can become:
-
-- Internal SOP machines
-- Client deliverables
-- Partner enablement tools
-- Paid templates
-- Lead magnets
-- Productized services
-- Web apps and embedded widgets
-- Workflow automation modules
-- Eventually, a full cross-platform agent operating system
-
-Tiny robot interns are cute. Tiny robot interns with job descriptions, guardrails, and revenue paths are better.
-
-## Working principle
-
-Every useful agent should answer five questions:
-
-1. Who is this for?
-2. What painful job does it solve?
-3. What knowledge does it need?
-4. What output should it produce every time?
-5. How can this become a product, workflow, or revenue-generating asset?
-
-If an agent cannot answer those questions, it is not ready for the library yet.
-
-
-## Static Site Layer
-
-AI Agent Library now includes a static-first website layer for browsing and packaging reusable AI agents, skills, prompt systems, knowledge bases, schemas, examples, platform packs, and deployable AI product assets.
-
-The site is designed to run as plain HTML, CSS, JavaScript, JSON, and Markdown.
-
-No React, Next.js, npm install, or build step is required for the core static site.
-
-## Core Site Files
-
-```text
-index.html
-styles.css
-script.js
-style.css
-```
-
-`style.css` exists as a compatibility alias for older generated files that may reference `style.css` instead of `styles.css`.
-
-## Main Site Pages
-
-```text
-agent-catalog.html
-skill-catalog.html
-categories.html
-tags.html
-search.html
-featured.html
-new.html
-platforms.html
-knowledge-bases.html
-portfolio.html
-roadmap.html
-changelog.html
-contribute.html
-```
-
-## Partner & Affiliate Pages
-
-```text
-get-started.html
-partners.html
-team.html
-profile.html
-affiliate-disclosure.html
-```
-
-## Legal & Trust Pages
-
-```text
-terms.html
-privacy.html
-disclaimer.html
-data-policy.html
-affiliate-disclosure.html
-```
-
-## Knowledge Base Folders
-
-```text
-knowledge-base/
-  funding/
-  partner-enablement/
-  crm/
-  content-ops/
-  automation/
-  local-referrals/
-  engineering-as-marketing/
-```
-
-Each knowledge-base folder should include:
-
-```text
-README.md
-index.json
-examples.md
-```
-
-## Portfolio Folders
-
-```text
-portfolio/
-  vercel/
-  custom-gpts/
-  gemini-gems/
-  flash-ui/
-```
-
-Each portfolio folder should include:
-
-```text
-README.md
-index.json
-```
-
-## Schema Files
-
-```text
-schemas/
-  agent.schema.json
-  custom-gpt.schema.json
-  vercel-project.schema.json
-  funding-product.schema.json
-  webhook-event.schema.json
-```
-
-## Roadmap Files
-
-```text
-roadmap/
-  phase-1-fast-mvp.md
-  phase-2-distribution-system.md
-  phase-3-marketplace-layer.md
-  phase-4-platform-layer.md
-```
-
-## Example Folders
-
-```text
-examples/
-  funding/
-  partner-enablement/
-  content-ops/
-  automation/
-```
-
-Each example folder should include:
-
-```text
-README.md
-example-001.md
-```
-
-## Site Data
-
-```text
+  README.md
 site-data/
-  agents.fallback.json
-  skills.fallback.json
-  categories.json
-  tags.json
-  featured.json
-  changelog.json
+docs/
+  github-workflows.md
+  repo-validation-checklist.md
+README.md
+JULES.md
+NEXT_TASK.md
+CONTRIBUTING.md
+SECURITY.md
+CODE_OF_CONDUCT.md
 ```
 
-The static pages can load canonical indexes first and fall back to `site-data/` when canonical data files are not available.
+## Key Asset Types
 
-## Run Locally
+### Agents
 
-From the repository root:
+Agent specs define reusable AI assistants.
+
+Typical path:
+
+```text
+agents/[agent-slug].md
+```
+
+Agent specs should include:
+
+- Purpose
+- Audience
+- Problem solved
+- Inputs
+- Workflow
+- Outputs
+- Guardrails
+- Examples
+- Related skills
+- Related knowledge bases
+- Related schemas
+
+### Skills
+
+Skills define reusable capabilities.
+
+Typical path:
+
+```text
+skills/[skill-slug]/SKILL.md
+```
+
+Skill files should include:
+
+- Purpose
+- When to use
+- Inputs
+- Procedure
+- Output format
+- Quality checklist
+- Guardrails
+- Examples
+- Related assets
+
+### Knowledge Bases
+
+Knowledge bases organize source material for AI assistants, Custom GPTs, static sites, and repo workflows.
+
+Typical path:
+
+```text
+knowledge-base/[topic]/README.md
+```
+
+Knowledge bases should clearly separate:
+
+- public-safe material
+- internal-only material
+- synthetic examples
+- source notes
+- operating rules
+- review requirements
+
+### Prompt Chains
+
+Prompt chains are reusable execution systems for multi-step work.
+
+Typical path:
+
+```text
+prompt-chains/[prompt-chain-name].md
+```
+
+Use prompt chains for:
+
+- Jules batch execution
+- Codex repo work
+- PR review
+- asset generation
+- audit workflows
+- sequential file creation
+
+### Platform Packs
+
+Platform packs explain how assets should be packaged for specific tools and ecosystems.
+
+Typical path:
+
+```text
+templates/platform-packs/[platform-pack].md
+```
+
+Examples:
+
+- ChatGPT GPT package
+- Vercel static site package
+- GitHub repo package
+- Notion knowledge-base package
+- n8n workflow package
+- Claude Project package
+- Gemini Gem package
+
+### Templates
+
+Templates make repeatable work faster and more consistent.
+
+Typical path:
+
+```text
+templates/[template-name].md
+```
+
+Templates may support:
+
+- agent specs
+- skills
+- knowledge bases
+- PR reviews
+- issue templates
+- platform packs
+- static-site pages
+- portfolio entries
+- prompt chains
+
+### Schemas
+
+Schemas define structured data formats.
+
+Typical path:
+
+```text
+schemas/[schema-name].schema.json
+```
+
+Use schemas for:
+
+- agents
+- skills
+- templates
+- platform assets
+- registry records
+- site data
+- examples
+- action payloads
+
+### Registry
+
+The registry layer stores structured asset records and reusable asset metadata.
+
+Typical path:
+
+```text
+registry/[registry-file].json
+```
+
+Use the registry to support:
+
+- directory pages
+- portfolio pages
+- search/filter systems
+- static-site data
+- agent/skill discovery
+
+## Naming Conventions
+
+Use lowercase kebab-case for slugs and folders.
+
+Good:
+
+```text
+static-site-page-builder
+chatgpt-gpt-package
+funding-readiness-assistant
+partner-resource-card-builder
+```
+
+Avoid:
+
+```text
+Final File
+New Stuff
+Skill Copy
+agentThing
+Page1
+```
+
+## Safety Rules
+
+Do not commit:
+
+- API keys
+- access tokens
+- OAuth secrets
+- webhook secrets
+- `.env` files
+- private keys
+- private customer data
+- borrower/client records
+- bank statements
+- tax records
+- credit reports
+- IDs or sensitive documents
+- backend provider bypass paths
+- private admin/editor links
+- fake testimonials
+- unsupported outcome promises
+
+Use synthetic examples only.
+
+Good:
+
+```json
+{
+  "name": "Example Owner",
+  "email": "owner@example.com",
+  "business_name": "Example Services LLC"
+}
+```
+
+Bad:
+
+```json
+{
+  "name": "Real Customer",
+  "email": "realperson@example.com",
+  "document_url": "private-file-url"
+}
+```
+
+## Public-Safe Language
+
+Use language like:
+
+```text
+educational
+planning
+readiness
+compare options
+review required
+possible next steps
+may be a fit
+terms vary
+human review recommended
+```
+
+Avoid:
+
+```text
+approval promises
+funding outcome promises
+income outcome promises
+traffic or ranking promises
+credit repair promises
+bypass language
+secret-provider-route language
+```
+
+## Development Model
+
+This repo uses a simple issue-first workflow:
+
+1. Open or select one issue.
+2. Create a scoped branch.
+3. Change only the approved files.
+4. Validate Markdown, JSON, links, and safety rules.
+5. Open a PR into `main`.
+6. Review the PR.
+7. Merge only after scope and safety checks pass.
+8. Update `NEXT_TASK.md` when the next task is approved.
+
+## Branch Naming
+
+Use:
+
+```text
+feature/[short-slug]
+docs/[short-slug]
+chore/[short-slug]
+fix/[short-slug]
+batch-[number]-[short-slug]
+repair/[pr-number]-[short-slug]
+```
+
+Examples:
+
+```text
+batch-35-core-repo-operating-files
+docs/privacy-sensitive-data-rules
+feature/agent-index-layer
+fix/static-site-navigation
+repair/pr12-json-index-cleanup
+```
+
+## Commit Messages
+
+Use plain imperative commit messages.
+
+Good:
+
+```text
+Add core repo operating files
+Add skill review checklist
+Fix template index JSON
+Update NEXT_TASK for Batch 36
+```
+
+Avoid:
+
+```text
+stuff
+misc
+final final
+oops
+changes
+```
+
+## Validation
+
+Relevant workflows live in:
+
+```text
+.github/workflows/
+```
+
+Core validation files:
+
+```text
+.github/workflows/validate-json.yml
+.github/workflows/link-check.yml
+.github/workflows/static-site-smoke.yml
+.github/workflows/markdown-hygiene.yml
+.github/workflows/no-secrets-safety.yml
+```
+
+Local validation examples:
+
+```bash
+python -m json.tool agent-index.json
+python -m json.tool skills/skill-index.json
+python -m json.tool templates/template-index.json
+```
+
+For static site preview:
 
 ```bash
 python -m http.server 8080
@@ -386,32 +438,92 @@ Open:
 http://localhost:8080/
 ```
 
-## Static-First Rule
+## Working With Jules
 
-The default implementation should remain:
+Jules should read:
 
-- HTML
-- CSS
-- JavaScript
-- JSON
-- Markdown
+```text
+JULES.md
+NEXT_TASK.md
+README.md
+docs/repo-validation-checklist.md
+```
 
-Avoid adding a framework unless a specific issue explicitly requires it.
+Jules should:
 
-## Public-Safe Language Rule
+- work one task at a time
+- use a scoped branch
+- avoid future-batch work
+- avoid unrelated refactors
+- avoid deployment changes unless approved
+- open a PR and stop
 
-Funding, business-credit, affiliate, partner, automation, and platform pages must avoid guaranteed outcome claims.
+## Working With Codex
 
-Do not claim:
+Codex should:
 
-- Guaranteed approval
-- Guaranteed funding
-- Guaranteed credit outcomes
-- Guaranteed revenue
-- Guaranteed rankings
-- Everyone qualifies
-- No risk
-- No documents needed
-- AI replaces professional review
+- inspect existing repo structure before editing
+- keep changes scoped
+- preserve public-safe language
+- validate JSON/YAML when touched
+- avoid adding frameworks or package managers unless explicitly approved
+- summarize changed files and validation
 
-Use educational, readiness, review, possible-fit, and next-step language instead.
+## Working With ChatGPT
+
+ChatGPT may be used to:
+
+- draft files
+- review PRs
+- generate prompt chains
+- produce issue bodies
+- create templates
+- audit structure
+- create batch handoff files
+
+ChatGPT should not be treated as a substitute for PR review.
+
+## Recommended Review Checklist
+
+Before merging a PR:
+
+- [ ] Linked issue or batch is clear.
+- [ ] Scope matches the request.
+- [ ] Changed files are expected.
+- [ ] No unrelated refactors are included.
+- [ ] No future-batch work is included.
+- [ ] Markdown is complete and readable.
+- [ ] JSON validates if changed.
+- [ ] YAML is reviewed if changed.
+- [ ] Static site loads if site files changed.
+- [ ] Links and paths are valid.
+- [ ] No secrets are included.
+- [ ] No private data is included.
+- [ ] No unsupported claims are included.
+- [ ] Deployment impact is understood.
+
+## Current Queue
+
+The current approved next task is tracked in:
+
+```text
+NEXT_TASK.md
+```
+
+Do not assume future batches are approved until `NEXT_TASK.md` or a human instruction says so.
+
+## License
+
+Add or update the license according to the repository owner’s preferred licensing model.
+
+## Maintainer Notes
+
+This repo is intended to become a durable operating library for AI-agent assets.
+
+Keep it:
+
+- structured
+- boring where it should be boring
+- useful where it should be useful
+- safe where it must be safe
+- clean enough that the next agent does not need a priest and a shovel
