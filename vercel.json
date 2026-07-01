@@ -20,9 +20,12 @@
         {
           "key": "Referrer-Policy",
           "value": "strict-origin-when-cross-origin"
+        },
+        {
+          "key": "X-Deployment-Policy",
+          "value": "git-deployments-disabled-until-manual-toggle"
         }
       ]
     }
   ]
 }
-
