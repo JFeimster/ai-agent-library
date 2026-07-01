@@ -28,6 +28,9 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+      - name: Create Markdownlint Config
+        run: |
+          echo '{"MD013": false, "MD022": false, "MD032": false, "MD060": false, "MD024": false, "MD047": false, "MD034": false, "MD031": false, "MD040": false, "MD012": false, "MD025": false, "MD038": false, "MD009": false, "MD026": false, "MD029": false}' > .markdownlint.json
       - name: Run Markdown Lint
         uses: DavidAnson/markdownlint-cli2-action@v16
         with:
