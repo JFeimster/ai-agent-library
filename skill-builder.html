@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>Skill Builder | AI Agent Library</title>
-  <meta name="description" content="Generate a reusable SKILL.md file for agent capabilities, static pages, platform packs, and workflow systems.">
+  <meta name="description" content="Generate a reusable SKILL.md file from a catalog skill or a custom capability draft.">
 
   <link rel="stylesheet" href="styles.css">
 </head>
@@ -23,7 +23,7 @@
       <nav class="nav-links" aria-label="Primary navigation">
         <a href="index.html">Home</a>
         <a href="agent-catalog.html">Agents</a>
-        <a href="skill-catalog.html">Skills</a>
+        <a href="skill-catalog.html" aria-current="page">Skills</a>
         <a href="categories.html">Categories</a>
         <a href="platforms.html">Platforms</a>
         <a href="knowledge-bases.html">Knowledge</a>
@@ -38,8 +38,7 @@
     <div class="eyebrow">Skills Library</div>
     <h1>Skill Builder</h1>
     <p>
-      Generate a reusable SKILL.md file for agent capabilities, static pages,
-      platform packs, and workflow systems.
+      Open a catalog skill as a prefilled builder, edit the fields, then generate a reusable SKILL.md package draft.
     </p>
   </section>
 
@@ -47,11 +46,17 @@
     <section class="section card">
       <h2>Skill generator</h2>
       <p>
-        Use this lightweight builder to draft a reusable skill file that can be added
-        under <code>skills/[skill-slug]/SKILL.md</code>.
+        This builder now loads catalog skills from <code>skills/skill-index.json</code>. Use the dropdown or pass <code>?skill=skill-slug</code> in the URL.
       </p>
 
       <div class="form-grid">
+        <label>
+          Catalog skill
+          <select id="skillSelect">
+            <option value="custom">Custom / blank skill</option>
+          </select>
+        </label>
+
         <label>
           Skill name
           <input id="skillName" placeholder="Partner Resource Card Builder">
@@ -93,6 +98,7 @@
             <option>Planned</option>
             <option>Ready</option>
             <option>Needs Review</option>
+            <option>Published</option>
           </select>
         </label>
 
@@ -104,12 +110,13 @@
 
       <label style="margin-top: 1rem;">
         Implementation notes
-        <textarea id="skillNotes" placeholder="Inputs, outputs, guardrails, examples, and implementation notes..."></textarea>
+        <textarea id="skillNotes" placeholder="Inputs, outputs, guardrails, examples, implementation notes, related agents, and related knowledge bases..."></textarea>
       </label>
 
       <div class="pill-row">
         <button class="button" id="buildSkill">Generate SKILL.md</button>
         <button class="button secondary" id="copySkill">Copy generated markdown</button>
+        <a class="button-link secondary" href="skill-catalog.html">Back to catalog →</a>
       </div>
     </section>
 
@@ -121,13 +128,11 @@
       <article class="card">
         <h2>Skill file requirements</h2>
         <ul class="mini-list">
-          <li>Use a clear capability name.</li>
-          <li>Define the audience and problem solved.</li>
-          <li>Specify required inputs.</li>
-          <li>Specify standard outputs.</li>
-          <li>Include implementation notes.</li>
-          <li>Include guardrails.</li>
-          <li>Include a suggested repo path.</li>
+          <li>Clear capability name.</li>
+          <li>Defined audience and problem solved.</li>
+          <li>Required inputs and standard outputs.</li>
+          <li>Workflow steps that can be reused.</li>
+          <li>Guardrails, examples, and suggested repo path.</li>
         </ul>
       </article>
 
@@ -164,34 +169,78 @@
   <script src="script.js"></script>
 
   <script>
-    const output = document.getElementById("skillOutput");
-    const buildButton = document.getElementById("buildSkill");
-    const copyButton = document.getElementById("copySkill");
+    (async () => {
+      const output = document.getElementById("skillOutput");
+      const buildButton = document.getElementById("buildSkill");
+      const copyButton = document.getElementById("copySkill");
+      const skillSelect = document.getElementById("skillSelect");
+      const rawSkills = await AILibrary.fetchJSON(["skills/skill-index.json", "site-data/skills.fallback.json"], []);
+      const skills = rawSkills.map(AILibrary.normalizeSkill);
 
-    function value(id) {
-      return document.getElementById(id).value.trim();
-    }
+      const fields = {
+        name: document.getElementById("skillName"),
+        category: document.getElementById("skillCat"),
+        audience: document.getElementById("skillAudience"),
+        problem: document.getElementById("skillProblem"),
+        apps: document.getElementById("skillApps"),
+        priority: document.getElementById("skillPriority"),
+        status: document.getElementById("skillStatus"),
+        path: document.getElementById("skillPath"),
+        notes: document.getElementById("skillNotes")
+      };
 
-    function slugify(text) {
-      return text
-        .toLowerCase()
-        .replace(/[^a-z0-9]+/g, "-")
-        .replace(/(^-|-$)/g, "");
-    }
+      function value(id) {
+        return document.getElementById(id).value.trim();
+      }
 
-    function buildMarkdown() {
-      const name = value("skillName") || "Untitled Skill";
-      const category = value("skillCat") || "Uncategorized";
-      const audience = value("skillAudience") || "Unknown";
-      const problem = value("skillProblem") || "Unknown";
-      const apps = value("skillApps") || "ChatGPT";
-      const priority = value("skillPriority") || "Medium";
-      const status = value("skillStatus") || "Draft";
-      const notes = value("skillNotes") || "Add implementation details here.";
-      const slug = slugify(name) || "untitled-skill";
-      const suggestedPath = value("skillPath") || `skills/${slug}/SKILL.md`;
+      function selectedSkill() {
+        return skills.find((skill) => skill.slug === skillSelect.value);
+      }
 
-      return `# ${name}
+      function setSelectValue(select, desired) {
+        const normalized = String(desired || "").toLowerCase();
+        const option = [...select.options].find((item) => item.value.toLowerCase() === normalized || item.textContent.toLowerCase() === normalized);
+        if (option) select.value = option.value;
+      }
+
+      function fillFromSkill(skill) {
+        if (!skill) return;
+
+        fields.name.value = skill.name;
+        fields.category.value = skill.category;
+        fields.audience.value = skill.audience;
+        fields.problem.value = skill.problem_solved;
+        fields.apps.value = (skill.recommended_apps || []).join(", ");
+        setSelectValue(fields.priority, skill.priority);
+        setSelectValue(fields.status, skill.status);
+        fields.path.value = skill.path;
+        fields.notes.value = [
+          "Related agents:",
+          AILibrary.listLines(skill.related_agents, "- TBD"),
+          "",
+          "Related knowledge bases:",
+          AILibrary.listLines(skill.related_knowledge_bases, "- TBD"),
+          "",
+          "Implementation notes:",
+          "Use this skill as a reusable capability package. Add examples, input schema, output schema, and tests before marking it ready."
+        ].join("\n");
+
+        buildMarkdown();
+      }
+
+      function buildMarkdown() {
+        const name = value("skillName") || "Untitled Skill";
+        const category = value("skillCat") || "Uncategorized";
+        const audience = value("skillAudience") || "Unknown";
+        const problem = value("skillProblem") || "Unknown";
+        const apps = value("skillApps") || "ChatGPT";
+        const priority = value("skillPriority") || "Medium";
+        const status = value("skillStatus") || "Draft";
+        const notes = value("skillNotes") || "Add implementation details here.";
+        const slug = AILibrary.slugify(name) || "untitled-skill";
+        const suggestedPath = value("skillPath") || `skills/${slug}/SKILL.md`;
+
+        const markdown = `# ${name}
 
 ## Category
 
@@ -284,26 +333,39 @@ Constraints:
 
 \`${suggestedPath}\`
 `;
-    }
 
-    buildButton.addEventListener("click", () => {
-      output.textContent = buildMarkdown();
-    });
-
-    copyButton.addEventListener("click", async () => {
-      const text = output.textContent;
-
-      if (!text || text === "Generated skill file appears here.") {
-        output.textContent = buildMarkdown();
+        output.textContent = markdown;
+        return markdown;
       }
 
-      await navigator.clipboard.writeText(output.textContent);
-      copyButton.textContent = "Copied";
+      skills.forEach((skill) => {
+        skillSelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(skill.slug)}">${AILibrary.escapeHTML(skill.name)}</option>`);
+      });
 
-      setTimeout(() => {
-        copyButton.textContent = "Copy generated markdown";
-      }, 1200);
-    });
+      const requestedSkill = AILibrary.queryParam("skill");
+      if (requestedSkill && skills.some((skill) => skill.slug === requestedSkill)) {
+        skillSelect.value = requestedSkill;
+        fillFromSkill(selectedSkill());
+      }
+
+      skillSelect.addEventListener("change", () => {
+        if (skillSelect.value === "custom") {
+          Object.values(fields).forEach((field) => {
+            if (field.tagName === "INPUT" || field.tagName === "TEXTAREA") field.value = "";
+          });
+          output.textContent = "Generated skill file appears here.";
+          return;
+        }
+
+        fillFromSkill(selectedSkill());
+      });
+
+      buildButton.addEventListener("click", buildMarkdown);
+      copyButton.addEventListener("click", async () => {
+        const text = output.textContent === "Generated skill file appears here." ? buildMarkdown() : output.textContent;
+        await AILibrary.copyText(text, copyButton);
+      });
+    })();
   </script>
 </body>
 </html>
