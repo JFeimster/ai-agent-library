@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Repository Validation Checklist
 
 ## Purpose

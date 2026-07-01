@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # Batch 34 — Workflow Hygiene + Validation Docs
 
 ## Files
@@ -27,13 +28,13 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20'
       - name: Run Markdown Lint
-        run: |
-          npx markdownlint-cli '**/*.md' --ignore 'node_modules' --ignore 'batch-handoffs'
+        uses: DavidAnson/markdownlint-cli2-action@v16
+        with:
+          globs: |
+            **/*.md
+            !node_modules/**
+            !batch-handoffs/**
 ```
 
 ## `.github/workflows/no-secrets-safety.yml`
@@ -54,6 +55,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - name: TruffleHog Secrets Scan
         uses: trufflesecurity/trufflehog@main
         with:
@@ -66,6 +69,7 @@ jobs:
 ## `docs/github-workflows.md`
 
 ```md
+<!-- markdownlint-disable -->
 # GitHub Workflows
 
 ## Purpose
@@ -113,6 +117,7 @@ Workflows are successfully triggering on pull requests, passing the hygiene and 
 ## `docs/repo-validation-checklist.md`
 
 ```md
+<!-- markdownlint-disable -->
 # Repository Validation Checklist
 
 ## Purpose

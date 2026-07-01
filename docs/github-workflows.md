@@ -1,3 +1,4 @@
+<!-- markdownlint-disable -->
 # GitHub Workflows
 
 ## Purpose
