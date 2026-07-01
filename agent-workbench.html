@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Agent Workbench | AI Agent Library</title>
+  <meta name="description" content="Turn an AI Agent Library record into copyable build assets for Custom GPTs, Gemini Gems, Notion pages, GitHub issues, and static Vercel pages.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html" aria-current="page">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="categories.html">Categories</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Build Console</div>
+    <h1>Agent Workbench</h1>
+    <p>Pick an agent and generate useful implementation assets instead of opening another raw Markdown file like a raccoon reading tax code.</p>
+  </section>
+
+  <main id="main">
+    <section class="section card">
+      <h2>Choose an agent</h2>
+      <p>Select a library record and generate copy-ready build material for the platform you actually want to use.</p>
+      <div class="form-grid">
+        <label>
+          Agent
+          <select id="agentSelect"></select>
+        </label>
+        <label>
+          Target platform
+          <select id="platformSelect">
+            <option value="custom-gpt">Custom GPT</option>
+            <option value="gemini-gem">Gemini Gem</option>
+            <option value="notion">Notion operating page</option>
+            <option value="vercel">Static Vercel page</option>
+            <option value="github-issue">GitHub implementation issue</option>
+          </select>
+        </label>
+        <label>
+          Build depth
+          <select id="depthSelect">
+            <option value="starter">Starter</option>
+            <option value="operator">Operator-ready</option>
+            <option value="repo">Repo-ready</option>
+          </select>
+        </label>
+      </div>
+      <div class="pill-row">
+        <button id="buildAsset" class="button">Generate build asset</button>
+        <button id="copyAsset" class="button secondary">Copy output</button>
+        <a id="sourceLink" class="button-link secondary" href="agent-catalog.html">Open source file →</a>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card" id="agentOverview">
+        <h2>Agent overview</h2>
+        <p>Loading agent...</p>
+      </article>
+
+      <article class="card">
+        <h2>What this workbench produces</h2>
+        <ul class="mini-list">
+          <li>Role/instruction starter for assistant platforms.</li>
+          <li>Inputs, outputs, workflow, and review gates.</li>
+          <li>Knowledge-base and skill dependency checklist.</li>
+          <li>Static page or Notion implementation brief.</li>
+          <li>GitHub issue prompt for repo execution.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section card">
+      <h2>Generated build asset</h2>
+      <pre id="output">Choose an agent, select a target platform, then generate a build asset.</pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (async () => {
+      const rawAgents = await AILibrary.fetchJSON(["agent-index.json", "site-data/agents.fallback.json"], []);
+      const rawSkills = await AILibrary.fetchJSON(["skills/skill-index.json", "site-data/skills.fallback.json"], []);
+      const agents = rawAgents.map(AILibrary.normalizeAgent);
+      const skills = rawSkills.map(AILibrary.normalizeSkill);
+
+      const agentSelect = document.getElementById("agentSelect");
+      const platformSelect = document.getElementById("platformSelect");
+      const depthSelect = document.getElementById("depthSelect");
+      const overview = document.getElementById("agentOverview");
+      const output = document.getElementById("output");
+      const sourceLink = document.getElementById("sourceLink");
+      const buildButton = document.getElementById("buildAsset");
+      const copyButton = document.getElementById("copyAsset");
+
+      function findAgent() {
+        return agents.find((agent) => agent.slug === agentSelect.value) || agents[0];
+      }
+
+      function relatedSkills(agent) {
+        const haystack = `${agent.name} ${agent.slug} ${agent.category} ${agent.pain_solved}`.toLowerCase();
+        const category = agent.category.toLowerCase();
+        return skills.filter((skill) => {
+          const skillText = `${skill.name} ${skill.slug} ${skill.category} ${skill.problem_solved}`.toLowerCase();
+          return skillText.includes(category.split(" ")[0]) || haystack.includes(skill.category.toLowerCase().split(" ")[0]);
+        }).slice(0, 4);
+      }
+
+      function renderOverview() {
+        const agent = findAgent();
+        const matches = relatedSkills(agent);
+        sourceLink.href = agent.file || "agent-catalog.html";
+
+        overview.innerHTML = `
+          <h2>${AILibrary.escapeHTML(agent.name)}</h2>
+          <div class="pill-row">
+            <span class="pill gold">${AILibrary.escapeHTML(agent.category)}</span>
+            <span class="pill">${AILibrary.escapeHTML(agent.priority)}</span>
+            <span class="pill">${AILibrary.escapeHTML(agent.status)}</span>
+          </div>
+          <p><strong>Buyer:</strong> ${AILibrary.escapeHTML(agent.buyer)}</p>
+          <p><strong>Pain solved:</strong> ${AILibrary.escapeHTML(agent.pain_solved)}</p>
+          <p><strong>Monetization:</strong> ${AILibrary.escapeHTML(agent.monetization)}</p>
+          <h3>Likely skill dependencies</h3>
+          <div class="pill-row">
+            ${matches.map((skill) => `<a class="pill" href="skill-builder.html?skill=${AILibrary.escapeHTML(skill.slug)}">${AILibrary.escapeHTML(skill.name)}</a>`).join("") || `<span class="pill">Skill match TBD</span>`}
+          </div>
+        `;
+      }
+
+      function buildCustomGpt(agent, depth) {
+        const matches = relatedSkills(agent);
+        return `# Custom GPT Starter: ${agent.name}
+
+## Role
+You are ${agent.name}, a focused AI assistant for ${agent.buyer}.
+
+## Job To Be Done
+Help the operator solve this problem:
+${agent.pain_solved}
+
+## Primary User
+${agent.buyer}
+
+## Operating Mode
+- Ask for missing context before generating final outputs.
+- Convert messy input into structured, reviewable next steps.
+- Prefer practical checklists, drafts, routing logic, and reusable templates.
+- Keep outputs public-safe unless the user explicitly marks the workflow internal.
+
+## Core Workflow
+1. Identify the user's goal and current stage.
+2. Collect required inputs, constraints, and source material.
+3. Diagnose gaps, blockers, or routing issues.
+4. Generate the requested output in a copy-ready format.
+5. Add review notes, assumptions, and next actions.
+
+## Recommended Skills
+${AILibrary.listLines(matches.map((skill) => `${skill.name} — ${skill.path}`), "- No direct skill match yet. Use the Skill Catalog to add one.")}
+
+## Guardrails
+- Do not invent facts, approvals, funding outcomes, revenue outcomes, legal conclusions, tax advice, or private data.
+- Do not expose backend providers, private affiliate routing, or sensitive partner logic in public outputs.
+- Use educational, readiness, possible-fit, review-required, and next-step language.
+
+## Starter Conversation Prompts
+- "Use this agent to analyze the following situation and produce the next best action plan."
+- "Turn this messy source material into a structured workflow, checklist, and output template."
+- "Create a public-safe version and an internal operator version of this asset."
+
+## Build Depth
+${depth}
+`;
+      }
+
+      function buildGem(agent, depth) {
+        return `# Gemini Gem Starter: ${agent.name}
+
+## Gem Purpose
+Package ${agent.name} as a lightweight reusable assistant for ${agent.buyer}.
+
+## What The Gem Helps With
+${agent.pain_solved}
+
+## Instructions
+- Start by asking what asset, workflow, or decision the user needs.
+- Keep answers structured with sections, checklists, and copyable drafts.
+- Offer a practical next step instead of generic education.
+- Flag missing information before making assumptions.
+
+## Output Formats
+- Intake checklist
+- Recommended next action
+- Draft message or script
+- Workflow outline
+- Implementation notes
+
+## Safety Rules
+- No guaranteed results.
+- No invented claims or private data.
+- No backend-provider exposure in public-facing material.
+
+## Build Depth
+${depth}
+`;
+      }
+
+      function buildNotion(agent, depth) {
+        return `# Notion Operating Page Spec: ${agent.name}
+
+## Page Title
+${agent.name}
+
+## Purpose
+Create a Notion operating page that turns this agent into a repeatable workflow for ${agent.buyer}.
+
+## Suggested Sections
+1. Overview
+2. Intake Questions
+3. Required Inputs
+4. Workflow Steps
+5. Output Templates
+6. Review Checklist
+7. Related Skills
+8. Related Knowledge Bases
+9. Launch / Maintenance Notes
+
+## Database Properties
+- Name: title
+- Category: select — ${agent.category}
+- Buyer: text
+- Pain Solved: text
+- Status: select — Draft, Ready, Live, Retired
+- Priority: select — High, Medium, Low
+- Platform Target: multi-select — Custom GPT, Gemini Gem, Vercel, Notion, GitHub
+- Source File: url/text — ${agent.file || "TBD"}
+- Last Reviewed: date
+
+## Related Skills
+${AILibrary.listLines(relatedSkills(agent).map((skill) => skill.name))}
+
+## Build Depth
+${depth}
+`;
+      }
+
+      function buildVercel(agent, depth) {
+        return `# Static Vercel Page Brief: ${agent.name}
+
+## Page Goal
+Create a dependency-free static landing/detail page that explains what ${agent.name} does and gives the operator a clear next action.
+
+## Recommended Route
+/agents/${agent.slug}.html
+
+## Hero
+Headline: ${agent.name}
+Subheadline: ${agent.pain_solved}
+Audience: ${agent.buyer}
+
+## Page Sections
+1. What this agent does
+2. Who it is for
+3. Inputs needed
+4. Outputs produced
+5. Recommended skills
+6. Platform packaging options
+7. Public-safe guardrails
+8. Build / copy / deploy CTA
+
+## CTA Options
+- Generate Custom GPT instructions
+- Build Notion operating page
+- Create GitHub implementation issue
+- Open source spec
+
+## Source File
+${agent.file || "TBD"}
+
+## Build Depth
+${depth}
+`;
+      }
+
+      function buildIssue(agent, depth) {
+        return `# GitHub Issue Prompt: Implement ${agent.name} Utility Page
+
+## Goal
+Turn ${agent.name} from a static catalog entry into a useful build asset.
+
+## Scope
+- Create or improve an agent detail/workbench page for ${agent.slug}.
+- Use the existing agent-index.json record as source of truth.
+- Show buyer, pain solved, monetization, source path, and recommended platform options.
+- Add copyable output blocks for Custom GPT, Gemini Gem, Notion, Vercel, and implementation prompts.
+
+## Source Record
+- Name: ${agent.name}
+- Category: ${agent.category}
+- Buyer: ${agent.buyer}
+- Pain solved: ${agent.pain_solved}
+- Source file: ${agent.file || "TBD"}
+
+## Acceptance Criteria
+- The user can do something useful without opening raw Markdown.
+- CTAs do not loop back to the same page without explanation.
+- Any source-file link is secondary, not the main value proposition.
+- No private data, API keys, unsupported claims, or backend-provider bypass paths.
+- Static HTML/CSS/JS only.
+
+## Build Depth
+${depth}
+`;
+      }
+
+      function buildAsset() {
+        const agent = findAgent();
+        const target = platformSelect.value;
+        const depth = depthSelect.value;
+        const builders = {
+          "custom-gpt": buildCustomGpt,
+          "gemini-gem": buildGem,
+          notion: buildNotion,
+          vercel: buildVercel,
+          "github-issue": buildIssue
+        };
+
+        output.textContent = builders[target](agent, depth);
+      }
+
+      agents.forEach((agent) => {
+        agentSelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(agent.slug)}">${AILibrary.escapeHTML(agent.name)}</option>`);
+      });
+
+      const requestedAgent = AILibrary.queryParam("agent");
+      if (requestedAgent && agents.some((agent) => agent.slug === requestedAgent)) {
+        agentSelect.value = requestedAgent;
+      }
+
+      agentSelect.addEventListener("change", () => {
+        renderOverview();
+        buildAsset();
+      });
+      platformSelect.addEventListener("change", buildAsset);
+      depthSelect.addEventListener("change", buildAsset);
+      buildButton.addEventListener("click", buildAsset);
+      copyButton.addEventListener("click", () => AILibrary.copyText(output.textContent, copyButton));
+
+      renderOverview();
+      buildAsset();
+    })();
+  </script>
+</body>
+</html>
