@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Registry Console | AI Agent Library</title>
+  <meta name="description" content="Turn attached and Notion-sourced registries into build-ready site content, deployment packets, tool specs, assistant stacks, and repo tasks.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
+      <nav class="nav-links" aria-label="Primary navigation"></nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Registry Console</div>
+    <h1>Turn JSON graveyards into build queues.</h1>
+    <p>Search the registry layer, identify what each source can power, and generate copy-ready build prompts for pages, tools, assistants, deployments, and stack recipes.</p>
+    <div class="pill-row">
+      <a class="button-link" href="build-console.html">Open Build Console →</a>
+      <button class="button secondary" id="copyVisible">Copy visible build plan</button>
+    </div>
+  </section>
+
+  <main id="main">
+    <section class="section callout">
+      <strong>What this page fixes:</strong>
+      <p>The project had registries, but the site did not use them. This console makes the registry layer operational: filter sources, see what each registry can populate, and generate implementation prompts instead of guessing what the pile of JSON is for.</p>
+    </section>
+
+    <section class="section card">
+      <h2>Registry filters</h2>
+      <div class="toolbar">
+        <input id="searchInput" type="search" placeholder="Search registries, fields, examples, uses...">
+        <select id="familyFilter"><option value="all">All families</option></select>
+        <select id="statusFilter"><option value="all">All statuses</option></select>
+      </div>
+      <div id="stats" class="stat-row"></div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card" id="selectedRegistry">
+        <h2>Selected registry</h2>
+        <p>Choose a registry card to generate a focused build packet.</p>
+      </article>
+
+      <article class="card">
+        <h2>Fast operating model</h2>
+        <ul class="mini-list">
+          <li><strong>Assistant Stacks</strong> become build recipes.</li>
+          <li><strong>Custom GPTs / AI Studio Apps</strong> become assistant profiles.</li>
+          <li><strong>Funding Tools / EAM Tools</strong> become calculators and widgets.</li>
+          <li><strong>Deployments / Repos</strong> become portfolio and QA inventory.</li>
+          <li><strong>Funding / Credit registries</strong> become public-safe directories and routing logic.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section">
+      <div id="registryGrid" class="wide-grid"></div>
+    </section>
+
+    <section class="section card">
+      <h2>Generated registry build packet</h2>
+      <pre id="packetOutput">Select a registry to generate a build packet.</pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
+    <p>
+      <a href="terms.html">Terms</a> ·
+      <a href="privacy.html">Privacy</a> ·
+      <a href="data-policy.html">Data Policy</a> ·
+      <a href="affiliate-disclosure.html">Affiliate Disclosure</a> ·
+      <a href="contribute.html">Contribute</a>
+    </p>
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (async () => {
+      const data = await AILibrary.fetchJSON(["site-data/registry-index.json"], { registries: [], families: [] });
+      const registries = data.registries || [];
+      const searchInput = document.getElementById("searchInput");
+      const familyFilter = document.getElementById("familyFilter");
+      const statusFilter = document.getElementById("statusFilter");
+      const stats = document.getElementById("stats");
+      const grid = document.getElementById("registryGrid");
+      const selected = document.getElementById("selectedRegistry");
+      const output = document.getElementById("packetOutput");
+      const copyVisible = document.getElementById("copyVisible");
+
+      function unique(values) {
+        return [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
+      }
+
+      function list(items) {
+        return (items || []).map((item) => `- ${item}`).join("\n") || "- TBD";
+      }
+
+      unique(registries.map((item) => item.family)).forEach((family) => {
+        familyFilter.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(family)}">${AILibrary.escapeHTML(family)}</option>`);
+      });
+
+      unique(registries.map((item) => item.status)).forEach((status) => {
+        statusFilter.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(status)}">${AILibrary.escapeHTML(status)}</option>`);
+      });
+
+      function visibleRegistries() {
+        const query = searchInput.value.toLowerCase();
+        const family = familyFilter.value;
+        const status = statusFilter.value;
+
+        return registries.filter((item) => {
+          const text = [
+            item.id,
+            item.name,
+            item.file,
+            item.family,
+            item.status,
+            item.description,
+            item.siteUse,
+            item.recommendedPage,
+            item.buildPrompt,
+            (item.primaryFields || []).join(" "),
+            (item.exampleAssets || []).join(" ")
+          ].join(" ").toLowerCase();
+
+          return text.includes(query) &&
+            (family === "all" || item.family === family) &&
+            (status === "all" || item.status === status);
+        });
+      }
+
+      function buildPacket(item) {
+        const packet = `# Registry Build Packet: ${item.name}
+
+## Source
+- Registry file: ${item.file}
+- Family: ${item.family}
+- Visibility: ${item.visibility || "TBD"}
+- Status: ${item.status || "TBD"}
+- Count: ${item.count || "TBD"}
+
+## What This Registry Is For
+${item.description}
+
+## How The Site Should Use It
+${item.siteUse}
+
+## Recommended Page / Feature
+${item.recommendedPage}
+
+## Core Fields
+${list(item.primaryFields)}
+
+## Example Assets
+${list(item.exampleAssets)}
+
+## Build Prompt
+${item.buildPrompt}
+
+## Implementation Instructions
+Create or update the AI Agent Library site so this registry becomes useful to an operator.
+
+Required output:
+1. A static HTML page or section that renders these records as searchable/filterable cards.
+2. A generated build packet button for each record.
+3. Clear primary actions: Build, Copy Prompt, Open Source, Open Related Tool, or Create Repo Task.
+4. Public-safe copy for any funding, credit, or affiliate content.
+5. No fake claims, no guaranteed outcomes, no invented proof, and no private backend routing exposed publicly.
+
+## Acceptance Criteria
+- The registry is no longer just a JSON file.
+- A visitor can understand what the registry powers within 10 seconds.
+- The page creates an implementation prompt or deployment packet.
+- The registry links back into Build Console or Agent Workbench.
+- Static-first: HTML, CSS, JS, JSON, Markdown only.
+`;
+        output.textContent = packet;
+        selected.innerHTML = `
+          <div class="utility-kicker">${AILibrary.escapeHTML(item.family)}</div>
+          <h2>${AILibrary.escapeHTML(item.name)}</h2>
+          <p>${AILibrary.escapeHTML(item.description)}</p>
+          <div class="pill-row">
+            <span class="pill gold">${AILibrary.escapeHTML(item.status || "TBD")}</span>
+            <span class="pill">${AILibrary.escapeHTML(item.visibility || "TBD")}</span>
+            <span class="pill">${AILibrary.escapeHTML(item.count || "Count TBD")}</span>
+          </div>
+          <p><strong>Recommended page:</strong> <code>${AILibrary.escapeHTML(item.recommendedPage || "TBD")}</code></p>
+          <div class="utility-card-actions">
+            <a class="button-link" href="build-console.html">Send concept to Build Console →</a>
+            <button class="button secondary" id="copyPacketNow">Copy packet</button>
+          </div>
+        `;
+        document.getElementById("copyPacketNow").addEventListener("click", () => AILibrary.copyText(output.textContent, document.getElementById("copyPacketNow")));
+      }
+
+      function render() {
+        const visible = visibleRegistries();
+        const families = unique(registries.map((item) => item.family));
+        const statuses = unique(registries.map((item) => item.status));
+
+        stats.innerHTML = `
+          <div class="stat"><strong>${registries.length}</strong><span>Indexed registries</span></div>
+          <div class="stat"><strong>${families.length}</strong><span>Families</span></div>
+          <div class="stat"><strong>${statuses.length}</strong><span>Status groups</span></div>
+          <div class="stat"><strong>${visible.length}</strong><span>Visible now</span></div>
+        `;
+
+        grid.innerHTML = visible.map((item) => `
+          <article class="card">
+            <div class="utility-kicker">${AILibrary.escapeHTML(item.family)}</div>
+            <h2>${AILibrary.escapeHTML(item.name)}</h2>
+            <p>${AILibrary.escapeHTML(item.description)}</p>
+            <div class="pill-row">
+              <span class="pill gold">${AILibrary.escapeHTML(item.status || "TBD")}</span>
+              <span class="pill">${AILibrary.escapeHTML(item.visibility || "TBD")}</span>
+              <span class="pill">${AILibrary.escapeHTML(item.count || "Count TBD")}</span>
+            </div>
+            <p><strong>Site use:</strong> ${AILibrary.escapeHTML(item.siteUse)}</p>
+            <p><strong>Recommended:</strong> <code>${AILibrary.escapeHTML(item.recommendedPage || "TBD")}</code></p>
+            <div class="pill-row">
+              ${(item.exampleAssets || []).slice(0, 5).map((asset) => `<span class="pill">${AILibrary.escapeHTML(asset)}</span>`).join("")}
+            </div>
+            <div class="utility-card-actions">
+              <button class="button" data-registry="${AILibrary.escapeHTML(item.id)}">Generate packet</button>
+            </div>
+          </article>
+        `).join("") || `<div class="empty-state">No matching registries.</div>`;
+
+        grid.querySelectorAll("button[data-registry]").forEach((button) => {
+          button.addEventListener("click", () => {
+            const item = registries.find((registry) => registry.id === button.dataset.registry);
+            if (item) buildPacket(item);
+          });
+        });
+      }
+
+      [searchInput, familyFilter, statusFilter].forEach((control) => {
+        control.addEventListener("input", render);
+        control.addEventListener("change", render);
+      });
+
+      copyVisible.addEventListener("click", () => {
+        const visible = visibleRegistries();
+        const text = visible.map((item) => `${item.name} — ${item.siteUse}\nPrompt: ${item.buildPrompt}`).join("\n\n---\n\n");
+        AILibrary.copyText(text, copyVisible);
+      });
+
+      render();
+      if (registries[0]) buildPacket(registries[0]);
+    })();
+  </script>
+</body>
+</html>
