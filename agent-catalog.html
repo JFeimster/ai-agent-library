@@ -4,11 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Agent Catalog | AI Agent Library</title>
-  <meta name="description" content="Browse productized AI agents by category, buyer, pain solved, platform, status, priority, and tags.">
+  <meta name="description" content="Browse productized AI agents and open each one in the Agent Workbench to generate platform-ready build assets.">
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
   <a class="skip-link" href="#main">Skip to content</a>
+
   <header class="site-header">
     <div class="nav-wrap">
       <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
@@ -25,26 +26,53 @@
       </nav>
     </div>
   </header>
+
   <section class="hero">
     <div class="eyebrow">Agent Directory</div>
     <h1>Agent Catalog</h1>
-    <p>Browse productized AI agents by category, buyer, pain solved, platform, status, priority, and tags.</p>
+    <p>Browse productized AI agents, then open one in the workbench to generate Custom GPT instructions, Gemini Gem starters, Notion specs, Vercel page briefs, and GitHub issue prompts.</p>
   </section>
+
   <main id="main">
+    <section class="section callout">
+      <strong>Catalog rule:</strong>
+      <p>The catalog is for choosing an agent. The workbench is for building with it. Source Markdown is now secondary, because nobody came here to admire files in a glass coffin.</p>
+    </section>
+
     <section class="section">
       <div class="toolbar">
-        <input id="searchInput" type="search" placeholder="Search agents...">
+        <input id="searchInput" type="search" placeholder="Search agents, buyers, pains, tags...">
         <select id="categoryFilter"><option value="all">All categories</option></select>
-        <select id="sortSelect"><option value="priority">Sort by priority</option><option value="name">Sort by name</option><option value="category">Sort by category</option></select>
+        <select id="sortSelect">
+          <option value="priority">Sort by priority</option>
+          <option value="name">Sort by name</option>
+          <option value="category">Sort by category</option>
+        </select>
       </div>
     </section>
+
     <section class="section"><div id="stats" class="stat-row"></div></section>
     <section class="section"><div id="grid" class="wide-grid"></div></section>
+
     <section class="section two-col">
-      <article class="card"><h2>Agent card standard</h2><ul class="mini-list"><li>Name and category.</li><li>Buyer and pain solved.</li><li>Platform target and priority.</li><li>Source file path and tags.</li></ul></article>
-      <article class="card"><h2>Next build path</h2><p>Use the agent schema and knowledge-base folders to turn high-priority draft agents into per-agent Markdown specs.</p><a class="button-link" href="schemas/agent.schema.json">Open agent schema →</a></article>
+      <article class="card">
+        <h2>Useful agent card standard</h2>
+        <ul class="mini-list">
+          <li>Primary action: open workbench.</li>
+          <li>Secondary action: open source file.</li>
+          <li>Show buyer, pain solved, platform target, and monetization.</li>
+          <li>Make the next build path obvious.</li>
+        </ul>
+      </article>
+
+      <article class="card">
+        <h2>Next build path</h2>
+        <p>Use the workbench output to create Custom GPTs, Gemini Gems, Notion pages, Vercel pages, or GitHub implementation issues.</p>
+        <a class="button-link" href="agent-workbench.html">Open Agent Workbench →</a>
+      </article>
     </section>
   </main>
+
   <footer class="footer">
     <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
     <p>
@@ -56,6 +84,7 @@
     </p>
     <p>© <span data-year></span> AI Agent Library.</p>
   </footer>
+
   <script src="script.js"></script>
   <script>
     (async () => {
@@ -66,20 +95,74 @@
       const sortSelect = document.getElementById("sortSelect");
       const stats = document.getElementById("stats");
       const grid = document.getElementById("grid");
-      AILibrary.unique(agents.map(a => a.category)).forEach(category => categorySelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(category)}">${AILibrary.escapeHTML(category)}</option>`));
-      function weight(priority) { return { High: 1, high: 1, Medium: 2, medium: 2, Low: 3, low: 3 }[priority] || 9; }
+
+      AILibrary.unique(agents.map((agent) => agent.category)).forEach((category) => {
+        categorySelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(category)}">${AILibrary.escapeHTML(category)}</option>`);
+      });
+
       function render() {
         const q = searchInput.value.toLowerCase();
         const cat = categorySelect.value;
         const sort = sortSelect.value;
-        let visible = agents.filter(a => [a.name, a.category, a.buyer, a.pain_solved, a.platform, a.status, (a.tags || []).join(" ")].join(" ").toLowerCase().includes(q) && (cat === "all" || a.category === cat));
-        if (sort === "name") visible.sort((a,b) => a.name.localeCompare(b.name));
-        if (sort === "category") visible.sort((a,b) => `${a.category}${a.name}`.localeCompare(`${b.category}${b.name}`));
-        if (sort === "priority") visible.sort((a,b) => weight(a.priority) - weight(b.priority));
-        stats.innerHTML = `<div class="stat"><strong>${agents.length}</strong><span>Total agents</span></div><div class="stat"><strong>${AILibrary.unique(agents.map(a => a.category)).length}</strong><span>Categories</span></div><div class="stat"><strong>${visible.length}</strong><span>Visible results</span></div>`;
-        grid.innerHTML = visible.map(a => `<article class="card"><div class="pill-row"><span class="pill gold">${AILibrary.escapeHTML(a.category)}</span><span class="pill">${AILibrary.escapeHTML(a.priority)}</span><span class="pill">${AILibrary.escapeHTML(a.status)}</span></div><h2>${AILibrary.escapeHTML(a.name)}</h2><p><strong>Buyer:</strong> ${AILibrary.escapeHTML(a.buyer)}</p><p>${AILibrary.escapeHTML(a.pain_solved)}</p><p><strong>Platform:</strong> ${AILibrary.escapeHTML(a.platform)}</p><div class="pill-row">${(a.tags || []).map(t => `<span class="pill">${AILibrary.escapeHTML(t)}</span>`).join("")}</div>${a.file ? `<a class="button-link secondary" href="${AILibrary.escapeHTML(a.file)}">Open source file →</a>` : `<a class="button-link secondary" href="contribute.html">Create source file →</a>`}</article>`).join("") || `<div class="empty-state">No matching agents.</div>`;
+
+        let visible = agents.filter((agent) => {
+          const searchable = [
+            agent.name,
+            agent.category,
+            agent.buyer,
+            agent.pain_solved,
+            agent.platform,
+            agent.status,
+            agent.priority,
+            agent.monetization,
+            (agent.tags || []).join(" ")
+          ].join(" ").toLowerCase();
+
+          return searchable.includes(q) && (cat === "all" || agent.category === cat);
+        });
+
+        if (sort === "name") visible.sort((a, b) => a.name.localeCompare(b.name));
+        if (sort === "category") visible.sort((a, b) => `${a.category}${a.name}`.localeCompare(`${b.category}${b.name}`));
+        if (sort === "priority") visible.sort((a, b) => AILibrary.priorityWeight(a.priority) - AILibrary.priorityWeight(b.priority));
+
+        stats.innerHTML = `
+          <div class="stat"><strong>${agents.length}</strong><span>Total agents</span></div>
+          <div class="stat"><strong>${AILibrary.unique(agents.map((agent) => agent.category)).length}</strong><span>Categories</span></div>
+          <div class="stat"><strong>${visible.length}</strong><span>Visible results</span></div>
+        `;
+
+        grid.innerHTML = visible.map((agent) => {
+          const workbenchUrl = `agent-workbench.html?agent=${encodeURIComponent(agent.slug)}`;
+
+          return `
+            <article class="card">
+              <div class="pill-row">
+                <span class="pill gold">${AILibrary.escapeHTML(agent.category)}</span>
+                <span class="pill">${AILibrary.escapeHTML(agent.priority)}</span>
+                <span class="pill">${AILibrary.escapeHTML(agent.status)}</span>
+              </div>
+              <h2>${AILibrary.escapeHTML(agent.name)}</h2>
+              <p><strong>Buyer:</strong> ${AILibrary.escapeHTML(agent.buyer)}</p>
+              <p>${AILibrary.escapeHTML(agent.pain_solved)}</p>
+              <p><strong>Monetization:</strong> ${AILibrary.escapeHTML(agent.monetization)}</p>
+              <p><strong>Platform:</strong> ${AILibrary.escapeHTML(agent.platform)}</p>
+              <div class="pill-row">
+                ${(agent.tags || []).map((tag) => `<span class="pill">${AILibrary.escapeHTML(tag)}</span>`).join("")}
+              </div>
+              <div class="pill-row">
+                <a class="button-link" href="${workbenchUrl}">Open workbench →</a>
+                ${agent.file ? `<a class="button-link secondary" href="${AILibrary.escapeHTML(agent.file)}">Source file →</a>` : `<a class="button-link secondary" href="contribute.html">Create source →</a>`}
+              </div>
+            </article>
+          `;
+        }).join("") || `<div class="empty-state">No matching agents.</div>`;
       }
-      [searchInput, categorySelect, sortSelect].forEach(el => { el.addEventListener("input", render); el.addEventListener("change", render); });
+
+      [searchInput, categorySelect, sortSelect].forEach((el) => {
+        el.addEventListener("input", render);
+        el.addEventListener("change", render);
+      });
+
       render();
     })();
   </script>
