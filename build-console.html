@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Build Console | AI Agent Library</title>
+  <meta name="description" content="Generate a deployment packet from AI Agent Library agents, skills, and target platforms.">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="index.html"><span class="brand-mark">AI</span><span>Agent Library</span></a>
+      <nav class="nav-links" aria-label="Primary navigation">
+        <a href="index.html">Home</a>
+        <a href="agent-catalog.html">Agents</a>
+        <a href="skill-catalog.html">Skills</a>
+        <a href="build-console.html" aria-current="page">Build</a>
+        <a href="platforms.html">Platforms</a>
+        <a href="knowledge-bases.html">Knowledge</a>
+        <a href="portfolio.html">Portfolio</a>
+        <a href="roadmap.html">Roadmap</a>
+        <a href="search.html">Search</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="eyebrow">Deployment Packet Generator</div>
+    <h1>Build from the library instead of browsing the museum.</h1>
+    <p>Select an agent, attach a skill, choose a target platform, and generate a copy-ready implementation packet.</p>
+  </section>
+
+  <main id="main">
+    <section class="section card">
+      <h2>Build packet inputs</h2>
+      <div class="form-grid">
+        <label>Agent<select id="agentSelect"></select></label>
+        <label>Skill<select id="skillSelect"></select></label>
+        <label>Target platform
+          <select id="platformSelect">
+            <option value="custom-gpt">Custom GPT</option>
+            <option value="gemini-gem">Gemini Gem</option>
+            <option value="notion">Notion OS Page</option>
+            <option value="vercel">Static Vercel Page</option>
+            <option value="github">GitHub PR Task</option>
+            <option value="automation">Automation Workflow</option>
+          </select>
+        </label>
+        <label>Output mode
+          <select id="modeSelect">
+            <option value="starter">Starter</option>
+            <option value="operator">Operator-ready</option>
+            <option value="repo">Repo-ready</option>
+          </select>
+        </label>
+      </div>
+      <label style="margin-top: 1rem;">Extra context<textarea id="contextInput" placeholder="Paste constraints, audience notes, source material, brand rules, or launch goal..."></textarea></label>
+      <div class="pill-row">
+        <button class="button" id="generatePacket">Generate packet</button>
+        <button class="button secondary" id="copyPacket">Copy packet</button>
+      </div>
+    </section>
+
+    <section class="section two-col">
+      <article class="card" id="summaryCard"><h2>Selection summary</h2><p>Choose an agent and skill.</p></article>
+      <article class="card">
+        <h2>Packet includes</h2>
+        <ul class="mini-list">
+          <li>Purpose and user/buyer definition.</li>
+          <li>Required inputs and outputs.</li>
+          <li>Platform-specific build instructions.</li>
+          <li>Repo file plan and acceptance criteria.</li>
+          <li>Public-safe guardrails and review checklist.</li>
+        </ul>
+      </article>
+    </section>
+
+    <section class="section card">
+      <h2>Generated implementation packet</h2>
+      <pre id="packetOutput">Generate a packet to begin.</pre>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p><strong>AI Agent Library</strong> — reusable agents, skills, prompt systems, knowledge bases, platform packs, and deployable AI product assets.</p>
+    <p><a href="terms.html">Terms</a> · <a href="privacy.html">Privacy</a> · <a href="data-policy.html">Data Policy</a> · <a href="affiliate-disclosure.html">Affiliate Disclosure</a> · <a href="contribute.html">Contribute</a></p>
+    <p>© <span data-year></span> AI Agent Library.</p>
+  </footer>
+
+  <script src="script.js"></script>
+  <script>
+    (async () => {
+      const agents = (await AILibrary.fetchJSON(["agent-index.json", "site-data/agents.fallback.json"], [])).map(AILibrary.normalizeAgent);
+      const skills = (await AILibrary.fetchJSON(["skills/skill-index.json", "site-data/skills.fallback.json"], [])).map(AILibrary.normalizeSkill);
+      const agentSelect = document.getElementById("agentSelect");
+      const skillSelect = document.getElementById("skillSelect");
+      const platformSelect = document.getElementById("platformSelect");
+      const modeSelect = document.getElementById("modeSelect");
+      const contextInput = document.getElementById("contextInput");
+      const summaryCard = document.getElementById("summaryCard");
+      const packetOutput = document.getElementById("packetOutput");
+      const generateButton = document.getElementById("generatePacket");
+      const copyButton = document.getElementById("copyPacket");
+
+      agents.forEach((agent) => agentSelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(agent.slug)}">${AILibrary.escapeHTML(agent.name)}</option>`));
+      skills.forEach((skill) => skillSelect.insertAdjacentHTML("beforeend", `<option value="${AILibrary.escapeHTML(skill.slug)}">${AILibrary.escapeHTML(skill.name)}</option>`));
+
+      function selectedAgent() { return agents.find((agent) => agent.slug === agentSelect.value) || agents[0]; }
+      function selectedSkill() { return skills.find((skill) => skill.slug === skillSelect.value) || skills[0]; }
+
+      function platformLabel(value) {
+        return {
+          "custom-gpt": "Custom GPT",
+          "gemini-gem": "Gemini Gem",
+          notion: "Notion OS Page",
+          vercel: "Static Vercel Page",
+          github: "GitHub PR Task",
+          automation: "Automation Workflow"
+        }[value] || value;
+      }
+
+      function renderSummary() {
+        const agent = selectedAgent();
+        const skill = selectedSkill();
+        summaryCard.innerHTML = `
+          <h2>${AILibrary.escapeHTML(agent.name)}</h2>
+          <p><strong>Buyer:</strong> ${AILibrary.escapeHTML(agent.buyer)}</p>
+          <p><strong>Pain solved:</strong> ${AILibrary.escapeHTML(agent.pain_solved)}</p>
+          <p><strong>Attached skill:</strong> ${AILibrary.escapeHTML(skill.name)}</p>
+          <p><strong>Skill job:</strong> ${AILibrary.escapeHTML(skill.problem_solved)}</p>
+          <div class="pill-row"><span class="pill gold">${AILibrary.escapeHTML(agent.category)}</span><span class="pill blue">${AILibrary.escapeHTML(skill.category)}</span><span class="pill">${AILibrary.escapeHTML(platformLabel(platformSelect.value))}</span></div>
+        `;
+      }
+
+      function buildPacket() {
+        const agent = selectedAgent();
+        const skill = selectedSkill();
+        const platform = platformLabel(platformSelect.value);
+        const mode = modeSelect.value;
+        const context = contextInput.value.trim() || "No extra context supplied.";
+        const route = platformSelect.value;
+
+        const platformInstructions = {
+          "custom-gpt": "Create GPT instructions, conversation starters, knowledge file checklist, and safe-response rules.",
+          "gemini-gem": "Create concise Gem instructions, usage examples, and guardrails for lightweight repeated use.",
+          notion: "Create a Notion operating page with properties, sections, checklists, and review workflow.",
+          vercel: "Create a dependency-free static page brief with sections, data requirements, CTAs, and source paths.",
+          github: "Create an implementation issue with branch name, files to touch, acceptance criteria, and review checklist.",
+          automation: "Create a workflow spec with trigger, inputs, steps, outputs, approval gates, errors, and fallback handling."
+        }[route];
+
+        packetOutput.textContent = `# Build Packet: ${agent.name} + ${skill.name}
+
+## Target Platform
+${platform}
+
+## Output Mode
+${mode}
+
+## Agent Purpose
+${agent.name} helps ${agent.buyer} solve this problem:
+${agent.pain_solved}
+
+## Attached Skill
+${skill.name}
+
+Skill purpose:
+${skill.problem_solved}
+
+Suggested skill path:
+${skill.path}
+
+## Extra Context
+${context}
+
+## Build Instructions
+${platformInstructions}
+
+## Required Inputs
+- Target audience or operator
+- Source material or current workflow
+- Desired output format
+- Brand rules and positioning constraints
+- Public-safe or internal-only status
+- Review requirements
+- Deployment destination
+
+## Standard Outputs
+- Platform-ready instruction draft
+- Input checklist
+- Output template
+- Review checklist
+- Guardrails
+- Repo or workspace file plan
+- Next action prompt
+
+## File / Asset Plan
+- Agent source: ${agent.file || "TBD"}
+- Skill source: ${skill.path || "TBD"}
+- Build notes: docs/build-packets/${agent.slug}-${skill.slug}.md
+- Optional static page: agents/${agent.slug}.html
+- Optional platform pack: platforms/${route}/${agent.slug}.md
+
+## Acceptance Criteria
+- The output helps someone build, not merely browse.
+- Main CTA is an implementation action, not a raw source file.
+- All unsupported claims are removed.
+- Public-facing copy avoids guarantees around approvals, funding, revenue, rankings, credit, legal, tax, or platform outcomes.
+- Private data, secrets, backend-provider routing, and partner-sensitive logic are not exposed.
+- The result can be copied into ChatGPT, Codex, Jules, Notion, Vercel, or GitHub with minimal cleanup.
+
+## Copy/Paste Implementation Prompt
+Use this build packet to create a ${platform} asset.
+
+Agent:
+${agent.name}
+
+Buyer:
+${agent.buyer}
+
+Problem solved:
+${agent.pain_solved}
+
+Skill:
+${skill.name}
+
+Skill purpose:
+${skill.problem_solved}
+
+Target platform:
+${platform}
+
+Mode:
+${mode}
+
+Extra context:
+${context}
+
+Generate the implementation-ready asset with sections, inputs, outputs, workflow, examples, guardrails, and next steps.
+`;
+      }
+
+      [agentSelect, skillSelect, platformSelect, modeSelect].forEach((el) => {
+        el.addEventListener("change", () => { renderSummary(); buildPacket(); });
+      });
+      generateButton.addEventListener("click", () => { renderSummary(); buildPacket(); });
+      copyButton.addEventListener("click", () => AILibrary.copyText(packetOutput.textContent, copyButton));
+
+      renderSummary();
+      buildPacket();
+    })();
+  </script>
+</body>
+</html>
