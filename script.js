@@ -10,16 +10,12 @@ window.AILibrary = (() => {
 
   async function fetchJSON(paths, fallback = []) {
     const list = Array.isArray(paths) ? paths : [paths];
-
     for (const path of list) {
       try {
         const response = await fetch(path, { cache: "no-store" });
         if (response.ok) return await response.json();
-      } catch (error) {
-        // Static-first fallback. Missing optional JSON should not kill the page.
-      }
+      } catch (error) {}
     }
-
     return fallback;
   }
 
@@ -28,11 +24,7 @@ window.AILibrary = (() => {
   }
 
   function slugify(text) {
-    return String(text || "")
-      .toLowerCase()
-      .trim()
-      .replace(/[^a-z0-9]+/g, "-")
-      .replace(/(^-|-$)/g, "");
+    return String(text || "").toLowerCase().trim().replace(/[^a-z0-9]+/g, "-").replace(/(^-|-$)/g, "");
   }
 
   function queryParam(name, fallback = "") {
@@ -59,7 +51,6 @@ window.AILibrary = (() => {
   function normalizeAgent(agent, index = 0) {
     const name = agent.name || `Agent ${index + 1}`;
     const slug = agent.slug || slugify(name) || `agent-${index + 1}`;
-
     return {
       number: agent.number || index + 1,
       name,
@@ -79,7 +70,6 @@ window.AILibrary = (() => {
   function normalizeSkill(skill, index = 0) {
     const name = skill.name || `Skill ${index + 1}`;
     const slug = skill.slug || slugify(name) || `skill-${index + 1}`;
-
     return {
       name,
       slug,
@@ -101,19 +91,15 @@ window.AILibrary = (() => {
 
   function listLines(items, fallback = "- TBD") {
     const list = (items || []).filter(Boolean);
-    if (!list.length) return fallback;
-    return list.map((item) => `- ${item}`).join("\n");
+    return list.length ? list.map((item) => `- ${item}`).join("\n") : fallback;
   }
 
   async function copyText(text, button) {
     await navigator.clipboard.writeText(text);
-
     if (button) {
       const original = button.textContent;
       button.textContent = "Copied";
-      setTimeout(() => {
-        button.textContent = original;
-      }, 1200);
+      setTimeout(() => { button.textContent = original; }, 1200);
     }
   }
 
@@ -123,21 +109,16 @@ window.AILibrary = (() => {
     });
   }
 
-  document.addEventListener("DOMContentLoaded", setYear);
+  function loadSharedNav() {
+    if (document.querySelector('script[src="nav.js"]')) return;
+    const script = document.createElement("script");
+    script.src = "nav.js";
+    script.defer = true;
+    document.head.appendChild(script);
+  }
 
-  return {
-    escapeHTML,
-    fetchJSON,
-    unique,
-    slugify,
-    queryParam,
-    normalizePriority,
-    normalizeStatus,
-    normalizeAgent,
-    normalizeSkill,
-    priorityWeight,
-    listLines,
-    copyText,
-    setYear
-  };
+  document.addEventListener("DOMContentLoaded", setYear);
+  loadSharedNav();
+
+  return { escapeHTML, fetchJSON, unique, slugify, queryParam, normalizePriority, normalizeStatus, normalizeAgent, normalizeSkill, priorityWeight, listLines, copyText, setYear };
 })();
