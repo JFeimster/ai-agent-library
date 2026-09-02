@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine CRM Note Normalizer"
+  short_description: "Turn messy intake evidence into clean CRM notes."
+  default_prompt: "Use $moonshine-crm-note-normalizer to normalize these Moonshine CRM sources."
+policy:
+  allow_implicit_invocation: true
+

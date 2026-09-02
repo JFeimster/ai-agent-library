@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine Funding Pipeline Health"
+  short_description: "Prioritize funding opportunities and next actions."
+  default_prompt: "Use $moonshine-funding-pipeline-health to review the active Moonshine funding pipeline."
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine CRM Intake"
+  short_description: "Process Moonshine funding and partner intake safely."
+  default_prompt: "Use $moonshine-crm-intake to reconcile this Moonshine Capital intake into the CRM."
+policy:
+  allow_implicit_invocation: true
+

@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine CRM Schema Steward"
+  short_description: "Protect HubSpot schema quality and field budget."
+  default_prompt: "Use $moonshine-crm-schema-steward to evaluate this proposed CRM field change."
+policy:
+  allow_implicit_invocation: true
+
