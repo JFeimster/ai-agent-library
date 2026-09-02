@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine Funding Follow-up"
+  short_description: "Coordinate funding follow-up without duplicate churn."
+  default_prompt: "Use $moonshine-funding-follow-up to plan the next verified follow-up."
+policy:
+  allow_implicit_invocation: true
+

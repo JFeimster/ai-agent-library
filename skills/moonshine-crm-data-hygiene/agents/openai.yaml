@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine CRM Data Hygiene"
+  short_description: "Audit CRM quality without reckless cleanup."
+  default_prompt: "Use $moonshine-crm-data-hygiene to produce a safe CRM cleanup backlog."
+policy:
+  allow_implicit_invocation: true
+

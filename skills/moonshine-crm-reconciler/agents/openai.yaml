@@ -1,0 +1,7 @@
+interface:
+  display_name: "Moonshine CRM Reconciler"
+  short_description: "Resolve cross-system CRM drift with evidence."
+  default_prompt: "Use $moonshine-crm-reconciler to investigate this Moonshine CRM mismatch."
+policy:
+  allow_implicit_invocation: true
+

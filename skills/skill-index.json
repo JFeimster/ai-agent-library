@@ -309,5 +309,152 @@
     "related_knowledge_bases": [
       "portfolio/vercel/README.md"
     ]
+  },
+  {
+    "name": "Moonshine CRM Intake",
+    "slug": "moonshine-crm-intake",
+    "category": "CRM Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Processes Moonshine Capital funding and partner intake with evidence-backed cross-system CRM updates.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "2.1.0",
+    "path": "skills/moonshine-crm-intake/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine CRM Schema Steward",
+    "slug": "moonshine-crm-schema-steward",
+    "category": "CRM Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Protects the constrained HubSpot schema and custom-property budget before CRM field changes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-crm-schema-steward/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine CRM Data Hygiene",
+    "slug": "moonshine-crm-data-hygiene",
+    "category": "CRM Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Audits duplicates, associations, stale work, and data-quality risks without reckless cleanup.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-crm-data-hygiene/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine Funding Pipeline Health",
+    "slug": "moonshine-funding-pipeline-health",
+    "category": "Funding Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Turns active funding opportunities into evidence-backed operating queues and next actions.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-funding-pipeline-health/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine CRM Note Normalizer",
+    "slug": "moonshine-crm-note-normalizer",
+    "category": "CRM Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Normalizes intake and communications into evidence-labeled internal CRM notes.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-crm-note-normalizer/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine Funding Follow-up",
+    "slug": "moonshine-funding-follow-up",
+    "category": "Funding Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Coordinates verified application and reactivation follow-up without duplicate outreach.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "high",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-funding-follow-up/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
+  },
+  {
+    "name": "Moonshine CRM Reconciler",
+    "slug": "moonshine-crm-reconciler",
+    "category": "CRM Operations",
+    "audience": "Moonshine Capital funding and partner operators",
+    "problem_solved": "Reconciles identity, status, task, and communication drift across Moonshine operating systems.",
+    "recommended_apps": [
+      "ChatGPT",
+      "Codex",
+      "HubSpot",
+      "Gmail",
+      "Notion",
+      "Google Sheets"
+    ],
+    "priority": "medium",
+    "status": "active",
+    "version": "1.0.0",
+    "path": "skills/moonshine-crm-reconciler/SKILL.md",
+    "related_agents": [],
+    "related_knowledge_bases": []
   }
 ]
